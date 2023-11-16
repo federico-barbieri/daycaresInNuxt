@@ -18,12 +18,8 @@ onMounted(() => {
 
 <template>
   <div class="container" style="padding: 50px 0 100px 0">
+    
     <nuxtLayout>
-
-      <ul>
-      <li><nuxt-link to="/">HOME</nuxt-link></li>
-      <li><nuxt-link to="/Account">account</nuxt-link></li>  
-      </ul>
 
         <Account v-if="session" :session="session" />
         <nuxtPage v-else />

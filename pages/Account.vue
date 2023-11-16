@@ -1,6 +1,9 @@
 <script setup>
+
+
 import { supabase } from '../lib/supabaseClient.js'
 import { onMounted, ref, toRefs } from 'vue'
+
 import DaycareCard from "../components/DaycareCard.vue"
 
 const props = defineProps(['session'])
@@ -132,7 +135,7 @@ async function signOut() {
     height: auto;
     border: 1px solid white;
     display: flex;
-    flex-direction: row;
+    flex-direction: column ;
     align-items: center;
     justify-content: space-around;
 }
