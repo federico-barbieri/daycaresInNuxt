@@ -90,7 +90,10 @@ async function signOut() {
 
 <template>
     <div class="main">
-      THIS IS MY PROFILE
+
+
+<!-- IF THIS IS THE FIRST TIME THE USER LOGGED IN, THEY WILL BE ASKED TO PROVIDE A NAME-->
+
   <form v-if="!fetchedFullName" class="form-widget" @submit.prevent="updateProfile">
     <div>
       <label for="email">Email</label>
@@ -114,6 +117,11 @@ async function signOut() {
       <button class="button block" @click="signOut" :disabled="loading">Sign Out</button>
     </div>
   </form>
+
+
+<!-- ELSE, WE WILL ALREADY HAVE THEIR NAME-->
+
+
   <h1 v-else>HELLO {{fetchedFullName}}</h1>
   
   <ul v-if="daycares.length > 0" class="daycare-ul">
@@ -131,21 +139,34 @@ async function signOut() {
 <style scoped>
 
 .main{
-    width: 80vw;
+    width: 90vw;
     height: auto;
-    border: 1px solid white;
+    border: 1px solid black;
     display: flex;
-    flex-direction: column ;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin: 5rem auto;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding: 1rem;
+}
+
+h1{
+  border: 1px solid red;
 }
 
 .daycare-ul{
+  padding-inline-start: 0;
     color: black;
     max-width: 70%;
     height: auto;
     list-style: none;
     border-top-right-radius: 30px;
     border-top-left-radius: 30px;
+    height: 600px; /* Set a fixed height or adjust as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid red;
+
 }
 </style>
