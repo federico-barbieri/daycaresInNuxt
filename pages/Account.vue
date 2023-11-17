@@ -86,6 +86,19 @@ async function signOut() {
     loading.value = false
   }
 }
+
+
+// tabs from nuxt ui
+
+const items = [{
+  slot: 'daycares',
+  label: 'Browse daycares'
+}, {
+  slot: 'children',
+  label: 'My children'
+}]
+
+
 </script>
 
 <template>
@@ -122,17 +135,34 @@ async function signOut() {
 <!-- ELSE, WE WILL ALREADY HAVE THEIR NAME-->
 
 
-  <h1 v-else>HELLO {{fetchedFullName}}</h1>
+  <h1 class="font-sans" v-else>HELLO {{fetchedFullName}}</h1>
+
+  <UTabs :items="items" class="w-full" orientation="vertical">
+    <template #daycares="{ item }">
+
+      <ul v-if="daycares.length > 0" class="daycare-ul">
+   
+        <UCard v-for="daycare in daycares" :key="daycare.id" class="newCard">
+            <template #header>
+              <h2><strong>{{ daycare.name }}</strong></h2>
+            </template>
+
+            <div>
+              <p class="address"><em>{{ daycare.address }}</em></p>
+              <span class="area">{{ daycare.area }}</span>
+            </div>
+
+
+            <template #footer>
+              <butto class="moreInfoBtn">More Info</butto>
+            </template>
+        </UCard>
+      </ul> 
+    
+    
+    </template>
+  </UTabs>
   
-  <ul v-if="daycares.length > 0" class="daycare-ul">
-    <DaycareCard
-    v-for="daycare in daycares"
-    :key="daycare.id"
-    :name="daycare.name"
-    :address="daycare.address"
-    :area="daycare.area"    
-    />
-  </ul> 
 </div>
 </template>
 
@@ -141,9 +171,9 @@ async function signOut() {
 .main{
     width: 90vw;
     height: auto;
-    border: 1px solid black;
+    border: 1px solid white;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     margin: 5rem auto;
@@ -158,15 +188,35 @@ h1{
 
 .daycare-ul{
   padding-inline-start: 0;
-    color: black;
+    color: white;
     max-width: 70%;
     height: auto;
     list-style: none;
-    border-top-right-radius: 30px;
-    border-top-left-radius: 30px;
     height: 600px; /* Set a fixed height or adjust as needed */
     overflow-y: auto; /* Enable vertical scrolling */
-    border: 1px solid red;
-
+    padding: 1rem;
 }
+
+.newCard{
+  margin: 1.5rem 0;
+  border: 1px solid white;
+  border-bottom-right-radius: 30px;
+  border-top-left-radius: 30px;
+}
+
+.moreInfoBtn{
+    width: 8rem;
+    height: 2rem;
+    margin: 2rem 0 0 0;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.5s ease-in;
+}
+
+.moreInfoBtn:hover{
+    background-color: hotpink;
+    color: black;
+}
+
+
 </style>
