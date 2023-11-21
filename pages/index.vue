@@ -8,7 +8,7 @@ const items = [
   slot: 'home'
   }, 
   {
-  label: 'Daycare problematic',
+  label: 'Overview',
   slot: 'problematic'
   }, 
   {
@@ -66,7 +66,7 @@ const faq = [
 </script>
 
 <template>
-  <div class="w-screen h-screen  m-0 p-0">
+  <div class="w-screen h-screen  m-0 p-0 bg-gradient-to-t from-black-500 to-green-500 w-screen h-screen">
   
     <header class=" mx-auto  w-screen h-full m-0 p-0">
         <nav class="mx-auto  w-screen h-full p-0">
@@ -81,17 +81,17 @@ const faq = [
 
                           <h1>Waiting lists for private daycares in Copenhagen</h1>
 
-                          <p class="mt-3 text-lg">
+                          <p class="mt-5 text-lg">
                             Sign your children up in an easy and transparent way.
                           </p>
 
-                          <ul class="flex flex-row justify-evenly w-full mt-10 mb-10">
-                            <li class="rounded-tr-lg rounded-bl-lg border-2 border-white-500 px-7 py-5" style="border-top-left-radius: 0; border-bottom-left-radius: 500px; border-top-right-radius: 500px; border-bottom-right-radius: 0px; min-width: 9rem;">Montessori</li>
-                            <li class="rounded-tr-lg rounded-bl-lg border-2 border-white-500 px-7 py-5" style="border-top-left-radius: 0; border-bottom-left-radius: 500px; border-top-right-radius: 500px; border-bottom-right-radius: 0px; min-width: 9rem;">R. Steiner</li>
-                            <li class="rounded-tr-lg rounded-bl-lg border-2 border-white-500 px-7 py-5" style="border-top-left-radius: 0; border-bottom-left-radius: 500px; border-top-right-radius: 500px; border-bottom-right-radius: 0px; min-width: 9rem;">International</li>  
+                          <ul class="flex flex-row justify-evenly w-full mt-12 mb-10">
+                            <li class="rounded-tr-lg rounded-bl-lg border-2 border-white-500 px-7 py-5 hover:bg-green-500 hover:text-black transition-colors duration-500" style="border-top-left-radius: 0; border-bottom-left-radius: 500px; border-top-right-radius: 500px; border-bottom-right-radius: 0px; min-width: 9rem;">Montessori</li>
+                            <li class="rounded-tr-lg rounded-bl-lg border-2 border-white-500 px-7 py-5 hover:bg-green-500 hover:text-black transition-colors duration-500" style="border-top-left-radius: 0; border-bottom-left-radius: 500px; border-top-right-radius: 500px; border-bottom-right-radius: 0px; min-width: 9rem;">R. Steiner</li>
+                            <li class="rounded-tr-lg rounded-bl-lg border-2 border-white-500 px-7 py-5 hover:bg-green-500 hover:text-black transition-colors duration-500" style="border-top-left-radius: 0; border-bottom-left-radius: 500px; border-top-right-radius: 500px; border-bottom-right-radius: 0px; min-width: 9rem;">International</li>  
                           </ul>
 
-                          <button class="bg-green-500 px-5 py-3 rounded-none mt-5 text-black">Get started</button>
+                          <button class="bg-green-500 px-5 py-3 rounded-none mt-10 text-black">Get started</button>
 
                     </div>  
 
@@ -99,7 +99,7 @@ const faq = [
 
                 <template #problematic="{ item }" class="text-center">
 
-                    <h2>DAYCARE SITUATION IN COPENHAGEN</h2>
+                    <h2>DAYCARE OVERVIEW IN COPENHAGEN</h2>
 
                     <p>
                       Many want to sign their children into private daycares. The problem is there is not enough place for everyone.
