@@ -1,9 +1,15 @@
 <script setup>
 
-
 import { supabase } from '../lib/supabaseClient.js'
 import { onMounted, ref, toRefs } from 'vue'
+import DaycareCard from "../components/DaycareCard.vue"
 
+
+// check if the user is logged in
+
+const sessionExists = ref()
+
+const email = ref('')
 
 const props = defineProps(['session'])
 const { session } = toRefs(props)
@@ -14,9 +20,35 @@ const fetchedFullName = ref('')
 
 const daycares = ref([])
 
+
+const handleLogin = async () => {
+  try {
+    loading.value = true
+    const { error } = await supabase.auth.signInWithOtp({
+      email: email.value,
+    })
+    if (error) throw error
+    alert('Check your email for the login link!')
+  } catch (error) {
+    if (error instanceof Error) {
+      alert(error.message)
+    }
+  } finally {
+    loading.value = false
+  }
+}
+
 onMounted(() => {
   getProfile()
   getDaycares()
+
+  supabase.auth.getSession().then(({ data }) => {
+    session.Existsvalue = data.session
+  })
+
+  supabase.auth.onAuthStateChange((_, _session) => {
+    sessionExists.value = _session
+  })
 })
 
 async function getDaycares(){
@@ -85,28 +117,30 @@ async function signOut() {
     loading.value = false
   }
 }
-
-
-// tabs from nuxt ui
-
-const items = [{
-  slot: 'daycares',
-  label: 'Browse daycares'
-}, {
-  slot: 'children',
-  label: 'My children'
-}]
-
-
 </script>
 
 <template>
     <div class="main">
 
+      <form class="row flex-center flex" @submit.prevent="handleLogin" v-if="sessionExists" :session="sessionExists">
+    <div class="col-6 form-widget">
+      <h1 class="header">I SHOULD BE THE FIRST PAGE</h1>
+      <p class="description">Sign in via magic link with your email below</p>
+      <div>
+        <input class="inputField" required type="email" placeholder="Your email" v-model="email" />
+      </div>
+      <div>
+        <input
+          type="submit"
+          class="button block"
+          :value="loading ? 'Loading' : 'Send magic link'"
+          :disabled="loading"
+        />
+      </div>
+    </div>
+  </form>
 
-<!-- IF THIS IS THE FIRST TIME THE USER LOGGED IN, THEY WILL BE ASKED TO PROVIDE A NAME-->
-
-  <form v-if="!fetchedFullName" class="form-widget" @submit.prevent="updateProfile">
+  <form v-else-if="!fetchedFullName" class="form-widget" @submit.prevent="updateProfile">
     <div>
       <label for="email">Email</label>
       <input id="email" type="text" :value="session.user.email" disabled />
@@ -129,95 +163,38 @@ const items = [{
       <button class="button block" @click="signOut" :disabled="loading">Sign Out</button>
     </div>
   </form>
-
-
-<!-- ELSE, WE WILL ALREADY HAVE THEIR NAME-->
-
-
-  <h1 class="font-sans" v-else>HELLO {{fetchedFullName}}</h1>
-
-  <UTabs :items="items"  orientation="horizontal">
-    <template #daycares="{ item }">
-
-      <ul v-if="daycares.length > 0" class="daycare-ul">
-   
-        <UCard v-for="daycare in daycares" :key="daycare.id" class="newCard">
-            <template #header>
-              <h2><strong>{{ daycare.name }}</strong></h2>
-            </template>
-
-            <div>
-              <p class="address"><em>{{ daycare.address }}</em></p>
-              <span class="area">{{ daycare.area }}</span>
-            </div>
-
-
-            <template #footer>
-              <butto class="moreInfoBtn">More Info</butto>
-            </template>
-        </UCard>
-      </ul> 
-    
-    
-    </template>
-  </UTabs>
-
-  <button @click="signOut">LOG OUT</button>
+  <h1 v-else>HELLO {{fetchedFullName}}</h1>
   
+  <ul v-if="daycares.length > 0" class="daycare-ul">
+    <DaycareCard
+    v-for="daycare in daycares"
+    :key="daycare.id"
+    :name="daycare.name"
+    :address="daycare.address"
+    :area="daycare.area"    
+    />
+  </ul> 
 </div>
 </template>
 
 <style scoped>
 
 .main{
-    width: 90vw;
+    width: 80vw;
     height: auto;
     border: 1px solid white;
     display: flex;
-    flex-direction: column;
+    flex-direction: column ;
     align-items: center;
-    justify-content: space-between;
-    margin: 5rem auto;
-    border-top-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-    padding: 1rem;
-}
-
-h1{
-  border: 1px solid red;
+    justify-content: space-around;
 }
 
 .daycare-ul{
-  padding-inline-start: 0;
-    color: white;
+    color: black;
     max-width: 70%;
     height: auto;
     list-style: none;
-    height: 600px; /* Set a fixed height or adjust as needed */
-    overflow-y: auto; /* Enable vertical scrolling */
-    padding: 1rem;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
 }
-
-.newCard{
-  margin: 1.5rem 0;
-  border: 1px solid white;
-  border-bottom-right-radius: 30px;
-  border-top-left-radius: 30px;
-}
-
-.moreInfoBtn{
-    width: 8rem;
-    height: 2rem;
-    margin: 2rem 0 0 0;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    transition: all 0.5s ease-in;
-}
-
-.moreInfoBtn:hover{
-    background-color: hotpink;
-    color: black;
-}
-
-
 </style>
