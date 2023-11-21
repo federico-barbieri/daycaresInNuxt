@@ -10,7 +10,9 @@ module.exports = {
          green: colors.green,
         },
         fontFamily: {
-            'sans': ['"Proxima Nova"', ...defaultTheme.fontFamily.sans]
+            "raleway": "Raleway",
+            'sans': ['"Proxima Nova"', ...defaultTheme.fontFamily.sans],
+            
       },
     },
     plugins: [],

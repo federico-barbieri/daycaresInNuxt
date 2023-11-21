@@ -66,12 +66,14 @@ const faq = [
 </script>
 
 <template>
-  <div class="w-screen h-screen  m-0 p-0 bg-gradient-to-t from-black-500 to-green-500 w-screen h-screen">
+  <div class="w-screen h-screen  m-0 p-0 bg-gradient-to-t from-black-500 to-green-500 w-screen h-screen font-mono">
   
     <header class=" mx-auto  w-screen h-full m-0 p-0">
-        <nav class="mx-auto  w-screen h-full p-0">
+        <nav class="mx-auto  w-screen h-full p-0 flex flex-col text-center">
 
-          <UTabs :items="items"  orientation="horizontal" class="container mx-auto text-center h-full place-content-center pt-5">
+          <p class="font-sans pt-10 pb-5 text-5xl">REBØRN</p>
+
+          <UTabs :items="items"  orientation="horizontal" class="container mx-auto text-center h-full place-content-center pt-5 w-10/12" >
       
                 <template #home="{ item }" >
 
@@ -79,16 +81,16 @@ const faq = [
                       
                     
 
-                          <h1>Waiting lists for private daycares in Copenhagen</h1>
+                          <h1 style="font-size: 5rem;">Waiting lists for private daycares in Copenhagen</h1>
 
                           <p class="mt-5 text-lg">
                             Sign your children up in an easy and transparent way.
                           </p>
 
                           <ul class="flex flex-row justify-evenly w-full mt-12 mb-10">
-                            <li class="rounded-tr-lg rounded-bl-lg border-2 border-white-500 px-7 py-5 hover:bg-green-500 hover:text-black transition-colors duration-500" style="border-top-left-radius: 0; border-bottom-left-radius: 500px; border-top-right-radius: 500px; border-bottom-right-radius: 0px; min-width: 9rem;">Montessori</li>
-                            <li class="rounded-tr-lg rounded-bl-lg border-2 border-white-500 px-7 py-5 hover:bg-green-500 hover:text-black transition-colors duration-500" style="border-top-left-radius: 0; border-bottom-left-radius: 500px; border-top-right-radius: 500px; border-bottom-right-radius: 0px; min-width: 9rem;">R. Steiner</li>
-                            <li class="rounded-tr-lg rounded-bl-lg border-2 border-white-500 px-7 py-5 hover:bg-green-500 hover:text-black transition-colors duration-500" style="border-top-left-radius: 0; border-bottom-left-radius: 500px; border-top-right-radius: 500px; border-bottom-right-radius: 0px; min-width: 9rem;">International</li>  
+                            <li class="rounded-tr-lg rounded-bl-lg border-2 border-white-500 px-7 py-5 hover:bg-green-400 hover:text-black transition-colors duration-500" style="border-top-left-radius: 0; border-bottom-left-radius: 500px; border-top-right-radius: 500px; border-bottom-right-radius: 0px; min-width: 9rem;">Montessori</li>
+                            <li class="rounded-tr-lg rounded-bl-lg border-2 border-white-500 px-7 py-5 hover:bg-green-400 hover:text-black transition-colors duration-500" style="border-top-left-radius: 0; border-bottom-left-radius: 500px; border-top-right-radius: 500px; border-bottom-right-radius: 0px; min-width: 9rem;">R. Steiner</li>
+                            <li class="rounded-tr-lg rounded-bl-lg border-2 border-white-500 px-7 py-5 hover:bg-green-400 hover:text-black transition-colors duration-500" style="border-top-left-radius: 0; border-bottom-left-radius: 500px; border-top-right-radius: 500px; border-bottom-right-radius: 0px; min-width: 9rem;">International</li>  
                           </ul>
 
                           <button class="bg-green-500 px-5 py-3 rounded-none mt-10 text-black">Get started</button>
@@ -99,24 +101,34 @@ const faq = [
 
                 <template #problematic="{ item }" class="text-center">
 
-                    <h2>DAYCARE OVERVIEW IN COPENHAGEN</h2>
+                  <div class="container mx-auto flex flex-col items-center mt-40" style="height: 90vh; display: flex; align-items: flex-start; justify-content: flex-start;">
 
-                    <p>
-                      Many want to sign their children into private daycares. The problem is there is not enough place for everyone.
-                    </p>
-                    
-                    <p>
-                      Many private institutions even recommend signing children 
-                      to multiple facilities to increase their odds.
-                    </p>
 
-                    <p>
-                      To make things worse, signing children is a manual task and not very intuitive.
-                    </p>
+                        <h2 style="font-size: 3rem; max-width: 40vw; text-align: left">DAYCARE OVERVIEW IN COPENHAGEN</h2>
 
-                    <p>
-                      Rebørn by Waitly makes it easy.
-                    </p>
+                        <div class="text-left mt-5" style="max-width: 60ch">
+
+                          <p>
+                          Many want to sign their children into private daycares. The problem is there is not enough place for everyone.
+                        </p>
+                        
+                        <p>
+                          Many private institutions even recommend signing children 
+                          to multiple facilities to increase their odds.
+                        </p>
+
+                        <p>
+                          To make things worse, signing children is a manual task and not very intuitive.
+                        </p>
+
+                        <p>
+                          Rebørn by Waitly makes it easy.
+                        </p>
+                          
+                          
+                        </div>
+
+                  </div>
 
 
                 </template>
@@ -227,8 +239,6 @@ const faq = [
 
 <style scoped>
 
-h1{
-  font-size: 5rem;
-}
+
 
 </style>
