@@ -87,7 +87,7 @@ const faq = [
                           <h1 style="font-size: 5rem;">Waiting lists for private daycares in Copenhagen</h1>
 
                           <p class="mt-5 text-lg">
-                            Sign your children up in an easy and transparent way.
+                            Sign up your children in an easy and transparent way.
                           </p>
 
                           <ul class="flex flex-row justify-evenly w-full mt-12 mb-10">
@@ -104,7 +104,7 @@ const faq = [
 
                 <template #problematic="{ item }" class="text-center">
 
-                  <div class="container mx-auto flex flex-row items-center" style="height: 90vh; display: flex; align-items: center; justify-content: center;">
+                  <div class="container mx-auto flex flex-row items-center" style="height: 70vh; display: flex; align-items: center; justify-content: center;">
 
                     <div>
 
@@ -112,16 +112,11 @@ const faq = [
 
                       <div class="text-left mt-5" style="max-width: 60ch">
 
-                        <p>
+                        <p class="mb-2">
                         Many want to sign their children into private daycares. The problem is there is not enough place for everyone.
                       </p>
 
-                      <p>
-                        Many private institutions even recommend signing children 
-                        to multiple facilities to increase their odds.
-                      </p>
-
-                      <p>
+                      <p class="mb-2">
                         To make things worse, signing children is a manual task and not very intuitive.
                       </p>
 
@@ -146,20 +141,28 @@ const faq = [
 
                 <template #institutions="{ item }" class="text-center">
 
-                    <h2>TYPES OF INSTITUTIONS</h2>
+                  <div class="container mx-auto flex flex-row items-center" style="height: 70vh; display: flex; align-items: center; justify-content: center;">
 
-                    <p>
-                      Many institutions have their own methodologies. 
-                      Other follow specific beliefs. 
+                    <div>
 
-                      Click on each tab to see more information. 
-                    </p>
+                      <h2 style="font-size: 3rem; max-width: 40vw; text-align: left" class="mr-5">TYPES OF INSTITUTIONS</h2>
 
-                    <UTabs :items="institutions"  orientation="horizontal" class="container mx-auto">
+                      <p class="text-left mt-5" style="max-width: 60ch">
+                        Many institutions have their own methodologies. 
+                        Other follow specific beliefs. 
+
+                        Click on each tab to see more information. 
+                      </p>
+                      
+                    
+                    </div>
+
+
+                    <UTabs :items="institutions"  orientation="vertical" class="container mx-auto w-2/5 px-3 mx-3">
 
                       <template #montessori="{ item }">
                         
-                          <p>
+                          <p class="text-left pt-3">
                             Montessori is a method of education that is based on self-directed activity, 
                             hands-on learning and collaborative play. In Montessori classrooms children make 
                             creative choices in their learning, while the classroom and the highly trained teacher 
@@ -170,7 +173,7 @@ const faq = [
 
                       <template #steiner="{ item }">
                         
-                        <p>
+                        <p class="text-left pt-3">
                           Steiner teachers aim to create an environment that facilitates children´s 
                           self-directed free play. In Steiner philosophy, free play supports the proper development 
                           of the will, and children are trusted to work out identities, relationships, 
@@ -181,19 +184,17 @@ const faq = [
 
                     <template #international="{ item }">
                         
-                        <p>
+                        <p class="text-left pt-3">
                           Focuses on the 4 domains of learning: Social and Emotional Development, Language Development, 
                           Cognitive Development and Physical Development. learning and growth in these areas are encouraged 
                           by offering developmentally appropriate learning experiences.  
-                          Children use a variety of materials including blocks, dramatic play props, paint, 
-                          puzzles and manipulatives, books and large motor equipment. 
-                          These experiences are also fostered by planned activities such as group play times, 
-                          outdoor activities, music, games and art.
                         </p>
                       
                     </template>
                     
                     </UTabs>
+
+                    </div>
 
 
                 </template>
