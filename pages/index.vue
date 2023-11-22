@@ -1,5 +1,8 @@
 <script setup>
 
+import BarChart from '../components/BarChart.vue'
+
+
 // main navigation array
 
 const items = [
@@ -101,32 +104,40 @@ const faq = [
 
                 <template #problematic="{ item }" class="text-center">
 
-                  <div class="container mx-auto flex flex-col items-center mt-40" style="height: 90vh; display: flex; align-items: flex-start; justify-content: flex-start;">
+                  <div class="container mx-auto flex flex-row items-center" style="height: 90vh; display: flex; align-items: center; justify-content: center;">
 
+                    <div>
 
-                        <h2 style="font-size: 3rem; max-width: 40vw; text-align: left">DAYCARE OVERVIEW IN COPENHAGEN</h2>
+                      <h2 style="font-size: 3rem; max-width: 40vw; text-align: left">DAYCARE OVERVIEW IN COPENHAGEN</h2>
 
-                        <div class="text-left mt-5" style="max-width: 60ch">
+                      <div class="text-left mt-5" style="max-width: 60ch">
 
-                          <p>
-                          Many want to sign their children into private daycares. The problem is there is not enough place for everyone.
-                        </p>
+                        <p>
+                        Many want to sign their children into private daycares. The problem is there is not enough place for everyone.
+                      </p>
+
+                      <p>
+                        Many private institutions even recommend signing children 
+                        to multiple facilities to increase their odds.
+                      </p>
+
+                      <p>
+                        To make things worse, signing children is a manual task and not very intuitive.
+                      </p>
+
+                      <p>
+                        Rebørn by Waitly makes it easy.
+                      </p>
                         
-                        <p>
-                          Many private institutions even recommend signing children 
-                          to multiple facilities to increase their odds.
-                        </p>
+                        
+                      </div>
+                      
+                      
+                      
+                    </div>
 
-                        <p>
-                          To make things worse, signing children is a manual task and not very intuitive.
-                        </p>
 
-                        <p>
-                          Rebørn by Waitly makes it easy.
-                        </p>
-                          
-                          
-                        </div>
+                        <BarChart />
 
                   </div>
 
