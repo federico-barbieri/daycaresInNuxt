@@ -201,34 +201,62 @@ const faq = [
 
                 <template #about="{ item }" class="text-center">
 
-                      <h2>ABOUT US</h2>
+                  <div class="container mx-auto flex flex-row items-center" style="height: 70vh; display: flex; align-items: center; justify-content: center;">
 
-                      <p>
-                        Rebørn is an initiative by WAITLY. Its aim is to make the daycare category more transparent.
+                    <div class="mr-10">
+                    
+
+                      <h2 style="font-size: 3rem; max-width: 40vw; text-align: left" class="mr-5">ABOUT US</h2>
+
+                      <p class="text-left mt-5 mb-3" style="max-width: 50ch">
+                        Rebørn is an initiative by Waitly.dk. 
+                      </p>
+
+                      <p class="text-left mt-5 mb-3" style="max-width: 50ch">
+                        It's name comes from <strong>reimagining</strong> how parents 
+                        can access waiting lists combined with <strong><em>børn</em></strong>, 
+                        the word for <strong><em>children</em></strong> in Danish.
+                        
+                      </p>
+                        
+                      <p class="text-left mt-5 mb-3" style="max-width: 50ch">
+                        Its aim is to make the daycare category more accessible and transparent.
+                      </p>
+
+                      <p class="text-left mt-5 mb-3" style="max-width: 50ch">
                         Click on each tab to see frequently asked questions. 
                       </p>
 
-                      <UAccordion :items="faq"  orientation="vertical" class="container">
+                    </div>
+
+                      <UAccordion :items="faq"  orientation="vertical" class="container mx-auto w-2/5 px-3 mx-3 text-left">
                         
-                        
-                        
-                        
+                      
                       </UAccordion>
 
                    
+                  </div>
 
 
                 </template>
 
                 <template #contact="{ item }" class="text-center">
 
-                    <h2>CONTACT</h2>
+                  <div class="container mx-auto flex flex-col items-center" style="height: 70vh; display: flex; align-items: center; justify-content: center;">
+
+
+                    <h2 style="font-size: 3rem; max-width: 40vw; text-align: left" class="mr-5">CONTACT</h2>
+
+                    <p class="text-left mt-5 mb-3" style="max-width: 50ch">
+                      reborn-waitinglists@gmail.com
+                    </p>
 
                     <p>
-                      reborn-waitinglists@gmail.com
-
                       Or give us a call Monday to Friday from 9 to 13.
                     </p>
+
+
+                  </div>
 
                 </template>
 
