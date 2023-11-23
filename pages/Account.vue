@@ -1,7 +1,7 @@
 <script setup>
 
 
-import { supabase } from '../lib/supabaseClient.js'
+import { supabase } from '../lib/supabase.js'
 import { onMounted, ref, toRefs } from 'vue'
 
 
@@ -10,7 +10,8 @@ const { session } = toRefs(props)
 
 const loading = ref(true)
 const name = ref('')
-const fetchedFullName = ref('')
+
+let fetchedFullName = ref('')
 
 const daycares = ref([])
 
@@ -64,6 +65,8 @@ async function updateProfile() {
       updated_at: new Date(),
     }
 
+    fetchedFullName = name.value;
+
     const { error } = await supabase.from('profiles').upsert(updates)
 
     if (error) throw error
@@ -106,7 +109,8 @@ const items = [{
 
 <!-- IF THIS IS THE FIRST TIME THE USER LOGGED IN, THEY WILL BE ASKED TO PROVIDE A NAME-->
 
-  <form v-if="!fetchedFullName" class="form-widget" @submit.prevent="updateProfile">
+<div v-if="!fetchedFullName">
+  <form  class="form-widget" @submit.prevent="updateProfile">
     <div>
       <label for="email">Email</label>
       <input id="email" type="text" :value="session.user.email" disabled />
@@ -129,12 +133,13 @@ const items = [{
       <button class="button block" @click="signOut" :disabled="loading">Sign Out</button>
     </div>
   </form>
+  
+  
+  </div>
+  <!-- ELSE, WE WILL ALREADY HAVE THEIR NAME-->
 
-
-<!-- ELSE, WE WILL ALREADY HAVE THEIR NAME-->
-
-
-  <h1 class="font-sans" v-else>HELLO {{fetchedFullName}}</h1>
+<div v-else>
+  <h1 class="font-sans">HELLO {{fetchedFullName}}</h1>
 
   <UTabs :items="items"  orientation="horizontal">
     <template #daycares="{ item }">
@@ -161,6 +166,14 @@ const items = [{
     
     </template>
   </UTabs>
+
+  </div>
+
+
+
+
+
+  
 
   <button @click="signOut">LOG OUT</button>
   

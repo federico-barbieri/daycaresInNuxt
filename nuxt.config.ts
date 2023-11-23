@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   supabase: {
     redirectOptions: {
       login: '/',
-      callback: '/login',
+      callback: '/',
       exclude: [],
     }
   }
