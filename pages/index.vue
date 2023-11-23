@@ -1,5 +1,25 @@
 <script setup>
 
+// SUPABASE
+
+const supabase = useSupabaseClient()
+
+const email = ref('')
+
+const handleLogin = async () => {
+  try {
+    const { error } = await supabase.auth.signInWithOtp({ email: email.value })
+    if (error) throw error
+    alert('Check your email for the login link!')
+  } catch (error) {
+    alert(error.error_description || error.message)
+  } finally {
+    loading.value = false
+  }
+}
+
+
+// bar chart 
 import BarChart from '../components/BarChart.vue'
 
 
@@ -76,27 +96,33 @@ const faq = [
 
           <p class="font-sans pt-10 pb-5 text-5xl">REBØRN</p>
 
-          <UTabs :items="items"  orientation="horizontal" class="container mx-auto text-center h-full place-content-center pt-5 w-10/12" >
+          <UTabs :ui="{ list: { tab: { background: '' } } }" :items="items"  orientation="horizontal" class="container mx-auto text-center h-full place-content-center pt-5 w-10/12" >
       
                 <template #home="{ item }" >
 
-                    <div class="container mx-auto flex flex-col items-center" style="height: 90vh; display: flex; align-items: center; justify-content: center; ">
+                    <div class="container mx-auto flex flex-col items-center" style="height: 90vh; display: flex; align-items: center; justify-content: flex-start; ">
                       
                     
 
-                          <h1 style="font-size: 5rem;">Waiting lists for private daycares in Copenhagen</h1>
+                          <h1 class="mt-10" style="font-size: 5rem;">Waiting lists for private daycares in Copenhagen</h1>
 
                           <p class="mt-5 text-lg">
                             Sign up your children in an easy and transparent way.
                           </p>
 
-                          <ul class="flex flex-row justify-evenly w-full mt-12 mb-10">
-                            <li class="rounded-tr-lg rounded-bl-lg border-2 border-white-500 px-7 py-5 hover:bg-green-400 hover:text-black transition-colors duration-500" style="border-top-left-radius: 0; border-bottom-left-radius: 500px; border-top-right-radius: 500px; border-bottom-right-radius: 0px; min-width: 9rem;">Montessori</li>
-                            <li class="rounded-tr-lg rounded-bl-lg border-2 border-white-500 px-7 py-5 hover:bg-green-400 hover:text-black transition-colors duration-500" style="border-top-left-radius: 0; border-bottom-left-radius: 500px; border-top-right-radius: 500px; border-bottom-right-radius: 0px; min-width: 9rem;">R. Steiner</li>
-                            <li class="rounded-tr-lg rounded-bl-lg border-2 border-white-500 px-7 py-5 hover:bg-green-400 hover:text-black transition-colors duration-500" style="border-top-left-radius: 0; border-bottom-left-radius: 500px; border-top-right-radius: 500px; border-bottom-right-radius: 0px; min-width: 9rem;">International</li>  
-                          </ul>
+                          <form class="w-96 mt-10 row flex-center flex align-center" style="display: flex; align-items: center; justify-content: center; margin-top: 5rem;" @submit.prevent="handleLogin">
+                                  <div class="col-6 form-widget">
+                                    
+                                    <p class="mb-5">Enter your email to get started</p>
+                                    <div>
+                                      <input class="inputField" type="email" placeholder="Your email" v-model="email" />
+                                    </div>
+                                    <div>
+                                      <button type="submit" class="bg-green-500 px-5 py-3 rounded-none mt-10 text-black">Send me the link</button>
+                                    </div>
+                                  </div>
+                            </form>
 
-                          <button class="bg-green-500 px-5 py-3 rounded-none mt-10 text-black">Get started</button>
 
                     </div>  
 
@@ -278,6 +304,10 @@ const faq = [
 </template>
 
 <style scoped>
+
+.my-custom-tabs .list {
+  background-color: transparent;
+}
 
 
 
