@@ -61,6 +61,8 @@ const items = [
     <Account v-if="session" :session="session" />
   
     <EverythingCool v-else />
+
+    <UNotifications />
   
   
   </div>
