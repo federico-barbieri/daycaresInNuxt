@@ -122,7 +122,7 @@ async function activateModal(selectedDaycare){
         if (error && status !== 406) throw error
 
         if (data && data.length > 0) {
-          console.log(data[0]);
+          
           daycareName.value = data[0].name;
           daycareAddress.value = data[0].address;
           daycareArea.value = data[0].area;
@@ -142,23 +142,37 @@ async function activateModal(selectedDaycare){
       } finally {
         loading.value = false
       }
-
-
-
-
 }
+
+let messageToDaycareValue = ref('');
 
 
 
 
 // CHILDREN ////////////////////
 
+// this stores the data coming from the database
+
 let children = ref()
+
+// this tells me if there are any kids
 
 let childrenExist = ref(false);
 
+// this is where i store only the names of the children
+
+let childrenNames = ref()
+
+// this is how i transform childrenNames into an array of objects
+// to be used in the "select" element inside of the daycare slider
+
+const childrenOptions = ref()
+
+
 
 async function getChildren(){
+
+  children.value = '';
 
     const { user } = session.value
 
@@ -172,10 +186,18 @@ async function getChildren(){
 
         if (data && data.length > 0) {
           childrenExist.value = true;
-          
+
+          // store the children array          
           children.value = data;
-          console.log(children.value);
+
+          // store the children names
+          childrenNames.value = children.value.map(child => child.name);
+
+          // turn the children names' variable into an array of objects
+          childrenOptions.value = childrenNames.value.map(name => ({ label: name, value: name }));
+
       } else{
+        childrenExist.value = false;
         console.log("no children found")
       }
 
@@ -349,26 +371,26 @@ const items = [{
         </UCard>
       </ul> 
 
-      <UModal v-model="daycareModalisOpen" :ui="{ height:  'h-', width: 'lg:max-w-lg' }">
+      <USlideover  v-model="daycareModalisOpen" >
       <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800'}">
    
 
-          <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%">
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: space-between; width: 100%">
 
-                  <div style="width: 50%;">
-                    <img src="../assets/pige.jpg" alt="" style="max-width: 100%; height: auto">
+                  <div style="width: 100%;">
+                    <img src="../assets/pige.jpg" alt="" style="max-width: 100%; height: auto; border-radius: 30px;">
                     
                     </div>
             
                   
 
-                  <div style="display: flex; flex-direction: column; align-items: left; justify-content: space-around; width: 50%">
+                  <div style="display: flex; flex-direction: column; align-items: left; justify-content: space-around; width: 100%">
                     
-                        <h3>{{ daycareName }}</h3>
-                        <span>{{ daycareArea }}</span>
-                        <span>{{ daycareOpeningHours }}</span>
-                        <span>Organic meals: {{ daycareOrganicMeals ? 'Yes' : 'No' }}</span>
-                        <span>{{ daycareWebsite }}</span>
+                        <h3 style="font-size: 2rem; text-align: center;">{{ daycareName }}</h3>
+                        <span style="font-size: 1rem;">Area: {{ daycareArea }}</span>
+                        <span style="font-size: 1rem;">Opening hours: {{ daycareOpeningHours }}</span>
+                        <span style="font-size: 1rem;">Organic meals: {{ daycareOrganicMeals ? 'Yes' : 'No' }}</span>
+                        <span style="font-size: 1rem;">Website: {{ daycareWebsite }}</span>
                     
                   </div>
             
@@ -377,11 +399,26 @@ const items = [{
 
             <div style="display: flex; flex-direction: column; align-items: left; justify-content: space-around; width: 50%">
                     
-                    <h3>{{ daycareCost }}</h3>
+                    <span>Waiting list cost per yer: {{ daycareCost }}DKK</span>
                     <span>{{ daycareEmail }}</span>
                     <span>{{ daycareNumber }}</span>
                 
               </div>
+              <h3>Apply to this daycare</h3>
+
+              <USelect
+              placeholder="Child"
+              :options="childrenOptions"
+               />
+
+              <div>
+                
+                
+                
+                
+                </div>
+
+              <UTextarea class="mt-5" :rows="8" size="xl" color="gray" v-model="messageToDaycareValue" placeholder="Send a message to the daycare.." />
 
               <UButton>SUBSCRIBE</UButton>
   
@@ -392,7 +429,7 @@ const items = [{
 
      
       </UCard>
-    </UModal>
+    </USlideover >
     
     
     </template>
