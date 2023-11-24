@@ -95,6 +95,62 @@ let { data: fetchedDaycares, error } = await supabase
   daycares.value = fetchedDaycares
 }
 
+
+// daycare modal
+
+let daycareModalisOpen = ref(false)
+let daycareName= ref('');
+let daycareAddress = ref('');
+let daycareArea = ref('');
+let daycareOpeningHours = ref('');
+let daycareOrganicMeals = ref(null);
+let daycareWebsite = ref('');
+let daycareCost = ref(null);
+let daycareEmail = ref('');
+let daycareNumber = ref(null);
+
+async function activateModal(selectedDaycare){
+
+  try {
+        loading.value = true
+
+        const { data, error, status } = await supabase
+          .from('daycares')
+          .select('*')
+          .eq('id', selectedDaycare.id)
+
+        if (error && status !== 406) throw error
+
+        if (data && data.length > 0) {
+          console.log(data[0]);
+          daycareName.value = data[0].name;
+          daycareAddress.value = data[0].address;
+          daycareArea.value = data[0].area;
+          daycareOpeningHours.value = data[0].opening_hours;
+          daycareOrganicMeals.value = data[0].organic_meals;
+          daycareWebsite.value = data[0].website;
+          daycareCost.value = data[0].cost;
+          daycareEmail.value = data[0].email;
+          daycareNumber.value = data[0].phone;
+
+          daycareModalisOpen.value = true;
+        }
+
+        
+      } catch (error) {
+        alert(error.message)
+      } finally {
+        loading.value = false
+      }
+
+
+
+
+}
+
+
+
+
 // CHILDREN ////////////////////
 
 let children = ref()
@@ -288,10 +344,55 @@ const items = [{
 
 
             <template #footer>
-              <button class="moreInfoBtn">More Info</button>
+              <button @click="activateModal(daycare)"  class="moreInfoBtn">More Info</button>
             </template>
         </UCard>
       </ul> 
+
+      <UModal v-model="daycareModalisOpen" :ui="{ height:  'h-', width: 'lg:max-w-lg' }">
+      <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800'}">
+   
+
+          <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%">
+
+                  <div style="width: 50%;">
+                    <img src="../assets/pige.jpg" alt="" style="max-width: 100%; height: auto">
+                    
+                    </div>
+            
+                  
+
+                  <div style="display: flex; flex-direction: column; align-items: left; justify-content: space-around; width: 50%">
+                    
+                        <h3>{{ daycareName }}</h3>
+                        <span>{{ daycareArea }}</span>
+                        <span>{{ daycareOpeningHours }}</span>
+                        <span>Organic meals: {{ daycareOrganicMeals ? 'Yes' : 'No' }}</span>
+                        <span>{{ daycareWebsite }}</span>
+                    
+                  </div>
+            
+
+            </div>
+
+            <div style="display: flex; flex-direction: column; align-items: left; justify-content: space-around; width: 50%">
+                    
+                    <h3>{{ daycareCost }}</h3>
+                    <span>{{ daycareEmail }}</span>
+                    <span>{{ daycareNumber }}</span>
+                
+              </div>
+
+              <UButton>SUBSCRIBE</UButton>
+  
+            
+      
+
+        
+
+     
+      </UCard>
+    </UModal>
     
     
     </template>
@@ -328,7 +429,7 @@ const items = [{
   
           </div>
 
-        <ul v-if="children.length > 0" style="width: 30%;  height: 600px; overflow-y: auto;">
+        <ul v-if="children" style="width: 30%;  height: 600px; overflow-y: auto;">
    
                 <UCard v-for="child in children" :key="child.id" class="newCard">
                     <template #header>
