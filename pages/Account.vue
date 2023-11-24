@@ -99,6 +99,7 @@ let { data: fetchedDaycares, error } = await supabase
 // daycare modal
 
 let daycareModalisOpen = ref(false)
+let daycareId = ref()
 let daycareName= ref('');
 let daycareAddress = ref('');
 let daycareArea = ref('');
@@ -122,6 +123,8 @@ async function activateModal(selectedDaycare){
         if (error && status !== 406) throw error
 
         if (data && data.length > 0) {
+
+          daycareId.value = data[0].unique_id;
           
           daycareName.value = data[0].name;
           daycareAddress.value = data[0].address;
@@ -144,7 +147,55 @@ async function activateModal(selectedDaycare){
       }
 }
 
-let messageToDaycareValue = ref('');
+// this stores the message the parent sends to the daycare
+
+let messageToDaycare = ref('');
+
+// this stores the kid the parent chooses to apply to a daycare
+
+let selectedKidForSubscription = ref();
+
+
+async function applyToDaycare(){
+
+  console.log("tried");
+
+  try {
+
+  // this will store the selected child's id to send as part of the subscription
+
+    let childObject = children.value.filter((kid) => kid.name == selectedKidForSubscription.value);
+
+    let childId = childObject[0].id;
+
+ 
+      loading.value = true
+      const { user } = session.value
+
+      const addNewSubscription = {
+
+        parent_id: user.id,
+        child_id: childId,
+        daycare_id: daycareId.value,
+        message: messageToDaycare.value,
+      }
+
+      const { error } = await supabase.from('subscriptions').upsert(addNewSubscription)
+
+      if (error) throw error
+      toast.add({ title: 'Application sent succesfully!' })
+    } catch (error) {
+      alert(error.message)
+    } finally {
+      loading.value = false
+      messageToDaycare.value = "";
+      selectedKidForSubscription.value = ""; 
+
+    }
+
+
+
+}
 
 
 
@@ -167,6 +218,7 @@ let childrenNames = ref()
 // to be used in the "select" element inside of the daycare slider
 
 const childrenOptions = ref()
+
 
 
 
@@ -263,12 +315,55 @@ async function removeKid(kidId) {
 }
 
 
+// SUBSCRIPTIONS ////////////////////
+
+// this stores the data coming from the database
+
+let subscriptions = ref()
+
+// this tells me if there are any kids
+
+let subscriptionsExist = ref(false);
+
+async function getSubscriptions(){
+
+  const { user } = session.value
+
+
+    const { data, error } = await supabase
+        .from('subscriptions')
+        .select('*')
+        .eq('parent_id', user.id);
+
+
+
+        if (data && data.length > 0) {
+          subscriptionsExist.value = true;
+
+          // store the children array          
+          subscriptions.value = data;
+
+      } else{
+        subscriptionsExist.value = false;
+        console.log("no subscriptions found")
+      }
+
+      if (error) {
+        console.error('Error fetching subscriptions:', error.message);
+        return;
+      }
+
+}
+
+
+
 
 
 onMounted(() => {
-  getProfile()
-  getDaycares()
+  getProfile();
+  getDaycares();
   getChildren();
+  getSubscriptions();
 })
 
 
@@ -285,8 +380,8 @@ const items = [{
   label: 'Browse daycares'
 },
 {
-  slot: 'waitinglist',
-  label: 'Waiting lists'
+  slot: 'subscriptions',
+  label: 'Subscriptions'
 }]
 
 
@@ -409,6 +504,7 @@ const items = [{
               <USelect
               placeholder="Child"
               :options="childrenOptions"
+              v-model="selectedKidForSubscription"
                />
 
               <div>
@@ -418,9 +514,9 @@ const items = [{
                 
                 </div>
 
-              <UTextarea class="mt-5" :rows="8" size="xl" color="gray" v-model="messageToDaycareValue" placeholder="Send a message to the daycare.." />
+              <UTextarea class="mt-5" :rows="8" size="xl" color="gray" v-model="messageToDaycare" placeholder="Send a message to the daycare.." />
 
-              <UButton>SUBSCRIBE</UButton>
+              <UButton @click="applyToDaycare">SUBSCRIBE</UButton>
   
             
       
@@ -492,6 +588,32 @@ const items = [{
       
       
         </div>
+
+
+</template>
+
+<!--SUBSCRIPTIONS-->
+
+
+<template #subscriptions="{ item }">
+
+  <p v-if="!subscriptionsExist">You haven't applied to any daycare yet.</p>
+
+<ul v-if="subscriptions.length > 0" class="daycare-ul">
+
+  <UCard v-for="subscription in subscriptions" :key="subscription.id" class="newCard">
+      <template #header>
+        <h2><strong>Subscription kid: {{ subscription.child_id }}</strong></h2>
+      </template>
+
+      <div>
+        <p class="address"><em>Subscription daycare: {{ subscription.daycare_id }}</em></p>
+        <span class="area">Message: {{ subscription.message }}</span>
+      </div>
+
+  </UCard>
+</ul> 
+
 
 
 </template>
