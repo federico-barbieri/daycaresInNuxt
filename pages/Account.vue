@@ -500,6 +500,7 @@ const items = [{
               placeholder="Filter by area"
               :options="areaOptions"
               v-model="selectedAreaForFiltering"
+              icon="i-heroicons-magnifying-glass-20-solid"
                />       
         
         </div>
@@ -537,7 +538,7 @@ const items = [{
 
 
       <USlideover  v-model="daycareModalisOpen" >
-      <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800'}">
+      <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800', background: 'dark:bg-transparent'}">
    
 
           <div style="display: flex; flex-direction: column; align-items: center; justify-content: space-between; width: 100%">
@@ -634,9 +635,9 @@ const items = [{
   
           </div>
 
-        <ul v-if="children" style="width: 30%;  height: 600px; overflow-y: auto;">
+        <ul v-if="children" style="width: 50%;  height: 600px; overflow-y: auto;">
    
-                <UCard v-for="child in children" :key="child.id" class="newCard">
+                <UCard :ui="{background:'dark:bg-transparent'}" v-for="child in children" :key="child.id" class="newCard">
                     <template #header>
                       <h2><strong>Name: {{ child.name }}</strong></h2>
                     </template>
@@ -738,6 +739,7 @@ h1{
   margin: 1.5rem 0;
   border-bottom-right-radius: 50px;
   border-top-left-radius: 50px;
+  width: 80%;
 }
 
 .newCardDaycare{
