@@ -219,7 +219,7 @@ let areaOptions = ['All', 'Amager', 'Vesterbro, Kgs. Enghave og Valby', 'Nørreb
 
 let selectedAreaForFiltering = ref('');
 
-// filter through daycares based on selectedAreaForFiltering ref
+// filter through daycares based on listening to changes in selectedAreaForFiltering ref
 
 watch(selectedAreaForFiltering, () => {
 
@@ -396,6 +396,7 @@ async function getSubscriptions(){
 
 
 
+/// INITIALIZE
 
 
 onMounted(() => {
@@ -403,6 +404,7 @@ onMounted(() => {
   getDaycares();
   getChildren();
   getSubscriptions();
+
 
 
 })
@@ -670,23 +672,68 @@ const items = [{
 
 <template #subscriptions="{ item }">
 
-  <p v-if="!subscriptionsExist">You haven't applied to any daycare yet.</p>
+  <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-around; width: 100%; height: 100%; margin: 0 auto">
 
-<ul v-if="subscriptions.length > 0" class="daycare-ul">
 
-  <UCard v-for="subscription in subscriptions" :key="subscription.id" class="newCard">
-      <template #header>
-        <h2><strong>Application for: {{ subscription.daycare_name }}</strong></h2>
-      </template>
+    <div style="width: 40%">
+        <p v-if="!subscriptionsExist">You haven't applied to any daycare yet.</p>
 
-      <div>
-        <p class="address"><em>Subscription of: {{ subscription.child_name }}</em></p>
-        <span class="area">Message sent to daycare: {{ subscription.message }}</span>
-        <span style="display: block;">Date of application: {{ new Date(subscription.created_at).toLocaleDateString('en-GB') }}</span>
-      </div>
+        <ul v-if="subscriptions.length > 0" class="daycare-ul">
 
-  </UCard>
-</ul> 
+          <UCard v-for="subscription in subscriptions" :key="subscription.id" class="newCard">
+              <template #header>
+                <h2><strong>Application for: {{ subscription.daycare_name }}</strong></h2>
+              </template>
+
+              <div>
+                <p class="address"><em>Subscription of: {{ subscription.child_name }}</em></p>
+                <span class="area">Message sent to daycare: {{ subscription.message }}</span>
+                <span style="display: block;">Date of application: {{ new Date(subscription.created_at).toLocaleDateString('en-GB') }}</span>
+              </div>
+
+          </UCard>
+        </ul> 
+
+    </div>
+
+    <MapboxMap
+      map-id="map"
+      style=""
+      :options="{
+        style: 'mapbox://styles/mapbox/light-v11', // style URL
+        center: [12.545607, 55.671999], // starting position
+        zoom: 11 // starting zoom
+      }"
+    >
+  ...
+
+  <MapboxDefaultMarker 
+    marker-id="<MARKER_ID>"
+    :options="{}"
+    :lnglat="[ 12.550979075303212, 55.69596953934183]"
+  >
+
+  </MapboxDefaultMarker>
+  
+  <MapboxDefaultPopup
+    popup-id="vuggestueOne"
+    :lnglat="[13.550979075303212, 55.69596953934183]"
+    :options="{
+      closeOnClick: false
+    }"
+  >
+    <h1 class="test">
+      Studenterrådets Vuggestue
+
+    </h1>
+  </MapboxDefaultPopup>
+</MapboxMap>
+
+
+  </div>
+
+ 
+
 
 
 
@@ -760,6 +807,17 @@ h1{
     background-color: hotpink;
     color: black;
 }
+
+#map { 
+  
+}
+
+.test{
+  width: 5rem;
+  font-size: 1rem;
+  color: black;
+}
+
 
 
 </style>
