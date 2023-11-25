@@ -88,11 +88,27 @@ const daycares = ref([])
 
 async function getDaycares(){
 
+if(selectedAreaForFiltering.value == '' || selectedAreaForFiltering.value == 'All'){
+
 let { data: fetchedDaycares, error } = await supabase
   .from('daycares')
   .select('*')
-
+  
   daycares.value = fetchedDaycares
+
+} else{
+
+  let { data: fetchedDaycares, error } = await supabase
+  .from('daycares')
+  .select('*')
+  .eq('area', selectedAreaForFiltering.value)
+
+  
+  daycares.value = fetchedDaycares
+
+
+}
+
 }
 
 
@@ -158,8 +174,6 @@ let selectedKidForSubscription = ref();
 
 async function applyToDaycare(){
 
-  console.log("tried");
-
   try {
 
   // this will store the selected child's id to send as part of the subscription
@@ -197,10 +211,22 @@ async function applyToDaycare(){
       getSubscriptions();
 
     }
-
-
-
 }
+
+// DAYCARE filters
+
+let areaOptions = ['All', 'Amager', 'Vesterbro, Kgs. Enghave og Valby', 'Nørrebro', 'Brønshøj, Husum og Vanløse', 'Inner City', 'Østerbro', 'Bispebjerg'];
+
+let selectedAreaForFiltering = ref('');
+
+// filter through daycares based on selectedAreaForFiltering ref
+
+watch(selectedAreaForFiltering, () => {
+
+  getDaycares();
+  
+
+});
 
 
 
@@ -345,8 +371,9 @@ async function getSubscriptions(){
         if (data && data.length > 0) {
           subscriptionsExist.value = true;
 
-          // store the children array          
+          // store the subscriptions array          
           subscriptions.value = data;
+          subscriptions.value = subscriptions.value.reverse();
 
       } else{
         subscriptionsExist.value = false;
@@ -363,12 +390,21 @@ async function getSubscriptions(){
 
 
 
+// MAP
+
+
+
+
+
+
 
 onMounted(() => {
   getProfile();
   getDaycares();
   getChildren();
   getSubscriptions();
+
+
 })
 
 
@@ -442,7 +478,7 @@ const items = [{
   </div>
   <!-- ELSE, WE WILL ALREADY HAVE THEIR NAME-->
 
-<div v-else style="width: 80vw;  height: 80vh">
+<div v-else style="width: 80vw;  height: 80vh; overflow: hidden;">
   <h1 class="font-sans">Hej {{fetchedFullName}}!</h1>
 
   <UTabs :items="items"  orientation="horizontal" style="width: 100%; height: 100%;">
@@ -452,24 +488,53 @@ const items = [{
 
     <template #daycares="{ item }">
 
-      <ul v-if="daycares.length > 0" class="daycare-ul">
+      <div style="width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+        
+        <!--FILTERS-->
+
+        <div style="max-width: 30%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+              <!--FILTER BY AREA-->
+
+              <USelect
+              placeholder="Filter by area"
+              :options="areaOptions"
+              v-model="selectedAreaForFiltering"
+               />       
+        
+        </div>
+            
+            
+            
+        <div style="width: 70%">
+
+          <ul v-if="daycares.length > 0" class="daycare-ul w-full" style="width: 100%">
    
-        <UCard v-for="daycare in daycares" :key="daycare.id" class="newCard">
-            <template #header>
-              <h2><strong>{{ daycare.name }}</strong></h2>
-            </template>
+                    <UCard :ui="{background: 'dark:bg-transparent'}" as="div" v-for="daycare in daycares" :key="daycare.id" class="newCardDaycare" style="width: 80%;">
+                        <template #header>
+                          <h2><strong>{{ daycare.name }}</strong></h2>
+                        </template>
 
-            <div>
-              <p class="address"><em>{{ daycare.address }}</em></p>
-              <span class="area">{{ daycare.area }}</span>
-            </div>
+                        <div>
+                          <p><em>{{ daycare.address }}</em></p>
+                          <span>{{ daycare.area }}</span>
+                        </div>
 
 
-            <template #footer>
-              <button @click="activateModal(daycare)"  class="moreInfoBtn">More Info</button>
-            </template>
-        </UCard>
-      </ul> 
+                        <template #footer>
+                          <button @click="activateModal(daycare)"  class="moreInfoBtn">More Info</button>
+                        </template>
+                    </UCard>
+            </ul> 
+          
+          
+          
+          
+          </div>
+      
+
+    
+
 
       <USlideover  v-model="daycareModalisOpen" >
       <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800'}">
@@ -507,7 +572,7 @@ const items = [{
               <h3>Apply to this daycare</h3>
 
               <USelect
-              placeholder="Child"
+              placeholder="Select child"
               :options="childrenOptions"
               v-model="selectedKidForSubscription"
                />
@@ -519,7 +584,7 @@ const items = [{
                 
                 </div>
 
-              <UTextarea class="mt-5" :rows="8" size="xl" color="gray" v-model="messageToDaycare" placeholder="Send a message to the daycare.." />
+              <UTextarea class="mt-5" :rows="8" size="xl" color="gray" v-model="messageToDaycare" placeholder="(OPTIONAL) Send a message to the daycare.." />
 
               <UButton @click="applyToDaycare">SUBSCRIBE</UButton>
   
@@ -531,6 +596,8 @@ const items = [{
      
       </UCard>
     </USlideover >
+
+  </div>
     
     
     </template>
@@ -659,10 +726,10 @@ h1{
 .daycare-ul{
   padding-inline-start: 0;
     color: white;
-    max-width: 70%;
+    width: 50%;
     height: auto;
     list-style: none;
-    height: 600px; /* Set a fixed height or adjust as needed */
+    height: 550px; /* Set a fixed height or adjust as needed */
     overflow-y: auto; /* Enable vertical scrolling */
     padding: 1rem;
 }
@@ -673,6 +740,11 @@ h1{
   border-top-left-radius: 50px;
 }
 
+.newCardDaycare{
+  margin: 1.5rem 0;
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 50px;
+}
 .moreInfoBtn{
     width: 8rem;
     height: 2rem;

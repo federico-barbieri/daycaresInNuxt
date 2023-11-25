@@ -13,7 +13,9 @@
     "@nuxt/devtools": "latest",
     "@nuxt/image": "^1.1.0",
     "@nuxtjs/supabase": "^1.1.4",
+    "mapbox-gl": "^2.15.0",
     "nuxt": "^3.8.1",
+    "nuxt-mapbox": "^1.5.4",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   },
