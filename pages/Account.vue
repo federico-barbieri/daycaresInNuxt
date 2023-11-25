@@ -167,7 +167,8 @@ async function applyToDaycare(){
     let childObject = children.value.filter((kid) => kid.name == selectedKidForSubscription.value);
 
     let childId = childObject[0].id;
-
+    let childName = childObject[0].name;
+  
  
       loading.value = true
       const { user } = session.value
@@ -176,7 +177,9 @@ async function applyToDaycare(){
 
         parent_id: user.id,
         child_id: childId,
+        child_name: childName,
         daycare_id: daycareId.value,
+        daycare_name: daycareName.value,
         message: messageToDaycare.value,
       }
 
@@ -190,6 +193,8 @@ async function applyToDaycare(){
       loading.value = false
       messageToDaycare.value = "";
       selectedKidForSubscription.value = ""; 
+      subscriptions.value = '';
+      getSubscriptions();
 
     }
 
@@ -485,7 +490,7 @@ const items = [{
                         <span style="font-size: 1rem;">Area: {{ daycareArea }}</span>
                         <span style="font-size: 1rem;">Opening hours: {{ daycareOpeningHours }}</span>
                         <span style="font-size: 1rem;">Organic meals: {{ daycareOrganicMeals ? 'Yes' : 'No' }}</span>
-                        <span style="font-size: 1rem;">Website: {{ daycareWebsite }}</span>
+                       <span style="font-size: 1rem;">Website: <nuxtLink :to=daycareWebsite target="_blank"> {{ daycareWebsite }}</nuxtLink></span>
                     
                   </div>
             
@@ -603,12 +608,13 @@ const items = [{
 
   <UCard v-for="subscription in subscriptions" :key="subscription.id" class="newCard">
       <template #header>
-        <h2><strong>Subscription kid: {{ subscription.child_id }}</strong></h2>
+        <h2><strong>Application for: {{ subscription.daycare_name }}</strong></h2>
       </template>
 
       <div>
-        <p class="address"><em>Subscription daycare: {{ subscription.daycare_id }}</em></p>
-        <span class="area">Message: {{ subscription.message }}</span>
+        <p class="address"><em>Subscription of: {{ subscription.child_name }}</em></p>
+        <span class="area">Message sent to daycare: {{ subscription.message }}</span>
+        <span style="display: block;">Date of application: {{ new Date(subscription.created_at).toLocaleDateString('en-GB') }}</span>
       </div>
 
   </UCard>
