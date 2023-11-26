@@ -84,6 +84,17 @@ async function signOut() {
 
 // DAYCARES ////////////////////
 
+const daycareTabs = [{
+  label: 'Filters',
+  slot: 'filters'
+}, {
+  label: 'Map',
+  slot: 'map'
+}, {
+  label: 'Distance',
+  slot: 'distance'
+}]
+
 const daycares = ref([])
 
 async function getDaycares(){
@@ -227,6 +238,10 @@ watch(selectedAreaForFiltering, () => {
   
 
 });
+
+// map
+
+const mapIsOpen = ref(true)
 
 
 
@@ -390,26 +405,6 @@ async function getSubscriptions(){
 
 
 
-// MAP
-
-let mapIsOpen = ref(false)
-
-let mapBtnTxt = ref('Show map');
-
-function mapDisplay(){
-
-  // show map
-  mapIsOpen.value = !mapIsOpen.value;
-
-  if (mapIsOpen.value){
-    mapBtnTxt.value = "Hide map"
-  } else {
-    mapBtnTxt.value = "Show map"
-  }
-}
-
-
-
 
 
 /// INITIALIZE
@@ -425,6 +420,11 @@ onMounted(() => {
 
 })
 
+
+function consoleMe(){
+  console.log("sup");
+  this.$emit('consoleMe')
+}
 
 
 // tabs from nuxt ui
@@ -569,152 +569,184 @@ const items = [{
 
     <template #daycares="{ item }">
 
-      <div style="width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+      <div name="daycareContainer" style="width: 100%; height: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
         
-        <!--FILTERS-->
-
-        <div style="max-width: 30%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-
-
-              <!--FILTER BY AREA-->
-
-              <USelect
-              placeholder="Filter by area"
-              :options="areaOptions"
-              v-model="selectedAreaForFiltering"
-              icon="i-heroicons-magnifying-glass-20-solid"
-               />       
         
-        </div>
-            
-            
-            
-        <div style="width: 70%">
+      
 
-          <ul v-if="daycares.length > 0" class="daycare-ul w-full" style="width: 100%">
-   
-                    <UCard :ui="{background: 'dark:bg-transparent'}" as="div" v-for="daycare in daycares" :key="daycare.id" class="newCardDaycare" style="width: 80%;">
-                        <template #header>
-                          <h2><strong>{{ daycare.name }}</strong></h2>
-                        </template>
+      <UTabs :ui="{list:{width: 'w-36'}}" :items="daycareTabs" orientation="vertical" style="width: 100%; height: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+        
+        <template #filters = {item}>
+          
 
-                        <div>
-                          <p><em>{{ daycare.address }}</em></p>
-                          <span>{{ daycare.area }}</span>
+                  <!--FILTERS-->
+
+                  
+
+                        <div v-if="daycares.length > 0" style="width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: flex-end;">
+
+
+                              <!--FILTER BY AREA-->
+
+                              <USelect
+                              style="width: 100%;"
+                              placeholder="Filter by area"
+                              :options="areaOptions"
+                              v-model="selectedAreaForFiltering"
+                              icon="i-heroicons-magnifying-glass-20-solid"
+                              />       
+                        
+                        
+
+
+            
+            
+            
+                          <div style="width: 60%">
+
+                                  <ul v-if="daycares.length > 0" class="daycare-ul w-full" style="width: 100%">
+                          
+                                            <UCard :ui="{background: 'dark:bg-transparent'}" as="div" v-for="daycare in daycares" :key="daycare.id" class="newCardDaycare" style="width: 90%;">
+                                                <template #header>
+                                                  <h2><strong>{{ daycare.name }}</strong></h2>
+                                                </template>
+
+                                                <div>
+                                                  <p><em>{{ daycare.address }}</em></p>
+                                                  <span>{{ daycare.area }}</span>
+                                                </div>
+
+
+                                                <template #footer>
+                                                  <button @click="activateModal(daycare)"  class="moreInfoBtn">More Info</button>
+                                                </template>
+                                            </UCard>
+                                    </ul> 
+                            
+                            </div>
+
                         </div>
 
+                        <USlideover  v-model="daycareModalisOpen" >
+                            <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800', background: 'dark:bg-transparent'}">
+                  
 
-                        <template #footer>
-                          <button @click="activateModal(daycare)"  class="moreInfoBtn">More Info</button>
-                        </template>
-                    </UCard>
-            </ul> 
+                                <div style="display: flex; flex-direction: column; align-items: center; justify-content: space-between; width: 100%">
+
+                                        <div style="width: 100%;">
+                                          <img src="../assets/pige.jpg" alt="" style="max-width: 100%; height: auto; border-radius: 30px;">
+                                          
+                                        </div>
+                                  
+                                        
+
+                                        <div style="display: flex; flex-direction: column; align-items: left; justify-content: space-around; width: 100%">
+                                          
+                                              <h3 style="font-size: 2rem; text-align: center;">{{ daycareName }}</h3>
+                                              <span style="font-size: 1rem;">Area: {{ daycareArea }}</span>
+                                              <span style="font-size: 1rem;">Opening hours: {{ daycareOpeningHours }}</span>
+                                              <span style="font-size: 1rem;">Organic meals: {{ daycareOrganicMeals ? 'Yes' : 'No' }}</span>
+                                            <span style="font-size: 1rem;">Website: <nuxtLink :to=daycareWebsite target="_blank"> {{ daycareWebsite }}</nuxtLink></span>
+                                          
+                                        </div>
+                                  
+
+                                  </div>
+
+                                    <div style="display: flex; flex-direction: column; align-items: left; justify-content: space-around; width: 50%">
+                                          
+                                          <span>Waiting list cost per yer: {{ daycareCost }}DKK</span>
+                                          <span>{{ daycareEmail }}</span>
+                                          <span>{{ daycareNumber }}</span>
+                                      
+                                    </div>
+                                    <h3>Apply to this daycare</h3>
+
+                                    <USelect
+                                    placeholder="Select child"
+                                    :options="childrenOptions"
+                                    v-model="selectedKidForSubscription"
+                                    />
+
+                                    
+
+                                    <UTextarea class="mt-5" :rows="8" size="xl" color="gray" v-model="messageToDaycare" placeholder="(OPTIONAL) Send a message to the daycare.." />
+
+                                    <UButton @click="applyToDaycare">SUBSCRIBE</UButton>
+                  
+                                
+                            
+                              </UCard>
+            
+                      </USlideover>
           
           
-          
-          
-          </div>
+          </template>
+
+          <template #map = {item}>
 
           <!--SEE MAP-->
 
-            <UButton @click="mapDisplay">{{ mapBtnTxt }}</UButton>
-
-            <MapboxMap
-            v-if="mapIsOpen"
-              map-id="map"
-              style="width: 1000px; margin: 0 auto;"
-              :options="{
-                style: 'mapbox://styles/mapbox/light-v11', // style URL
-                center: [12.545607, 55.671999], // starting position
-                zoom: 11 // starting zoom
-              }"
-              >
-
-              <MapboxDefaultMarker 
-                marker-id="<MARKER_ID>"
-                :options="{}"
-                :lnglat="[ 12.550979075303212, 55.69596953934183]"
-              >
-
-              </MapboxDefaultMarker>
-              
-              <MapboxDefaultPopup
-              
-                popup-id="vuggestueOne"
-                :lnglat="[12.550979075303212, 55.69596953934170]"
-                :options="{
-                  closeOnClick: true
-                }"
-              >
-                <span class="test">
-                  Studenterrådets Vuggestue
-
-                </span>
-              </MapboxDefaultPopup>
-            </MapboxMap>
-      
-
-    
+          <div style="width: 100%; height: 60vh; display: flex; flex-direction: row; align-items: center; justify-content: center;">
 
 
-      <USlideover  v-model="daycareModalisOpen" >
-      <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800', background: 'dark:bg-transparent'}">
-   
+                      <MapboxMap
+                        v-if="mapIsOpen"
+                        map-id="map"
+                        style="width: 90%; height: 100%"
+                        :options="{
+                          style: 'mapbox://styles/mapbox/light-v11', // style URL
+                          center: [12.545607, 55.671999], // starting position
+                          zoom: 11 // starting zoom
+                        }"
+                        >
 
-          <div style="display: flex; flex-direction: column; align-items: center; justify-content: space-between; width: 100%">
+                        <MapboxDefaultMarker 
+                          marker-id="<MARKER_ID>"
+                          :options="{}"
+                          :lnglat="[ 12.550979075303212, 55.69596953934183]"
+                        >
 
-                  <div style="width: 100%;">
-                    <img src="../assets/pige.jpg" alt="" style="max-width: 100%; height: auto; border-radius: 30px;">
-                    
-                    </div>
-            
-                  
+                        <MapboxDefaultPopup
+                        
+                          popup-id="vuggestueOne"
+                          :lnglat="[12.550979075303212, 55.69596953934170]"
+                          :options="{
+                            closeOnClick: false
+                          }"
+                        >
+                          <span class="test">
+                            Studenterrådets Vuggestue
 
-                  <div style="display: flex; flex-direction: column; align-items: left; justify-content: space-around; width: 100%">
-                    
-                        <h3 style="font-size: 2rem; text-align: center;">{{ daycareName }}</h3>
-                        <span style="font-size: 1rem;">Area: {{ daycareArea }}</span>
-                        <span style="font-size: 1rem;">Opening hours: {{ daycareOpeningHours }}</span>
-                        <span style="font-size: 1rem;">Organic meals: {{ daycareOrganicMeals ? 'Yes' : 'No' }}</span>
-                       <span style="font-size: 1rem;">Website: <nuxtLink :to=daycareWebsite target="_blank"> {{ daycareWebsite }}</nuxtLink></span>
-                    
-                  </div>
-            
+                          </span>
+                        </MapboxDefaultPopup>
 
-            </div>
+                        </MapboxDefaultMarker>
+                        
+                        
+                      </MapboxMap>
+          
+          </div>
+          
+          </template>
 
-            <div style="display: flex; flex-direction: column; align-items: left; justify-content: space-around; width: 50%">
-                    
-                    <span>Waiting list cost per yer: {{ daycareCost }}DKK</span>
-                    <span>{{ daycareEmail }}</span>
-                    <span>{{ daycareNumber }}</span>
-                
-              </div>
-              <h3>Apply to this daycare</h3>
+          <template #distance = {item}>
 
-              <USelect
-              placeholder="Select child"
-              :options="childrenOptions"
-              v-model="selectedKidForSubscription"
-               />
 
-              
-
-              <UTextarea class="mt-5" :rows="8" size="xl" color="gray" v-model="messageToDaycare" placeholder="(OPTIONAL) Send a message to the daycare.." />
-
-              <UButton @click="applyToDaycare">SUBSCRIBE</UButton>
-  
-            
-      
-
+            </template>
+        
+        
+        
         
 
-     
-      </UCard>
-    </USlideover >
+      
 
-  </div>
+
+
+      
     
+          </UTabs>
+      </div>
     
     </template>
 
@@ -836,9 +868,7 @@ h1{
 
 }
 
-#map{
 
-}
 
 
 
