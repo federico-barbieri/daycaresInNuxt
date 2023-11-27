@@ -768,7 +768,7 @@ const items = [{
                 <h2><strong>Application for: {{ subscription.daycare_name }}</strong></h2>
               </template>
 
-              <div>
+              <div style="color: black;">
                 <p class="address"><em>Subscription of: {{ subscription.child_name }}</em></p>
                 <span class="area">Message sent to daycare: {{ subscription.message }}</span>
                 <span style="display: block;">Date of application: {{ new Date(subscription.created_at).toLocaleDateString('en-GB') }}</span>
