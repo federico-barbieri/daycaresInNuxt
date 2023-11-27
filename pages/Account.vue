@@ -599,7 +599,7 @@ const items = [{
 
                                   <ul v-if="daycares.length > 0" class="daycare-ul w-full" style="width: 100%">
                           
-                                            <UCard :ui="{background: 'dark:bg-transparent'}" as="div" v-for="daycare in daycares" :key="daycare.id" class="newCardDaycare" style="width: 90%;">
+                                            <UCard :ui="{background: 'dark:bg-transparent'}" as="div" v-for="daycare in daycares" :key="daycare.id" class="newCardDaycare" style="width: 90%; color: black;">
                                                 <template #header>
                                                   <h2><strong>{{ daycare.name }}</strong></h2>
                                                 </template>
@@ -626,34 +626,45 @@ const items = [{
 
                                 <div style="display: flex; flex-direction: column; align-items: center; justify-content: space-between; width: 100%">
 
-                                        <div style="width: 100%;">
+                                        <div style="width: 70%;">
                                           <img src="../assets/pige.jpg" alt="" style="max-width: 100%; height: auto; border-radius: 30px;">
                                           
                                         </div>
-                                  
+
+                                        <h3 style="max-width: 70%; font-size: 1.5rem; text-align: center;">{{ daycareName }}</h3>
+
+                                        <UDivider color="gray" orientation="horizontal" />
+
                                         
 
-                                        <div style="display: flex; flex-direction: column; align-items: left; justify-content: space-around; width: 100%">
-                                          
-                                              <h3 style="font-size: 2rem; text-align: center;">{{ daycareName }}</h3>
-                                              <span style="font-size: 1rem;">Area: {{ daycareArea }}</span>
-                                              <span style="font-size: 1rem;">Opening hours: {{ daycareOpeningHours }}</span>
-                                              <span style="font-size: 1rem;">Organic meals: {{ daycareOrganicMeals ? 'Yes' : 'No' }}</span>
-                                            <span style="font-size: 1rem;">Website: <nuxtLink :to=daycareWebsite target="_blank"> {{ daycareWebsite }}</nuxtLink></span>
-                                          
+                                        <div style="display: flex; flex-direction: column; align-items: flex-start; justify-content: space-around; width: 100%; margin: 2rem auto;">
+       
+
+                                              <p style="font-size: 1rem;">Area: <br> <strong>{{ daycareArea }}</strong></p>
+                                              <p style="font-size: 1rem;">Opening hours: <strong>{{ daycareOpeningHours }}</strong></p>
+                                              <p style="font-size: 1rem;">Waiting list cost per yer: <strong>{{ daycareCost }} DKK</strong></p>
+                                              <p style="font-size: 1rem;">Organic meals: {{ daycareOrganicMeals ? 'Yes' : 'No' }}</p>
+
+                                              <UDivider color="gray" orientation="horizontal" />
+
                                         </div>
+
+                                        <div style="display: flex; flex-direction: column; align-items: flex-start; justify-content: space-around; width: 100%">
+                                          
+                                          <p style="font-size: 1rem;"><nuxtLink :to=daycareWebsite target="_blank"> {{ daycareWebsite }}</nuxtLink></p>
+                                          <span>{{ daycareEmail }}</span>
+                                          <span>{{ daycareNumber }}</span>
+
+                                        </div>
+
+                                          
+                                       
                                   
 
                                   </div>
 
-                                    <div style="display: flex; flex-direction: column; align-items: left; justify-content: space-around; width: 50%">
-                                          
-                                          <span>Waiting list cost per yer: {{ daycareCost }}DKK</span>
-                                          <span>{{ daycareEmail }}</span>
-                                          <span>{{ daycareNumber }}</span>
-                                      
-                                    </div>
-                                    <h3>Apply to this daycare</h3>
+                                    
+                                    <h3 style="text-align: center; margin: 1rem auto;">Apply to this daycare</h3>
 
                                     <USelect
                                     placeholder="Select child"
@@ -663,9 +674,9 @@ const items = [{
 
                                     
 
-                                    <UTextarea class="mt-5" :rows="8" size="xl" color="gray" v-model="messageToDaycare" placeholder="(OPTIONAL) Send a message to the daycare.." />
+                                    <UTextarea class="mt-5" :rows="6" size="xl" color="gray" v-model="messageToDaycare" placeholder="(OPTIONAL) Send a message to the daycare.." />
 
-                                    <UButton @click="applyToDaycare">SUBSCRIBE</UButton>
+                                    <UButton style="width: 25%; text-align: center; margin-top: 1rem;" @click="applyToDaycare">SUBSCRIBE</UButton>
                   
                                 
                             
@@ -834,28 +845,26 @@ h1{
 
 .newCard{
   margin: 1.5rem auto;
-  border-bottom-right-radius: 50px;
-  border-top-left-radius: 50px;
+
   width: 80%;
 }
 
 .newCardDaycare{
   margin: 1.5rem 0;
-  border-bottom-right-radius: 50px;
-  border-top-left-radius: 50px;
+
 }
 .moreInfoBtn{
     width: 8rem;
-    height: 2rem;
-    margin: 2rem 0 0 0;
-    padding: 0.5rem 1rem;
+    
+    margin: 0;
+    padding: 1rem;
     cursor: pointer;
-    transition: all 0.5s ease-in;
+    transition: all 0.1s ease-in;
 }
 
 .moreInfoBtn:hover{
-    background-color: hotpink;
-    color: black;
+    background-color: black;
+    color: white;
 }
 
 
