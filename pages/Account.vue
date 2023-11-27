@@ -117,7 +117,6 @@ let { data: fetchedDaycares, error } = await supabase
   
   daycares.value = fetchedDaycares
 
-
 }
 
 }
@@ -242,6 +241,7 @@ watch(selectedAreaForFiltering, () => {
 // map
 
 const mapIsOpen = ref(true)
+
 
 
 
@@ -419,13 +419,6 @@ onMounted(() => {
 
 
 })
-
-
-function consoleMe(){
-  console.log("sup");
-  this.$emit('consoleMe')
-}
-
 
 // tabs from nuxt ui
 
@@ -690,7 +683,8 @@ const items = [{
           <div style="width: 100%; height: 60vh; display: flex; flex-direction: row; align-items: center; justify-content: center;">
 
 
-                      <MapboxMap
+            
+              <MapboxMap
                         v-if="mapIsOpen"
                         map-id="map"
                         style="width: 90%; height: 100%"
@@ -701,30 +695,34 @@ const items = [{
                         }"
                         >
 
-                        <MapboxDefaultMarker 
-                          marker-id="<MARKER_ID>"
-                          :options="{}"
-                          :lnglat="[ 12.550979075303212, 55.69596953934183]"
-                        >
-
-                        <MapboxDefaultPopup
                         
-                          popup-id="vuggestueOne"
-                          :lnglat="[12.550979075303212, 55.69596953934170]"
-                          :options="{
-                            closeOnClick: false
-                          }"
-                        >
-                          <span class="test">
-                            Studenterrådets Vuggestue
 
-                          </span>
-                        </MapboxDefaultPopup>
+                        <MapboxDefaultMarker 
+                                            marker-id="<MARKER_ID>"
+                                            :options="{}"
+                                            :lnglat="[ 12.503210197810002, 55.65959084761282]"
+                                            >
 
-                        </MapboxDefaultMarker>
+                                                <MapboxDefaultPopup
+                                                
+                                                popup-id=""
+                                                :lnglat="[12.503210197810002, 55.65959084761282]"
+                                                :options="{
+                                                    closeOnClick: false
+                                                }"
+                                                >
+                                                        <span class="test" style="color: black;">
+                                                            Den integrerede institution Nordstjernen
+                                                        </span>
+                                                </MapboxDefaultPopup>
+                                    
+                                        </MapboxDefaultMarker>
+
+                       
                         
                         
                       </MapboxMap>
+                
           
           </div>
           
@@ -858,14 +856,6 @@ h1{
 .moreInfoBtn:hover{
     background-color: hotpink;
     color: black;
-}
-
-
-.test{
-  width: 100px;
-  font-size: 1rem;
-  color: black;
-
 }
 
 
