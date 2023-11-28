@@ -247,7 +247,7 @@ const mapIsOpen = ref(true)
 const calendly = useCalendly()
 
 const calendlyBtn = {
-  url: 'https://calendly.com/federicobarbieri54/30min',
+  url: 'https://calendly.com/rebornwaitinglists/30min',
   text: 'Plan a visit'
 }
 
