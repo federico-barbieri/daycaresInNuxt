@@ -15,6 +15,7 @@
     "@nuxtjs/supabase": "^1.1.4",
     "mapbox-gl": "^2.15.0",
     "nuxt": "^3.8.1",
+    "nuxt-calendly": "^0.1.17",
     "nuxt-mapbox": "^1.5.4",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"

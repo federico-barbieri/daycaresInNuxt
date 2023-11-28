@@ -242,6 +242,17 @@ watch(selectedAreaForFiltering, () => {
 
 const mapIsOpen = ref(true)
 
+// CALENDLY
+
+const calendly = useCalendly()
+
+const calendlyBtn = {
+  url: 'https://calendly.com/federicobarbieri54/30min',
+  text: 'Plan a visit'
+}
+
+const calendlyBtnAttachedToSlider = ref()
+
 
 
 
@@ -415,8 +426,6 @@ onMounted(() => {
   getDaycares();
   getChildren();
   getSubscriptions();
-
-
 
 })
 
@@ -643,7 +652,6 @@ const items = [{
                                               <p style="font-size: 1rem;">Area: <br> <strong>{{ daycareArea }}</strong></p>
                                               <p style="font-size: 1rem;">Opening hours: <strong>{{ daycareOpeningHours }}</strong></p>
                                               <p style="font-size: 1rem;">Waiting list cost per yer: <strong>{{ daycareCost }} DKK</strong></p>
-                                              <p style="font-size: 1rem;">Organic meals: {{ daycareOrganicMeals ? 'Yes' : 'No' }}</p>
 
                                               <UDivider color="gray" orientation="horizontal" />
 
@@ -653,10 +661,23 @@ const items = [{
                                           
                                           <p style="font-size: 1rem;"><nuxtLink :to=daycareWebsite target="_blank"> {{ daycareWebsite }}</nuxtLink></p>
                                           <span>{{ daycareEmail }}</span>
-                                          <span>{{ daycareNumber }}</span>
+                                          <span><a target="_blank" href="mailto: {{daycareEmail}}">{{ daycareNumber }}</a></span>
+
+                                         
 
                                         </div>
 
+                                       
+
+                                        <div class="calendlyBtn" ref="calendlyBtnAttachedToSlider">
+                                       
+                                        <CalendlyPopupButton
+                                        v-bind="calendlyBtn"
+                                        :root-element="calendlyBtnAttachedToSlider"
+                                        
+                                        />
+
+                                      </div>
                                           
                                        
                                   
@@ -823,8 +844,6 @@ h1{
     background-color: black;
     color: white;
 }
-
-
 
 
 
