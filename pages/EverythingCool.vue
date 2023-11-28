@@ -124,15 +124,14 @@ const faq = [
 
                           <form class="row flex-center flex mt-10 text-center" @submit.prevent="handleLogin">
                                     <div class="col-6 form-widget">
-                                      <p class="description">Sign in via magic link</p>
                                       <div>
-                                        <input class="inputField" required type="email" placeholder="Your email" v-model="email" />
+                                        <input class="inputField border border-black-500" required type="email" placeholder="Your email" v-model="email" />
                                       </div>
                                       <div>
                                         <input
                                           type="submit"
-                                          class="button block cursery text-center"
-                                          :value="loading ? 'Loading' : 'Send magic link'"
+                                          class="button block cursery text-center dark:bg-white-500 dark:text-white"
+                                          :value="loading ? 'Loading' : 'Give me access'"
                                           :disabled="loading"
                                         />
                                       </div>
@@ -271,7 +270,7 @@ const faq = [
 
                     </div>
 
-                      <UAccordion :items="faq"  orientation="vertical" class="container mx-auto w-2/5 px-3 mx-3 text-left">
+                      <UAccordion :ui="{item: { color: 'text-black-500'}}" :items="faq"  orientation="vertical" class="container mx-auto w-2/5 px-3 mx-3 text-left">
                         
                       
                       </UAccordion>

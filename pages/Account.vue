@@ -695,7 +695,7 @@ const items = [{
 
                                     
 
-                                    <UTextarea class="mt-5" :rows="6" size="xl" color="gray" v-model="messageToDaycare" placeholder="(OPTIONAL) Send a message to the daycare.." />
+                                    <UTextarea class="mt-5" :rows="2" size="xl" color="gray" v-model="messageToDaycare" placeholder="(OPTIONAL) Send a message to the daycare.." />
 
                                     <UButton style="width: 25%; text-align: center; margin-top: 1rem;" @click="applyToDaycare">SUBSCRIBE</UButton>
                   
@@ -718,6 +718,22 @@ const items = [{
           </template>
 
           <template #distance = {item}>
+
+            <div style="width: 100%; height: 60vh; display: flex; flex-direction: row; align-items: center; justify-content: center;">
+
+              
+              <form action="" @click.prevent="">
+                
+                <p>Calculate how far daycares are from your home.</p>
+                
+                
+                </form>
+              
+              
+              
+              
+            </div>
+
 
 
             </template>
