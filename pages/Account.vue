@@ -242,7 +242,7 @@ watch(selectedAreaForFiltering, () => {
 
 const mapIsOpen = ref(true)
 
-// CALENDLY
+//////////////////////// CALENDLY
 
 const calendly = useCalendly()
 
@@ -252,6 +252,18 @@ const calendlyBtn = {
 }
 
 const calendlyBtnAttachedToSlider = ref()
+
+useCalendlyEventListener({
+  onDateAndTimeSelected: event => {
+            console.log("onDateAndTimeSelected", event)
+            console.log(event.url)
+            console.log("sup");
+        },
+ })
+
+ function generateCalendlyLink(daycare) {
+  return `https://calendly.com/rebornwaitinglists/30min?daycare=${encodeURIComponent(daycare)}`;
+}
 
 
 
@@ -672,12 +684,16 @@ const items = [{
                                         <div class="calendlyBtn" ref="calendlyBtnAttachedToSlider">
                                        
                                         <CalendlyPopupButton
+                                        :url="generateCalendlyLink(daycareName)"
+                                        text="Plan a visit"
                                         v-bind="calendlyBtn"
                                         :root-element="calendlyBtnAttachedToSlider"
-                                        
+                                        @eventCreated="useCalendlyEventListener"
                                         />
 
                                       </div>
+
+                                      
                                           
                                        
                                   
