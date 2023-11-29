@@ -266,6 +266,10 @@ useCalendlyEventListener({
 }
 
 
+////// DISTANCES WITH AXIOS AND GEOLIB
+
+
+
 
 
 
@@ -527,7 +531,7 @@ const items = [{
         <div style="width: 40%; height: 100%;">
           
 
-          <p v-if="!childrenExist">You haven't added any children yet.</p>
+          <p v-if="!childrenExist" style="margin: 3rem auto;">You haven't added any children yet.</p>
   
   
           <form action="submit" @submit.prevent="addKid" style="width: 100%; height: 80%;">
@@ -741,6 +745,8 @@ const items = [{
               <form action="" @click.prevent="">
                 
                 <p>Calculate how far daycares are from your home.</p>
+
+                
                 
                 
                 </form>

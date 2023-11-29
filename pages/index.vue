@@ -20,11 +20,6 @@ onMounted(() => {
 })
 
 
-
-// bar chart 
-import BarChart from '../components/BarChart.vue'
-
-
 // main navigation array
 
 const items = [

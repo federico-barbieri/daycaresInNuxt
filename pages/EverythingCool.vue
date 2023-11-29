@@ -325,9 +325,9 @@ const faq = [
 }
 
 
-.cursery{
-    cursor: pointer;
-}
+  .cursery{
+      cursor: pointer;
+  }
 
 .custom-bg {
     background-image: url('../assets/pige.jpg');
