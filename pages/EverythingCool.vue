@@ -8,6 +8,7 @@ import { supabase } from '../lib/supabase.js'
 
 const loading = ref(false)
 const email = ref('')
+const password = ref('')
 
 
 const handleLogin = async () => {
@@ -15,7 +16,11 @@ const handleLogin = async () => {
     loading.value = true
     const { error } = await supabase.auth.signInWithOtp({
       email: email.value,
+      options: {
+        shouldCreateUser: true,
+  }
     })
+    
     if (error) throw error
     alert('Check your email for the login link!')
   } catch (error) {
@@ -26,6 +31,10 @@ const handleLogin = async () => {
     loading.value = false
   }
 }
+
+
+
+
 
 
 
@@ -127,6 +136,7 @@ const faq = [
                                       <div>
                                         <input class="inputField border border-black-500" required type="email" placeholder="Your email" v-model="email" />
                                       </div>
+                                  
                                       <div>
                                         <input
                                           type="submit"
