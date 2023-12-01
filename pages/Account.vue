@@ -204,6 +204,9 @@ async function applyToDaycare(){
         daycare_id: daycareId.value,
         daycare_name: daycareName.value,
         message: messageToDaycare.value,
+        created_at: new Date().toISOString(),
+        parent_name: name.value,
+        waiting_list_cost: daycareCost.value,
       }
 
       const { error } = await supabase.from('subscriptions').upsert(addNewSubscription)
@@ -792,13 +795,15 @@ const items = [{
 
           <UCard v-for="subscription in subscriptions" :key="subscription.id" class="newCard">
               <template #header>
-                <h2><strong>Application for: {{ subscription.daycare_name }}</strong></h2>
+                <h2 style="color: black;"><strong>Application for: {{ subscription.daycare_name }}</strong></h2>
               </template>
 
               <div style="color: black;">
                 <p class="address"><em>Subscription of: {{ subscription.child_name }}</em></p>
                 <span class="area">Message sent to daycare: {{ subscription.message }}</span>
                 <span style="display: block;">Date of application: {{ new Date(subscription.created_at).toLocaleDateString('en-GB') }}</span>
+                <span style="display: block;">Yearly cost: {{ subscription.waiting_list_cost }} DKK</span>
+
               </div>
 
           </UCard>
