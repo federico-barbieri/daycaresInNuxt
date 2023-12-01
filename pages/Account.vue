@@ -53,7 +53,6 @@ async function updateProfile() {
       const updates = {
         id: user.id,
         full_name: name.value,
-        updated_at: new Date(),
       }
 
       fetchedFullName = name.value;
@@ -784,11 +783,12 @@ const items = [{
 
   <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; width: 100%; height: 100%; margin: 0 auto">
 
-
     <div style="width: 80%;">
-        <p v-if="!subscriptionsExist">You haven't applied to any daycare yet.</p>
 
-        <ul v-if="subscriptions.length > 0" class="daycare-ul" style="width: 100%; text-align: center;">
+      <p style="text-align: center; margin-top: 10rem;" v-if="!subscriptionsExist">You haven't applied to any daycare yet.</p>
+
+
+        <ul v-if="subscriptions" class="daycare-ul" style="width: 100%; text-align: center;">
 
           <UCard v-for="subscription in subscriptions" :key="subscription.id" class="newCard">
               <template #header>

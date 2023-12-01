@@ -14,16 +14,16 @@ const password = ref('')
 const handleLogin = async () => {
   try {
     loading.value = true
-    const { error } = await supabase.auth.signInWithOtp({
-      email: email.value,
-      options: {
-        shouldCreateUser: true,
-  }
-    })
+
+    let { data, error } = await supabase.auth.signInWithOtp({
+        email: email.value,
+})
+
     
     if (error) throw error
     alert('Check your email for the login link!')
-  } catch (error) {
+  } 
+  catch (error) {
     if (error instanceof Error) {
       alert(error.message)
     }
@@ -135,7 +135,9 @@ const faq = [
                                     <div class="col-6 form-widget">
                                       <div>
                                         <input class="inputField border border-black-500" required type="email" placeholder="Your email" v-model="email" />
+
                                       </div>
+
                                   
                                       <div>
                                         <input
