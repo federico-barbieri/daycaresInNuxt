@@ -89,9 +89,6 @@ const daycareTabs = [{
 }, {
   label: 'Map',
   slot: 'map'
-}, {
-  label: 'Distance',
-  slot: 'distance'
 }]
 
 const daycares = ref([])
@@ -267,8 +264,6 @@ useCalendlyEventListener({
   return `https://calendly.com/rebornwaitinglists/30min?daycare=${encodeURIComponent(daycare)}`;
 }
 
-
-////// DISTANCES WITH AXIOS AND GEOLIB
 
 
 
@@ -739,38 +734,7 @@ const items = [{
           
           </template>
 
-          <template #distance = {item}>
-
-            <div style="width: 100%; height: 60vh; display: flex; flex-direction: row; align-items: center; justify-content: center;">
-
-              
-              <form action="" @click.prevent="">
-                
-                <p>Calculate how far daycares are from your home.</p>
-
-                
-                
-                
-                </form>
-              
-              
-              
-              
-            </div>
-
-
-
-            </template>
         
-        
-        
-        
-
-      
-
-
-
-      
     
           </UTabs>
       </div>
