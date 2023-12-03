@@ -110,7 +110,7 @@ const faq = [
 </script>
 
 <template>
-  <div class="w-screen h-screen  m-0 p-0  w-screen h-screen font-mono">
+  <div class="w-screen h-screen m-0 p-0 font-mono" style="background-color: #35354A; height: 100vh; overflow: hidden;">
   
     <header class=" mx-auto  w-screen h-full m-0 p-0">
         <nav class="mx-auto  w-screen h-full p-0 flex flex-col text-center">
@@ -121,20 +121,20 @@ const faq = [
       
                 <template #home="{ item }" >
 
-                    <div class="container mx-auto flex flex-col items-center" style="height: 90vh; display: flex; align-items: center; justify-content: flex-start; ">
+                    <div class="container mx-auto flex flex-col items-center" style="height: 60vh; display: flex; align-items: center; justify-content: center;">
                       
                     
 
-                          <h1 class="mt-10" style="font-size: 5rem;">Waiting lists for private daycares in Copenhagen</h1>
+                          <h1 class="mt-10" style="font-size: 5rem; font-family: 'Raleway', sans-serif; font-weight: bold;">Waiting lists for private daycares in Copenhagen</h1>
 
-                          <p class="mt-5 text-lg">
+                          <p class="mt-5 text-lg" style="font-family: 'Raleway', sans-serif;">
                             Sign up your children in an easy and transparent way.
                           </p>
 
-                          <form class="row flex-center flex mt-10 text-center" @submit.prevent="handleLogin">
+                          <form class="row flex-center flex mt-10 text-center" @submit.prevent="handleLogin" style="font-family: 'Merriweather', serif;">
                                     <div class="col-6 form-widget">
                                       <div>
-                                        <input class="inputField border border-black-500" required type="email" placeholder="Your email" v-model="email" />
+                                        <input class="inputField border border-black-500 p-1" required type="email" placeholder="Your email" v-model="email" />
 
                                       </div>
 
@@ -143,8 +143,20 @@ const faq = [
                                         <input
                                           type="submit"
                                           class="button block cursery text-center dark:bg-white-500 dark:text-white"
-                                          :value="loading ? 'Loading' : 'Give me access'"
+                                          :value="loading ? 'Loading' : 'Sign up'"
                                           :disabled="loading"
+                                          style="
+                                          background-color: #7DCC7F;
+                                          color: #35354A;
+                                          border: 1px solid white; 
+                                          padding: 0.5rem 1rem; 
+                                          margin: 1rem auto;
+                                          width: 11rem;
+                                          font-size: 1.2rem;
+                                          transition: border 0.3s ease;"
+                                          onmouseover="this.style.border='1px solid black'" 
+                                          onmouseout="this.style.border='1px solid white;'"
+                                          
                                         />
                                       </div>
                                     </div>
@@ -161,19 +173,19 @@ const faq = [
 
                     <div>
 
-                      <h2 style="font-size: 3rem; max-width: 40vw; text-align: left">DAYCARE OVERVIEW IN COPENHAGEN</h2>
+                      <h2 style="font-size: 3rem; max-width: 40vw; text-align: left; font-family: 'Raleway', sans-serif; font-weight: bold;">DAYCARE OVERVIEW IN COPENHAGEN</h2>
 
                       <div class="text-left mt-5" style="max-width: 60ch">
 
-                        <p class="mb-2">
+                        <p class="mb-2" style="font-family: 'Raleway', sans-serif;">
                         Many want to sign their children into private daycares. The problem is there is not enough place for everyone.
                       </p>
 
-                      <p class="mb-2">
+                      <p class="mb-2" style="font-family: 'Raleway', sans-serif;">
                         To make things worse, signing children is a manual task and not very intuitive.
                       </p>
 
-                      <p>
+                      <p style="font-family: 'Raleway', sans-serif;">
                         Rebørn by Waitly makes it easy.
                       </p>
                         
@@ -198,9 +210,9 @@ const faq = [
 
                     <div>
 
-                      <h2 style="font-size: 3rem; max-width: 40vw; text-align: left" class="mr-5">TYPES OF INSTITUTIONS</h2>
+                      <h2 style="font-size: 3rem; max-width: 40vw; text-align: left; font-family: 'Raleway', sans-serif; font-weight: bold;" class="mr-5">TYPES OF INSTITUTIONS</h2>
 
-                      <p class="text-left mt-5" style="max-width: 60ch">
+                      <p class="text-left mt-5" style="max-width: 60ch; font-family: 'Raleway', sans-serif;">
                         Many institutions have their own methodologies. 
                         Other follow specific beliefs. 
 
@@ -215,7 +227,7 @@ const faq = [
 
                       <template #montessori="{ item }">
                         
-                          <p class="text-left pt-3">
+                          <p class="text-left pt-3" style="font-family: 'Merriweather';">
                             Montessori is a method of education that is based on self-directed activity, 
                             hands-on learning and collaborative play. In Montessori classrooms children make 
                             creative choices in their learning, while the classroom and the highly trained teacher 
@@ -226,7 +238,7 @@ const faq = [
 
                       <template #steiner="{ item }">
                         
-                        <p class="text-left pt-3">
+                        <p class="text-left pt-3" style="font-family: 'Merriweather';">
                           Steiner teachers aim to create an environment that facilitates children´s 
                           self-directed free play. In Steiner philosophy, free play supports the proper development 
                           of the will, and children are trusted to work out identities, relationships, 
@@ -237,7 +249,7 @@ const faq = [
 
                     <template #international="{ item }">
                         
-                        <p class="text-left pt-3">
+                        <p class="text-left pt-3" style="font-family: 'Merriweather';">
                           Focuses on the 4 domains of learning: Social and Emotional Development, Language Development, 
                           Cognitive Development and Physical Development. learning and growth in these areas are encouraged 
                           by offering developmentally appropriate learning experiences.  

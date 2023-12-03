@@ -463,13 +463,13 @@ const items = [{
 </script>
 
 <template>
-    <div class="main">
+    <div class="main" style="background-color: #35354A;">
 
       <!--HEADER-->
 
-      <header class="w-full">
+      <header class="w-full" style="display: flex; align-items: center; justify-content: center;">
         
-      <nav class="flex flex-row align-center justify-center" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+      <nav class="flex flex-row align-center justify-center" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 90%;">
         
         <p class="font-sans pt-10 pb-5 text-5xl">REBØRN</p>
 
@@ -799,15 +799,13 @@ const items = [{
 <style scoped>
 
 .main{
-    width: 90vw;
-    height: auto;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     margin: 0rem auto;
-    border-top-left-radius: 30px;
-    border-bottom-right-radius: 30px;
     padding: 1rem;
 }
 

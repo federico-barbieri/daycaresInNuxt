@@ -8,6 +8,7 @@ module.exports = {
     theme: {
         colors: {
          green: colors.green,
+         'purple': '#7e5bef',
         },
         fontFamily: {
             "raleway": "Raleway",
