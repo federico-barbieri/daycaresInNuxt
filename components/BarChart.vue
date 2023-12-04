@@ -26,7 +26,7 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
             { 
                 label: "Number of children in private daycares 0 to 2",
                 data: [64995, 69855, 70817, 69793, 70988, 75297],
-                backgroundColor: '#22c55e'
+                backgroundColor: '#7DCC7F'
             } 
     ]
       }

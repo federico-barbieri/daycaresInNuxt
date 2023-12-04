@@ -514,7 +514,7 @@ const items = [{
 <div v-else style="width: 80vw;  height: 80vh; overflow: hidden;">
   <h1 class="font-sans">Hej {{fetchedFullName}}!</h1>
 
-  <UTabs :items="items"  orientation="horizontal" style="width: 100%; height: 100%;">
+  <UTabs :items="items"  orientation="horizontal" style="width: 100%; height: 100%;" :ui="{ list: { tab: { active: 'bg-blue-500' } } }">
 
 
     <!--CHILDREN-->
@@ -525,7 +525,7 @@ const items = [{
 
       <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-around; width: 80%; height: 100%; margin: 0 auto">
 
-        <div style="width: 40%; height: 100%;">
+        <div style="width: 40%; height: 100%; color: white;">
           
 
           <p v-if="!childrenExist" style="margin: 3rem auto;">You haven't added any children yet.</p>
@@ -584,7 +584,7 @@ const items = [{
 
     <template #daycares="{ item }">
 
-      <div name="daycareContainer" style="width: 100%; height: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+      <div name="daycareContainer" style="width: 100%; height: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between; color: white;">
         
         
       
@@ -621,7 +621,7 @@ const items = [{
 
                                   <ul v-if="daycares.length > 0" class="daycare-ul w-full" style="width: 100%">
                           
-                                            <UCard :ui="{background: 'dark:bg-transparent'}" as="div" v-for="daycare in daycares" :key="daycare.id" class="newCardDaycare" style="width: 90%; color: black;">
+                                            <UCard :ui="{background: 'dark:bg-transparent'}" as="div" v-for="daycare in daycares" :key="daycare.id" class="newCardDaycare" style="width: 90%; color: white;">
                                                 <template #header>
                                                   <h2><strong>{{ daycare.name }}</strong></h2>
                                                 </template>
@@ -633,7 +633,7 @@ const items = [{
 
 
                                                 <template #footer>
-                                                  <button @click="activateModal(daycare)"  class="moreInfoBtn">More Info</button>
+                                                  <button @click="activateModal(daycare)"  class="moreInfoBtn">SUBSCRIBE</button>
                                                 </template>
                                             </UCard>
                                     </ul> 
@@ -662,9 +662,27 @@ const items = [{
                                         <div style="display: flex; flex-direction: column; align-items: flex-start; justify-content: space-around; width: 100%; margin: 2rem auto;">
        
 
-                                              <p style="font-size: 1rem;">Area: <br> <strong>{{ daycareArea }}</strong></p>
-                                              <p style="font-size: 1rem;">Opening hours: <strong>{{ daycareOpeningHours }}</strong></p>
-                                              <p style="font-size: 1rem;">Waiting list cost per yer: <strong>{{ daycareCost }} DKK</strong></p>
+                                              <p style="font-size: 1rem; margin-bottom: 0.5rem;">Area: <br> <strong>{{ daycareArea }}</strong></p>
+                                              <p style="font-size: 1rem; margin-bottom: 0.5rem;">Opening hours: <br> <strong>{{ daycareOpeningHours }}</strong></p>
+                                              <p style="font-size: 1rem;">Waiting list cost per yer: <br> <strong>{{ daycareCost }} DKK</strong></p>
+
+                                              <div class="calendlyBtn" ref="calendlyBtnAttachedToSlider">
+                                       
+                                       <CalendlyPopupButton
+                                       :url="generateCalendlyLink(daycareName)"
+                                       text="Plan a visit"
+                                       v-bind="calendlyBtn"
+                                       :root-element="calendlyBtnAttachedToSlider"
+                                       @eventCreated="useCalendlyEventListener"
+                                       
+                                       style="
+                                       background-color: #65A9DB;
+                                       padding: 0.5rem;
+                                       margin: 1rem 0 1rem 0;
+                                       "
+                                       />
+
+                                     </div>
 
                                               <UDivider color="gray" orientation="horizontal" />
 
@@ -680,23 +698,7 @@ const items = [{
 
                                         </div>
 
-                                       
-
-                                        <div class="calendlyBtn" ref="calendlyBtnAttachedToSlider">
-                                       
-                                        <CalendlyPopupButton
-                                        :url="generateCalendlyLink(daycareName)"
-                                        text="Plan a visit"
-                                        v-bind="calendlyBtn"
-                                        :root-element="calendlyBtnAttachedToSlider"
-                                        @eventCreated="useCalendlyEventListener"
-                                        />
-
-                                      </div>
-
                                       
-                                          
-                                       
                                   
 
                                   </div>
@@ -838,11 +840,12 @@ h1{
 }
 .moreInfoBtn{
     width: 8rem;
-    
+    background-color: #7DCC7F;
     margin: 0;
     padding: 1rem;
     cursor: pointer;
     transition: all 0.1s ease-in;
+    color: black;
 }
 
 .moreInfoBtn:hover{

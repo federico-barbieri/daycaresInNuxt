@@ -117,7 +117,7 @@ const faq = [
 
           <p class="font-sans pt-10 pb-5 text-5xl">REBØRN</p>
 
-          <UTabs :ui="{ list: { tab: { background: '' } } }" :items="items"  orientation="horizontal" class="container mx-auto text-center h-full place-content-center pt-5 w-10/12" >
+          <UTabs :ui="{ list: { tab: { active: 'bg-blue-500' } } }" :items="items"  orientation="horizontal" class="container mx-auto text-center h-full place-content-center pt-5 w-10/12" >
       
                 <template #home="{ item }" >
 
@@ -134,7 +134,7 @@ const faq = [
                           <form class="row flex-center flex mt-10 text-center" @submit.prevent="handleLogin" style="font-family: 'Merriweather', serif;">
                                     <div class="col-6 form-widget">
                                       <div>
-                                        <input class="inputField border border-black-500 p-1" required type="email" placeholder="Your email" v-model="email" />
+                                        <input class="inputField border border-black-500 p-1" required type="email" placeholder="Your email" v-model="email" style="width: 11rem;" />
 
                                       </div>
 
@@ -153,9 +153,9 @@ const faq = [
                                           margin: 1rem auto;
                                           width: 11rem;
                                           font-size: 1.2rem;
-                                          transition: border 0.3s ease;"
-                                          onmouseover="this.style.border='1px solid black'" 
-                                          onmouseout="this.style.border='1px solid white;'"
+                                          transition: background-color 0.3s ease;"
+                                          onmouseover="this.style.backgroundColor='#F8F6F6'" 
+                                          onmouseout="this.style.backgroundColor='#7DCC7F'"
                                           
                                         />
                                       </div>
@@ -173,7 +173,7 @@ const faq = [
 
                     <div>
 
-                      <h2 style="font-size: 3rem; max-width: 40vw; text-align: left; font-family: 'Raleway', sans-serif; font-weight: bold;">DAYCARE OVERVIEW IN COPENHAGEN</h2>
+                      <h2 style="font-size: 3rem; max-width: 40vw; text-align: left; font-family: 'Raleway', sans-serif; font-weight: bold;">Daycare overview in Copenhagen</h2>
 
                       <div class="text-left mt-5" style="max-width: 60ch">
 
@@ -210,7 +210,7 @@ const faq = [
 
                     <div>
 
-                      <h2 style="font-size: 3rem; max-width: 40vw; text-align: left; font-family: 'Raleway', sans-serif; font-weight: bold;" class="mr-5">TYPES OF INSTITUTIONS</h2>
+                      <h2 style="font-size: 3rem; max-width: 40vw; text-align: left; font-family: 'Raleway', sans-serif; font-weight: bold;" class="mr-5">Types of institutions</h2>
 
                       <p class="text-left mt-5" style="max-width: 60ch; font-family: 'Raleway', sans-serif;">
                         Many institutions have their own methodologies. 
@@ -271,30 +271,30 @@ const faq = [
                     <div class="mr-10">
                     
 
-                      <h2 style="font-size: 3rem; max-width: 40vw; text-align: left" class="mr-5">ABOUT US</h2>
+                      <h2 style="font-size: 3rem; max-width: 40vw; text-align: left; font-family: 'Raleway', sans-serif; font-weight: bold;" class="mr-5">About us</h2>
 
-                      <p class="text-left mt-5 mb-3" style="max-width: 50ch">
+                      <p class="text-left mt-5 mb-3" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
                         Rebørn is an initiative by Waitly.dk. 
                       </p>
 
-                      <p class="text-left mt-5 mb-3" style="max-width: 50ch">
+                      <p class="text-left mt-5 mb-3" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
                         It's name comes from <strong>reimagining</strong> how parents 
                         can access waiting lists combined with <strong><em>børn</em></strong>, 
                         the word for <strong><em>children</em></strong> in Danish.
                         
                       </p>
                         
-                      <p class="text-left mt-5 mb-3" style="max-width: 50ch">
+                      <p class="text-left mt-5 mb-3" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
                         Its aim is to make the daycare category more accessible and transparent.
                       </p>
 
-                      <p class="text-left mt-5 mb-3" style="max-width: 50ch">
+                      <p class="text-left mt-5 mb-3" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
                         Click on each tab to see frequently asked questions. 
                       </p>
 
                     </div>
 
-                      <UAccordion :ui="{item: { color: 'text-black-500'}}" :items="faq"  orientation="vertical" class="container mx-auto w-2/5 px-3 mx-3 text-left">
+                      <UAccordion :ui="{item: { color: 'dark:text-white'}, default: { variant: 'ghost'}}" :items="faq"  orientation="vertical" class="container mx-auto w-2/5 px-3 mx-3 text-left">
                         
                       
                       </UAccordion>
@@ -310,13 +310,13 @@ const faq = [
                   <div class="container mx-auto flex flex-col items-center" style="height: 70vh; display: flex; align-items: center; justify-content: center;">
 
 
-                    <h2 style="font-size: 3rem; max-width: 40vw; text-align: left" class="mr-5">CONTACT</h2>
+                    <h2 style="font-size: 3rem; max-width: 40vw; text-align: left; font-family: 'Raleway', sans-serif; font-weight: bold;" class="mr-5">Contact</h2>
 
-                    <p class="text-left mt-5 mb-3" style="max-width: 50ch">
+                    <p class="text-left mt-5 mb-3" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
                       reborn-waitinglists@gmail.com
                     </p>
 
-                    <p>
+                    <p class="text-left mt-5 mb-3" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
                       Or give us a call Monday to Friday from 9 to 13.
                     </p>
 
