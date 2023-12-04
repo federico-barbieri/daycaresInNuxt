@@ -542,7 +542,17 @@ const items = [{
             </UFormGroup>
   
             
-            <button style="padding: 0.5rem; border: 1px solid white;">Add new profile</button>
+            <button 
+            style="
+            padding: 0.5rem; 
+            border: 1px solid white;
+            transition: background-color 0.5 ease;
+            background-color: #7DCC7F ;
+            color: black;
+            "
+             onmouseover="this.style.backgroundColor='black', this.style.color='white'" 
+              onmouseout="this.style.backgroundColor='#7DCC7F', this.style.color='black'"
+            >Add new profile</button>
             
             
             </form>
@@ -562,7 +572,19 @@ const items = [{
 
                     <template #footer>
                       <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-around; width: 100%;">
-                        <button @click="$emit(removeKid(child.id))" style="border: 1px solid white; padding: 0.5rem;">REMOVE</button>
+                        <button 
+                        @click="$emit(removeKid(child.id))" 
+                        style="
+                        border: 1px solid white; 
+                        padding: 0.5rem;
+                        transition: background-color 0.5s ease;
+                        color: white;
+                        "
+                         onmouseover="this.style.backgroundColor='#F33232', this.style.color='black'" 
+                          onmouseout="this.style.backgroundColor='', this.style.color='white'"
+                        >
+                        REMOVE
+                        </button>
                       </div>
                      
                     </template>
@@ -589,7 +611,7 @@ const items = [{
         
       
 
-      <UTabs :ui="{list:{width: 'w-36'}}" :items="daycareTabs" orientation="vertical" style="width: 100%; height: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+      <UTabs :ui="{ list: { tab: { active: 'bg-blue-500' }, width: 'w-36'  } }" :items="daycareTabs" orientation="vertical" style="width: 100%; height: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
         
         <template #filters = {item}>
           
@@ -673,13 +695,16 @@ const items = [{
                                        text="Plan a visit"
                                        v-bind="calendlyBtn"
                                        :root-element="calendlyBtnAttachedToSlider"
-                                       @eventCreated="useCalendlyEventListener"
-                                       
+                                       @eventCreated="useCalendlyEventListener"                                       
                                        style="
                                        background-color: #65A9DB;
                                        padding: 0.5rem;
                                        margin: 1rem 0 1rem 0;
-                                       "
+                                       transition: background-color 0.3s ease;
+                                      "
+                                      onmouseover="this.style.backgroundColor='#7DCC7F'" 
+                                      onmouseout="this.style.backgroundColor='#65A9DB'"
+                                       
                                        />
 
                                      </div>
@@ -716,7 +741,16 @@ const items = [{
 
                                     <UTextarea class="mt-5" :rows="2" size="xl" color="gray" v-model="messageToDaycare" placeholder="(OPTIONAL) Send a message to the daycare.." />
 
-                                    <UButton style="width: 25%; text-align: center; margin-top: 1rem;" @click="applyToDaycare">SUBSCRIBE</UButton>
+                                    <UButton 
+                                      :ui="{rounded: ''}" 
+                                      style="
+                                      width: 25%; 
+                                      text-align: center; 
+                                      margin-top: 1.5rem;
+                                      "
+                                      @click="applyToDaycare"
+                                      >SUBSCRIBE
+                                      </UButton>
                   
                                 
                             
@@ -759,16 +793,16 @@ const items = [{
 
         <ul v-if="subscriptions" class="daycare-ul" style="width: 100%; text-align: center;">
 
-          <UCard v-for="subscription in subscriptions" :key="subscription.id" class="newCard">
+          <UCard :ui="{background: 'dark:bg-transparent'}" v-for="subscription in subscriptions" :key="subscription.id" class="newCard">
               <template #header>
-                <h2 style="color: black;"><strong>Application for: {{ subscription.daycare_name }}</strong></h2>
+                <h2>Application for: <strong>{{ subscription.daycare_name }}</strong></h2>
               </template>
 
-              <div style="color: black;">
-                <p class="address"><em>Subscription of: {{ subscription.child_name }}</em></p>
-                <span class="area">Message sent to daycare: {{ subscription.message }}</span>
-                <span style="display: block;">Date of application: {{ new Date(subscription.created_at).toLocaleDateString('en-GB') }}</span>
-                <span style="display: block;">Yearly cost: {{ subscription.waiting_list_cost }} DKK</span>
+              <div style="text-align: left;">
+                <p class="address" style="margin-bottom: 1rem;"><em>Subscription of: <br> <strong>{{ subscription.child_name }}</strong></em></p>
+                <span class="area">Message sent to daycare: <br> <strong>{{ subscription.message }}</strong></span>
+                <span style="display: block; margin: 1rem 0;">Date of application: <br> <strong>{{ new Date(subscription.created_at).toLocaleDateString('en-GB') }}</strong></span>
+                <span style="display: block;">Yearly cost: <br> <strong>{{ subscription.waiting_list_cost }} DKK</strong></span>
 
               </div>
 
@@ -830,7 +864,7 @@ h1{
 
 .newCard{
   margin: 1.5rem auto;
-
+  color: white;
   width: 80%;
 }
 
@@ -842,7 +876,7 @@ h1{
     width: 8rem;
     background-color: #7DCC7F;
     margin: 0;
-    padding: 1rem;
+    padding: 0.5rem;
     cursor: pointer;
     transition: all 0.1s ease-in;
     color: black;
