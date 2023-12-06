@@ -484,28 +484,36 @@ const items = [{
 
 <!-- IF THIS IS THE FIRST TIME THE USER LOGGED IN, THEY WILL BE ASKED TO PROVIDE A NAME-->
 
-<div v-if="!fetchedFullName">
-  <form  class="form-widget" @submit.prevent="updateProfile">
-    <div>
-      <label for="email">Email</label>
-      <input id="email" type="text" :value="session.user.email" disabled />
+<div v-if="!fetchedFullName" style="width: 80vw; height: 80vh; margin: 0 auto; display: flex; align-items: center; justify-content: space-around; border: 1px solid red;">
+  <form  class="form-widget" @submit.prevent="updateProfile" style="width: 30%; height: 50%; display: flex; flex-direction: column; align-items: center; justify-content: space-around; border: 1px solid white;">
+    <div style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-around;">
+      <label style="color: gray;" for="email">Email</label>
+      <input style="width: 80%; margin-top: 0.5rem; color: gray;" id="email" type="text" :value="session.user.email" disabled />
     </div>
-    <div>
+    <div style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-around;">
       <label for="name">Name</label>
-      <input id="name" type="text" v-model="name" />
+      <input style="width: 80%; margin-top: 0.5rem;" id="name" type="text" v-model="name" />
     </div>
 
-    <div>
+    <div style="width: 100%; display: flex; justify-content: space-around;">
       <input
         type="submit"
         class="button primary block"
         :value="loading ? 'Loading ...' : 'Update'"
         :disabled="loading"
+        style="
+        border: 1px solid white;
+        padding: 0.5rem;
+        "
       />
     </div>
 
 
   </form>
+  <div style="width: 50%; height: 100%; display: flex; align-items: center;">
+    <img src="../assets/pige.jpg" style="max-width: 100%; height: auto;" />
+  </div>
+  
   
   
   </div>
