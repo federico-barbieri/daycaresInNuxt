@@ -182,6 +182,13 @@ async function applyToDaycare(){
 
   try {
 
+    // add subscription cost to total cost
+    currentTotalSubscriptionCost.value += daycareCost.value;
+    console.log(currentTotalSubscriptionCost.value);
+
+    // create a random num and store it as the child's position in the waiting list
+    let positionInWaitingList = Math.floor(Math.random() * 200 + 1);
+
   // this will store the selected child's id to send as part of the subscription
 
     let childObject = children.value.filter((kid) => kid.name == selectedKidForSubscription.value);
@@ -204,12 +211,15 @@ async function applyToDaycare(){
         created_at: new Date().toISOString(),
         parent_name: name.value,
         waiting_list_cost: daycareCost.value,
+        num_in_waitinglist: positionInWaitingList
       }
 
       const { error } = await supabase.from('subscriptions').upsert(addNewSubscription)
 
       if (error) throw error
       toast.add({ title: 'Application sent succesfully!' })
+    
+    
     } catch (error) {
       alert(error.message)
     } finally {
@@ -415,6 +425,11 @@ async function getSubscriptions(){
           subscriptions.value = data;
           subscriptions.value = subscriptions.value.reverse();
 
+          subscriptions.value.forEach(element => {
+            currentTotalSubscriptionCost.value += element.waiting_list_cost;
+            console.log(currentTotalSubscriptionCost.value);
+          });
+
       } else{
         subscriptionsExist.value = false;
         console.log("no subscriptions found")
@@ -435,7 +450,7 @@ async function cancelSubscription(chosenSubscription){
         const { data, error } = await supabase
             .from('subscriptions')
             .delete()
-            .eq('id', chosenSubscription);
+            .eq('id', chosenSubscription.id);
 
         if (error) {
             console.error('Error removing subscription:', error.message);
@@ -445,6 +460,14 @@ async function cancelSubscription(chosenSubscription){
             subscriptionsExist.value = false;
             subscriptions.value = '';
 
+            // if current total subscription minus chosen subscription is negative, make it 0
+            if(currentTotalSubscriptionCost.value - chosenSubscription.waiting_list_cost < 0){
+              currentTotalSubscriptionCost.value == 0;
+            } else{
+              currentTotalSubscriptionCost.value -= chosenSubscription.waiting_list_cost;
+            }
+            
+
             await getSubscriptions(); 
         }
     } catch (err) {
@@ -453,6 +476,11 @@ async function cancelSubscription(chosenSubscription){
     }
 
 }
+
+
+// sum of every subscription this user has
+
+let currentTotalSubscriptionCost = ref(0);
 
 
 
@@ -501,7 +529,12 @@ const items = [{
         
         <p class="font-sans pt-10 pb-5 text-5xl">REBØRN</p>
 
-        <p style="cursor: pointer;" @click="signOut">Log out</p>
+        <p style="
+        cursor: pointer;
+        "
+        @click="signOut"
+        >Log out
+        </p>
 
         
         </nav>  
@@ -828,7 +861,11 @@ const items = [{
       <p style="text-align: center; margin-top: 10rem;" v-if="!subscriptionsExist">You haven't applied to any daycare yet.</p>
 
 
-        <ul v-if="subscriptions" class="daycare-ul" style="width: 100%; text-align: center;">
+      <div v-if="subscriptions" style="width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-around;">
+        
+        
+      
+        <ul class="daycare-ul" style="width: 100%; text-align: center;">
 
           <UCard :ui="{background: 'dark:bg-transparent'}" v-for="subscription in subscriptions" :key="subscription.id" class="newCard">
               <template #header>
@@ -840,6 +877,15 @@ const items = [{
                 <span class="area">Message sent to daycare: <br> <strong>{{ subscription.message }}</strong></span>
                 <span style="display: block; margin: 1rem 0;">Date of application: <br> <strong>{{ new Date(subscription.created_at).toLocaleDateString('en-GB') }}</strong></span>
                 <span style="display: block;">Yearly cost: <br> <strong>{{ subscription.waiting_list_cost }} DKK</strong></span>
+
+                <span style="display: block; margin: 1rem 0;">Waiting list position:</span>
+                <span class="text-blue-500" style="
+                border: 1px solid white; 
+                padding: 0.5rem;
+                border-radius: 30px;
+                background-color: white;
+                 
+                "><strong>{{ subscription.num_in_waitinglist }}</strong></span>
 
 
               </div>
@@ -856,12 +902,18 @@ const items = [{
                   "
                   onmouseenter="this.style.color = 'white', this.style.backgroundColor = 'red'"
                   onmouseleave="this.style.color = 'white', this.style.backgroundColor = 'transparent'"
-                  @click="(() => cancelSubscription(subscription.id))"
+                  @click="(() => cancelSubscription(subscription))"
                   >CANCEL SUBSCRIPTION
               </UButton>
 
           </UCard>
         </ul> 
+
+        <div style="max-width: 50%;">
+        You're currently spending {{ currentTotalSubscriptionCost }} DKK / year.  
+        </div>
+
+      </div>
 
     </div>
 
