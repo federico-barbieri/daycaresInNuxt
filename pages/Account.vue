@@ -377,6 +377,7 @@ async function removeKid(kidId) {
         } else {
             toast.add({ title: 'Child profile removed successfully!' });
             await getChildren(); 
+            await getSubscriptions();
         }
     } catch (err) {
         console.error('An unexpected error occurred:', err.message);
@@ -423,6 +424,33 @@ async function getSubscriptions(){
         console.error('Error fetching subscriptions:', error.message);
         return;
       }
+
+}
+
+// cancel subscription
+
+async function cancelSubscription(chosenSubscription){
+
+  try {
+        const { data, error } = await supabase
+            .from('subscriptions')
+            .delete()
+            .eq('id', chosenSubscription);
+
+        if (error) {
+            console.error('Error removing subscription:', error.message);
+            toast.add({ title: 'Failed to remove subscripton!', variant: 'error' });
+        } else {
+            toast.add({ title: 'Subscription removed successfully!' });
+            subscriptionsExist.value = false;
+            subscriptions.value = '';
+
+            await getSubscriptions(); 
+        }
+    } catch (err) {
+        console.error('An unexpected error occurred:', err.message);
+        toast.add({ title: 'Unexpected error occurred!', variant: 'error' });
+    }
 
 }
 
@@ -813,7 +841,24 @@ const items = [{
                 <span style="display: block; margin: 1rem 0;">Date of application: <br> <strong>{{ new Date(subscription.created_at).toLocaleDateString('en-GB') }}</strong></span>
                 <span style="display: block;">Yearly cost: <br> <strong>{{ subscription.waiting_list_cost }} DKK</strong></span>
 
+
               </div>
+
+              <UButton 
+                  :ui="{rounded: '', default: {color: 'bg-red-500'}}" 
+                  style="
+                  background-color: transparent;
+                  border: 1px solid white;
+                  color: white;
+                  width: auto; 
+                  text-align: left; 
+                  margin-top: 1.5rem;
+                  "
+                  onmouseenter="this.style.color = 'white', this.style.backgroundColor = 'red'"
+                  onmouseleave="this.style.color = 'white', this.style.backgroundColor = 'transparent'"
+                  @click="(() => cancelSubscription(subscription.id))"
+                  >CANCEL SUBSCRIPTION
+              </UButton>
 
           </UCard>
         </ul> 
