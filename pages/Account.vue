@@ -484,7 +484,7 @@ const items = [{
 
 <!-- IF THIS IS THE FIRST TIME THE USER LOGGED IN, THEY WILL BE ASKED TO PROVIDE A NAME-->
 
-<div v-if="!fetchedFullName" style="width: 80vw; height: 80vh; margin: 0 auto; display: flex; align-items: center; justify-content: space-around; border: 1px solid red;">
+<div v-if="!fetchedFullName" style="width: 80vw; height: 80vh; margin: 0 auto; display: flex; align-items: center; justify-content: space-around;">
   <form  class="form-widget" @submit.prevent="updateProfile" style="width: 30%; height: 50%; display: flex; flex-direction: column; align-items: center; justify-content: space-around; border: 1px solid white;">
     <div style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-around;">
       <label style="color: gray;" for="email">Email</label>
@@ -492,7 +492,7 @@ const items = [{
     </div>
     <div style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-around;">
       <label for="name">Name</label>
-      <input style="width: 80%; margin-top: 0.5rem;" id="name" type="text" v-model="name" />
+      <input style="width: 60%; margin-top: 0.5rem;" id="name" type="text" v-model="name" />
     </div>
 
     <div style="width: 100%; display: flex; justify-content: space-around;">
@@ -504,6 +504,7 @@ const items = [{
         style="
         border: 1px solid white;
         padding: 0.5rem;
+        cursor: pointer;
         "
       />
     </div>
