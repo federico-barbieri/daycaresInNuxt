@@ -6,7 +6,10 @@
             <MapboxMap
             v-if="mapIsOpen"
             map-id="map"
-            style="width: 90%; height: 100%"
+            :style="{
+            width: windowWidth < 768 ? '100%' : '90%',
+            height: '100%'
+            }"
             :options="{
             style: 'mapbox://styles/mapbox/light-v11', // style URL
             center: [12.545607, 55.671999], // starting position
@@ -891,6 +894,29 @@
 <script setup>
 
 const mapIsOpen = ref(true)
+
+
+// measure viewport's width
+
+const windowWidth = ref(window.innerWidth)
+
+const updateWindowWidth = () => {
+      windowWidth.value = window.innerWidth;
+};
+
+const handleResize = () => {
+      updateWindowWidth();
+};
+
+
+/// INITIALIZE
+
+
+onMounted(() => {
+
+  window.addEventListener('resize', handleResize);
+
+})
 
 
 
