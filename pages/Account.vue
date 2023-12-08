@@ -601,7 +601,7 @@ const items = [{
   margin: 3rem auto;
   "
   >
-  Hej {{fetchedFullName}}!</h1>
+  Hello {{fetchedFullName}}!</h1>
 
   <UTabs 
   :items="items"
