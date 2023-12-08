@@ -1002,9 +1002,11 @@ const items = [{
 
 
     <div 
-    :style="{
-      width: windowWidth < 768 ? '100%' : '80%'
-    }
+    style="
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-start;
     ">
 
       <p style="text-align: center; margin-top: 10rem;" v-if="!subscriptionsExist">You haven't applied to any daycare yet.</p>
@@ -1014,15 +1016,23 @@ const items = [{
       :style="{
       display: 'flex', 
       'flex-direction': windowWidth < 768 ? 'column-reverse' : 'row', 
-      'align-items': 'center', 
+      'align-items': 'flex-start', 
       'justify-content': 'space-around', 
       width: '100%',
-      margin: '3rem auto 0 auto'
+      height: '100%',
+      margin: windowWidth < 768 ? '2rem auto 1rem auto' : '0 auto',
       }">
         
         
       
-        <ul style="width: 100%; text-align: center;">
+        <ul 
+        :style="{
+        width: windowWidth < 768 ? '100%' : '60%', 
+        height: windowWidth < 768 ? 'auto' : '600px',
+        'overflow-y': windowWidth < 768 ? 'hidden' : 'auto',
+        'text-align': 'center',
+        padding: '1rem 0 3rem 0',
+        }">
 
           <UCard 
           :ui="{background: 'dark:bg-transparent'}" 
@@ -1080,14 +1090,15 @@ const items = [{
 
         <div 
         :style="{
-        width: windowWidth < 768 ? '100%' : '50%', 
-        height: windowWidth < 768 ? 'auto' : '100%',
+        width: windowWidth < 768 ? '100%' : '40%', 
+        height: windowWidth < 768 ? 'auto' : '60vh',
         display: 'flex',
         'align-items': 'center',
         'justify-content': 'center',
-        border: '1px solid green',
+        'text-align': 'center',
+        margin: windowWidth < 768 ? '2rem auto 0 auto' : '',
         }">
-        <p><strong>You're currently spending {{ currentTotalSubscriptionCost }} DKK / year.</strong></p>
+        <p style="width: 100%"><strong>You're currently spending {{ currentTotalSubscriptionCost }} DKK / year.</strong></p>
         
         </div>
 
