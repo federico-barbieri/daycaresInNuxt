@@ -394,7 +394,7 @@ onMounted(() => {
 
 /* overview */
 .overviewDiv{
-  flex-direction: column !important;
+  flex-direction: row !important;
 }
 
 h2{
@@ -415,7 +415,7 @@ h2{
 /* contact */
 
 .contactDiv{
-  flex-direction: column !important;
+  flex-direction: row !important;
 }
 
 .contactTitle{
