@@ -713,7 +713,6 @@ const items = [{
       'flex-direction': windowWidth < 768 ? 'column' : 'row',
       'margin': windowWidth < 768 ? '3rem auto 5rem auto' : '0',
       'align-items': 'center',
-      border: '1px solid yellow',
       'justify-content': 'space-between'
       }">
         
@@ -731,7 +730,6 @@ const items = [{
                         display: 'flex',
                         'flex-direction': windowWidth < 768 ? 'column' : 'row',
                         'align-items': 'center',
-                        border: '1px solid red',
                         padding: '1rem',
                         'justify-content': 'flex-end'}"
                         >
@@ -756,7 +754,6 @@ const items = [{
                           <div 
                           :style="{
                           width: windowWidth < 768 ? '100%' : '60%',
-                          border: '1px solid blue',
                           }
                           ">
 
@@ -790,7 +787,10 @@ const items = [{
 
                         </div>
 
-                        <USlideover  v-model="daycareModalisOpen" >
+                        <USlideover  
+                        v-model="daycareModalisOpen"
+                        :ui="{width: 'w-full md:w-screen max-w-md sm:w-2/4'}"
+                        >
                             <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800', background: 'dark:bg-transparent'}">
                   
 
@@ -1120,7 +1120,7 @@ h1{
   }
 
   .alreadyWrittenChildren{
-    width: 90% !important;
+    width: 80% !important;
   }
 
   .newCard{
