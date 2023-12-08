@@ -399,17 +399,8 @@ onMounted(() => {
 
 h2{
   text-align: center !important;
-  max-width: 100% !important;
 }
 
-.overviewP{
-  max-width: 100% !important;
-  margin: 0rem auto !important;
-}
-
-.overviewLastP{
-  margin-bottom: 2rem !important;
-}
 
 
 /* contact */
@@ -418,16 +409,8 @@ h2{
   flex-direction: row !important;
 }
 
-.contactTitle{
-  max-width: 100%;
-}
-
-.contactP{
-  max-width: 100%;
-}
-
 .contactImgDiv{
-  max-width: 80% !important;
+  max-width: 50% !important;
 }
 
 
