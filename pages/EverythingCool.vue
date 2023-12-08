@@ -55,10 +55,11 @@ const items = [
   label: 'Overview',
   slot: 'problematic'
   }, 
-  {
-  label: 'Types of institutions',
-  slot: 'institutions'
-  }, 
+  
+  //{
+  //label: 'Types of institutions',
+  //slot: 'institutions'
+  //}, 
   {
   label: 'About us',
   slot: 'about'
@@ -125,7 +126,7 @@ const faq = [
                       
                     
 
-                          <h1 class="mt-10" style="font-size: 5rem; font-family: 'Raleway', sans-serif; font-weight: bold;">Waiting lists for private daycares in Copenhagen</h1>
+                          <h1 class="mt-10 mainTitle" style="font-size: 5rem; font-family: 'Raleway', sans-serif; font-weight: bold;">Waiting lists for private daycares in Copenhagen</h1>
 
                           <p class="mt-5 text-lg" style="font-family: 'Raleway', sans-serif;">
                             Sign up your children in an easy and transparent way.
@@ -169,7 +170,7 @@ const faq = [
 
                 <template #problematic="{ item }" class="text-center">
 
-                  <div class="container mx-auto flex flex-row items-center" style="height: 70vh; display: flex; align-items: center; justify-content: center;">
+                  <div class="container mx-auto flex flex-row items-center overviewDiv" style="height: 70vh; display: flex; align-items: center; justify-content: center;">
 
                     <div>
 
@@ -177,15 +178,15 @@ const faq = [
 
                       <div class="text-left mt-5" style="max-width: 60ch">
 
-                        <p class="mb-2" style="font-family: 'Raleway', sans-serif;">
+                        <p class="mb-2 overviewP" style="font-family: 'Raleway', sans-serif;">
                         Many want to sign their children into private daycares. The problem is there is not enough place for everyone.
                       </p>
 
-                      <p class="mb-2" style="font-family: 'Raleway', sans-serif;">
+                      <p class="mb-2 overviewP" style="font-family: 'Raleway', sans-serif;">
                         To make things worse, signing children is a manual task and not very intuitive.
                       </p>
 
-                      <p style="font-family: 'Raleway', sans-serif;">
+                      <p class="overviewP overviewLastP" style="font-family: 'Raleway', sans-serif;">
                         Rebørn by Waitly makes it easy.
                       </p>
                         
@@ -266,35 +267,35 @@ const faq = [
 
                 <template #about="{ item }" class="text-center">
 
-                  <div class="container mx-auto flex flex-row items-center" style="height: 70vh; display: flex; align-items: center; justify-content: center;">
+                  <div class="container mx-auto flex flex-row items-center aboutUsDiv" style="height: 70vh; display: flex; align-items: center; justify-content: center;">
 
                     <div class="mr-10">
                     
 
-                      <h2 style="font-size: 3rem; max-width: 40vw; text-align: left; font-family: 'Raleway', sans-serif; font-weight: bold;" class="mr-5">About us</h2>
+                      <h2 class="mr-5 aboutUsTitle" style="font-size: 3rem; max-width: 40vw; text-align: left; font-family: 'Raleway', sans-serif; font-weight: bold;">About us</h2>
 
-                      <p class="text-left mt-5 mb-3" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
+                      <p class="text-left mt-5 mb-3 aboutUsP" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
                         Rebørn is an initiative by Waitly.dk. 
                       </p>
 
-                      <p class="text-left mt-5 mb-3" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
+                      <p class="text-left mt-5 mb-3 aboutUsP" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
                         It's name comes from <strong>reimagining</strong> how parents 
                         can access waiting lists combined with <strong><em>børn</em></strong>, 
                         the word for <strong><em>children</em></strong> in Danish.
                         
                       </p>
                         
-                      <p class="text-left mt-5 mb-3" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
+                      <p class="text-left mt-5 mb-3 aboutUsP" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
                         Its aim is to make the daycare category more accessible and transparent.
                       </p>
 
-                      <p class="text-left mt-5 mb-3" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
+                      <p class="text-left mt-5 mb-3 aboutUsP" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
                         Click on each tab to see frequently asked questions. 
                       </p>
 
                     </div>
 
-                      <UAccordion :ui="{item: { color: 'dark:text-white'}, default: { variant: 'ghost'}}" :items="faq"  orientation="vertical" class="container mx-auto w-2/5 px-3 mx-3 text-left">
+                      <UAccordion :ui="{item: { color: 'dark:text-white'}, default: { variant: 'ghost'}}" size="xl" :items="faq"  orientation="vertical" class="container mx-auto w-2/5 px-3 mx-3 text-left aboutUsAccordion">
                         
                       
                       </UAccordion>
@@ -307,18 +308,25 @@ const faq = [
 
                 <template #contact="{ item }" class="text-center">
 
-                  <div class="container mx-auto flex flex-col items-center" style="height: 70vh; display: flex; align-items: center; justify-content: center;">
+                  <div class="container mx-auto flex flex-col items-center contactDiv" style="height: 70vh; display: flex; flex-direction: row; align-items: center; justify-content: space-around;">
 
+                    <div>
 
-                    <h2 style="font-size: 3rem; max-width: 40vw; text-align: left; font-family: 'Raleway', sans-serif; font-weight: bold;" class="mr-5">Contact</h2>
+                          <h2 style="font-size: 3rem; max-width: 40vw; text-align: left; font-family: 'Raleway', sans-serif; font-weight: bold;" class="mr-5 contactTitle">Contact</h2>
 
-                    <p class="text-left mt-5 mb-3" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
-                      reborn-waitinglists@gmail.com
-                    </p>
+                          <p class="text-left mt-5 mb-3 contactP" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
+                            reborn-waitinglists@gmail.com
+                          </p>
 
-                    <p class="text-left mt-5 mb-3" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
-                      Or give us a call Monday to Friday from 9 to 13.
-                    </p>
+                          <p class="text-left mt-5 mb-3 contactP" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
+                            Or give us a call Monday to Friday from 9 to 13.
+                          </p>
+
+                  </div>
+
+                  <div class="contactImgDiv" style="max-width: 50%;">
+                  <img style="max-width: 100%; height: auto;" src="../assets/dreng.jpg" alt="">  
+                  </div>
 
 
                   </div>
@@ -355,6 +363,134 @@ const faq = [
 
 .custom-bg {
     background-image: url('../assets/pige.jpg');
+  }
+
+  @media only screen and (max-width: 1300px) and (min-width: 769px){
+
+    /* overview */
+    .overviewDiv{
+      flex-direction: column !important;
+    }
+    
+    h2{
+      text-align: center !important;
+      max-width: 100% !important;
+    }
+
+    .overviewP{
+      max-width: 100% !important;
+      margin: 0rem auto !important;
+    }
+
+    .overviewLastP{
+      margin-bottom: 2rem !important;
+    }
+
+    /* about us */
+
+    .aboutUsDiv{
+      flex-direction: column !important;
+    }
+
+    .aboutUsTitle{
+      max-width: 100% !important;
+    }
+
+    .aboutUsP{
+      max-width: 100% !important;
+    }
+
+    .aboutUsAccordion{
+      width: 50% !important;
+      margin-top: 5rem !important;
+      text-align: center !important;
+    }
+
+    /* contact */
+
+    .contactDiv{
+      flex-direction: column !important;
+    }
+
+    .contactTitle{
+      max-width: 100%;
+    }
+
+    .contactP{
+      max-width: 100%;
+    }
+
+    .contactImgDiv{
+      max-width: 80% !important;
+    }
+
+
+  }
+
+  @media only screen and (max-width: 768px){
+    .mainTitle{
+      font-size: 3rem !important;
+    }
+
+    /* overview */
+
+
+    .overviewDiv{
+      flex-direction: column !important;
+    }
+    
+    h2{
+      text-align: center !important;
+      max-width: 100% !important;
+    }
+
+    .overviewP{
+      max-width: 100% !important;
+      margin: 0rem auto !important;
+    }
+
+    .overviewLastP{
+      margin-bottom: 2rem !important;
+    }
+
+    /* about us */
+
+    .aboutUsDiv{
+      flex-direction: column !important;
+    }
+
+    .aboutUsTitle{
+      max-width: 100% !important;
+    }
+
+    .aboutUsP{
+      max-width: 100% !important;
+    }
+
+    .aboutUsAccordion{
+      width: 100% !important;
+      margin-top: 5rem !important;
+      text-align: center !important;
+    }
+
+     /* contact */
+
+     .contactDiv{
+      flex-direction: column !important;
+    }
+
+    .contactTitle{
+      max-width: 100%;
+    }
+
+    .contactP{
+      max-width: 100%;
+    }
+
+    .contactImgDiv{
+      max-width: 100% !important;
+    }
+
   }
 
 
