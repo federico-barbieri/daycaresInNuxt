@@ -788,16 +788,39 @@ const items = [{
                           }
                           ">
 
-                                  <ul v-if="daycares.length > 0" class="daycare-ul w-full" style="width: 100%">
+                                <ul 
+                                v-if="daycares.length > 0" 
+                                class="daycare-ul w-full" 
+                                :style="{
+                                'padding-inline-start': '0',
+                                width: '100%',
+                                color: 'white',
+                                height: windowWidth < 768 ? 'auto' : '550px',
+                                'list-style': 'none',
+                                'overflow-y': windowWidth < 768 ? 'hidden' : 'auto',
+                                padding: '1rem',
+                                }">
+
+
+
+              
                           
-                                            <UCard 
-                                            :ui="{background: 'dark:bg-transparent'}" 
-                                            as="div" 
-                                            v-for="daycare in daycares" 
-                                            :key="daycare.id" 
-                                            class="newCardDaycare" 
-                                            style="width: 90%; color: white;"
-                                            >
+                                      <UCard 
+                                      :ui="{background: 'dark:bg-transparent'}" 
+                                      as="div" 
+                                      v-for="daycare in daycares" 
+                                      :key="daycare.id" 
+                                      :style="{
+                                      width: windowWidth < 768 ? '100%' : '90%', 
+                                      color: 'white',
+                                      margin: '1.5rem 0',
+                                      }"
+                                      >
+
+                                    
+
+
+
                                                 <template #header>
                                                   <h2><strong>{{ daycare.name }}</strong></h2>
                                                 </template>
@@ -811,10 +834,10 @@ const items = [{
                                                 <template #footer>
                                                   <button @click="activateModal(daycare)"  class="moreInfoBtn">SUBSCRIBE</button>
                                                 </template>
-                                            </UCard>
-                                    </ul> 
+                                        </UCard>
+                                  </ul> 
                             
-                            </div>
+                          </div>
 
                         </div>
 
@@ -1087,27 +1110,12 @@ h1{
   margin-bottom: 2rem;
 }
 
-.daycare-ul{
-  padding-inline-start: 0;
-    color: white;
-    width: 100%;
-    height: auto;
-    list-style: none;
-    height: 550px; /* Set a fixed height or adjust as needed */
-    overflow-y: auto; /* Enable vertical scrolling */
-    padding: 1rem;
-}
-
 .newCard{
   margin: 1.5rem auto;
   color: white;
   width: 80%;
 }
 
-.newCardDaycare{
-  margin: 1.5rem 0;
-
-}
 .moreInfoBtn{
     width: 8rem;
     background-color: #7DCC7F;
