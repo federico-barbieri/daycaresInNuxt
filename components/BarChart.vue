@@ -46,4 +46,13 @@ let chartOptions = {
     height: 30vh;
 }
 
+@media only screen and (max-width: 500px){
+    .barchart{
+    height: 20vh;
+    width: 90vw;
+    }
+}
+
+
+
 </style>
