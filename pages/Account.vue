@@ -595,7 +595,13 @@ const items = [{
   <!-- ELSE, WE WILL ALREADY HAVE THEIR NAME-->
 
 <div class="mainDivIfInfoIsAvailable" v-else style="width: 80vw;  height: 80vh; overflow: hidden;">
-  <h1 class="font-sans nameSalutation">Hej {{fetchedFullName}}!</h1>
+  <h1
+  class="font-sans"
+  style="
+  margin: 3rem auto;
+  "
+  >
+  Hej {{fetchedFullName}}!</h1>
 
   <UTabs 
   :items="items"
