@@ -790,6 +790,10 @@ const items = [{
                         <USlideover  
                         v-model="daycareModalisOpen"
                         :ui="{width: 'w-full md:w-screen max-w-md sm:w-2/4'}"
+                        :style="{
+                          width: windowWidth < 768 ? '80%' : '',
+                          margin: windowWidth < 768 ? '0 0 0 auto' : '',
+                        }"
                         >
                             <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800', background: 'dark:bg-transparent'}">
                   
@@ -874,11 +878,11 @@ const items = [{
 
                                     <UButton 
                                       :ui="{rounded: ''}" 
-                                      style="
-                                      width: 25%; 
-                                      text-align: center; 
-                                      margin-top: 1.5rem;
-                                      "
+                                      :style="{
+                                      width: windowWidth < 768 ? '27%' : '25%', 
+                                      'text-align': 'center', 
+                                      'margin-top': '1.5rem',
+                                      }"
                                       @click="applyToDaycare"
                                       >SUBSCRIBE
                                       </UButton>
