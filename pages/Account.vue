@@ -675,7 +675,6 @@ const items = [{
           </div>
 
         <ul 
-        class="alreadyWrittenChildren" 
         v-if="children" 
         :style="{
         width: windowWidth < 768 ? '90%' : '50%',
@@ -683,7 +682,15 @@ const items = [{
         'overflow-y': windowWidth < 768 ? '' : 'auto',
         }">
    
-                <UCard :ui="{background:'dark:bg-transparent'}" v-for="child in children" :key="child.id" class="newCard">
+                <UCard 
+                :ui="{background:'dark:bg-transparent'}" 
+                v-for="child in children" 
+                :key="child.id"
+                style="
+                margin: 1.5rem auto;
+                border: 1px solid white;
+                "
+                >
                     <template #header>
                       <h2><strong>Name: {{ child.name }}</strong></h2>
                     </template>
@@ -1015,9 +1022,21 @@ const items = [{
         
         
       
-        <ul class="daycare-ul" style="width: 100%; text-align: center;">
+        <ul style="width: 100%; text-align: center;">
 
-          <UCard :ui="{background: 'dark:bg-transparent'}" v-for="subscription in subscriptions" :key="subscription.id" class="newCard">
+          <UCard 
+          :ui="{background: 'dark:bg-transparent'}" 
+          v-for="subscription in subscriptions" 
+          :key="subscription.id" 
+          :style="{
+          width: windowWidth < 768 ? '100%' : '80%',
+          color: 'white',
+          margin: '1.5rem auto',
+          border: windowWidth < 768 ? '1px solid white' : '',
+          }"
+          >
+
+
               <template #header>
                 <h2>Application for: <strong>{{ subscription.daycare_name }}</strong></h2>
               </template>
@@ -1061,9 +1080,15 @@ const items = [{
 
         <div 
         :style="{
-        'max-width': windowWidth < 768 ? '100%' : '50%', 
+        width: windowWidth < 768 ? '100%' : '50%', 
+        height: windowWidth < 768 ? 'auto' : '100%',
+        display: 'flex',
+        'align-items': 'center',
+        'justify-content': 'center',
+        border: '1px solid green',
         }">
-        <strong>You're currently spending {{ currentTotalSubscriptionCost }} DKK / year.</strong>
+        <p><strong>You're currently spending {{ currentTotalSubscriptionCost }} DKK / year.</strong></p>
+        
         </div>
 
       </div>
@@ -1110,12 +1135,6 @@ h1{
   margin-bottom: 2rem;
 }
 
-.newCard{
-  margin: 1.5rem auto;
-  color: white;
-  width: 80%;
-}
-
 .moreInfoBtn{
     width: 8rem;
     background-color: #7DCC7F;
@@ -1156,14 +1175,6 @@ h1{
     height: 110vh !important;
     overflow: auto !important;
   }
-
-
-  .newCard{
-  margin: 1.5rem auto;
-  color: white;
-  width: 100%;
-  border: 1px solid white;
-}
 
 
 /* daycares */

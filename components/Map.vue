@@ -8,7 +8,8 @@
             map-id="map"
             :style="{
             width: windowWidth < 768 ? '100%' : '90%',
-            height: '100%'
+            height: '100%',
+            margin: windowWidth < 768 ? '5rem auto 0 auto' : '',
             }"
             :options="{
             style: 'mapbox://styles/mapbox/light-v11', // style URL
