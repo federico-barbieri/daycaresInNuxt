@@ -484,7 +484,17 @@ let currentTotalSubscriptionCost = ref(0);
 
 
 
+// measure viewport's width
 
+const windowWidth = ref(window.innerWidth)
+
+const updateWindowWidth = () => {
+      windowWidth.value = window.innerWidth;
+};
+
+const handleResize = () => {
+      updateWindowWidth();
+};
 
 
 /// INITIALIZE
@@ -495,6 +505,8 @@ onMounted(() => {
   getDaycares();
   getChildren();
   getSubscriptions();
+
+  window.addEventListener('resize', handleResize);
 
 })
 
@@ -581,10 +593,14 @@ const items = [{
   </div>
   <!-- ELSE, WE WILL ALREADY HAVE THEIR NAME-->
 
-<div v-else style="width: 80vw;  height: 80vh; overflow: hidden;">
-  <h1 class="font-sans">Hej {{fetchedFullName}}!</h1>
+<div class="mainDivIfInfoIsAvailable" v-else style="width: 80vw;  height: 80vh; overflow: hidden;">
+  <h1 class="font-sans nameSalutation">Hej {{fetchedFullName}}!</h1>
 
-  <UTabs :items="items"  orientation="horizontal" style="width: 100%; height: 100%;" :ui="{ list: { tab: { active: 'bg-blue-500' } } }">
+  <UTabs 
+  :items="items"
+  :orientation="windowWidth > 768 ? 'horizontal' : 'vertical'"
+  style="width: 100%; height: 100%;" 
+  :ui="{ list: { tab: { active: 'bg-blue-500' } } }">
 
 
     <!--CHILDREN-->
@@ -593,9 +609,9 @@ const items = [{
 
     <template #children="{ item }">
 
-      <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-around; width: 80%; height: 100%; margin: 0 auto">
+      <div class="myChildrenDiv" style="display: flex; flex-direction: row; align-items: center; justify-content: space-around; width: 80%; height: 100%; margin: 0 auto">
 
-        <div style="width: 40%; height: 100%; color: white;">
+        <div class="myChildrenCardsDiv" style="width: 40%; height: 100%; color: white;">
           
 
           <p v-if="!childrenExist" style="margin: 3rem auto;">You haven't added any children yet.</p>
@@ -629,7 +645,7 @@ const items = [{
   
           </div>
 
-        <ul v-if="children" style="width: 50%;  height: 600px; overflow-y: auto;">
+        <ul class="alreadyWrittenChildren" v-if="children" style="width: 50%;  height: 600px; overflow-y: auto;">
    
                 <UCard :ui="{background:'dark:bg-transparent'}" v-for="child in children" :key="child.id" class="newCard">
                     <template #header>
@@ -991,6 +1007,60 @@ h1{
 .moreInfoBtn:hover{
     background-color: black;
     color: white;
+}
+
+
+@media only screen and (max-width: 768px){
+
+  .main{
+    width: 100vw;
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0rem auto;
+    padding: 1rem;
+  }
+
+  h1{
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+  .mainDivIfInfoIsAvailable{
+    width: 100vw !important;
+    height: 110vh !important;
+    overflow: auto !important;
+  }
+
+  .myChildrenDiv{
+    flex-direction: column !important;
+    height: 100vh !important;
+    width: 90% !important;
+    margin: 2rem auto !important;
+  }
+
+  .myChildrenCardsDiv{
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 2rem !important;
+    padding: 1rem !important;
+  }
+
+  .alreadyWrittenChildren{
+    width: 90% !important;
+  }
+
+  .newCard{
+  margin: 1.5rem auto;
+  color: white;
+  width: 100%;
+  border: 1px solid white;
+}
+
+
 }
 
 
