@@ -701,7 +701,20 @@ const items = [{
         
       
 
-      <UTabs :ui="{ list: { tab: { active: 'bg-blue-500' }, width: 'w-36'  } }" :items="daycareTabs" orientation="vertical" style="width: 100%; height: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+      <UTabs 
+      :ui="{ list: { tab: { active: 'bg-blue-500' }, width: 'w-36'  } }" 
+      :items="daycareTabs" 
+      orientation="vertical" 
+      :style="{
+      width: '100%', 
+      height: '100%',
+      display: 'flex',
+      'flex-direction': windowWidth < 768 ? 'column' : 'row',
+      'margin': windowWidth < 768 ? '3rem auto 5rem auto' : '0',
+      'align-items': 'center',
+      border: '1px solid yellow',
+      'justify-content': 'space-between'
+      }">
         
         <template #filters = {item}>
           
@@ -710,13 +723,23 @@ const items = [{
 
                   
 
-                        <div v-if="daycares.length > 0" style="width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: flex-end;">
+                        <div 
+                        v-if="daycares.length > 0"
+                        :style="{
+                        width: '100%',
+                        display: 'flex',
+                        'flex-direction': windowWidth < 768 ? 'column' : 'row',
+                        'align-items': 'center',
+                        border: '1px solid red',
+                        padding: '1rem',
+                        'justify-content': 'flex-end'}"
+                        >
 
 
                               <!--FILTER BY AREA-->
 
                               <USelect
-                              style="width: 100%;"
+                              style="width: 100%"
                               placeholder="Filter by area"
                               :options="areaOptions"
                               v-model="selectedAreaForFiltering"
@@ -729,11 +752,23 @@ const items = [{
             
             
             
-                          <div style="width: 60%">
+                          <div 
+                          :style="{
+                          width: windowWidth < 768 ? '100%' : '60%',
+                          border: '1px solid blue',
+                          }
+                          ">
 
                                   <ul v-if="daycares.length > 0" class="daycare-ul w-full" style="width: 100%">
                           
-                                            <UCard :ui="{background: 'dark:bg-transparent'}" as="div" v-for="daycare in daycares" :key="daycare.id" class="newCardDaycare" style="width: 90%; color: white;">
+                                            <UCard 
+                                            :ui="{background: 'dark:bg-transparent'}" 
+                                            as="div" 
+                                            v-for="daycare in daycares" 
+                                            :key="daycare.id" 
+                                            class="newCardDaycare" 
+                                            style="width: 90%; color: white;"
+                                            >
                                                 <template #header>
                                                   <h2><strong>{{ daycare.name }}</strong></h2>
                                                 </template>
@@ -1063,6 +1098,12 @@ h1{
   width: 100%;
   border: 1px solid white;
 }
+
+
+/* daycares */
+
+
+
 
 
 }
