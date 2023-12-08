@@ -791,7 +791,7 @@ const items = [{
                         v-model="daycareModalisOpen"
                         :ui="{width: 'w-full md:w-screen max-w-md sm:w-2/4'}"
                         :style="{
-                          width: windowWidth < 768 ? '80%' : '',
+                          width: windowWidth < 500 ? '60%' : (windowWidth < 768 ? '80%' : ''),
                           margin: windowWidth < 768 ? '0 0 0 auto' : '',
                         }"
                         >
@@ -810,7 +810,16 @@ const items = [{
 
                                       
 
-                                        <h3 style="max-width: 70%; font-size: 1.5rem; text-align: center; margin-bottom: 1rem;">{{ daycareName }}</h3>
+                                        <h3 
+                                        :style="{
+                                        'width': windowWidth < 500 ? '100%' : '90%', 
+                                        'font-size': windowWidth < 500 ? '1rem' : '1.5rem', 
+                                        'text-align': 'center', 
+                                        'margin-bottom': '1rem',
+                                        }"
+                                        >
+                                        {{ daycareName }}
+                                        </h3>
 
                                         <UDivider color="gray" orientation="horizontal" />
 
@@ -819,7 +828,7 @@ const items = [{
                                         <div style="display: flex; flex-direction: column; align-items: flex-start; justify-content: space-around; width: 100%; margin: 2rem auto;">
        
 
-                                              <p style="font-size: 1rem; margin-bottom: 0.5rem;">Area: <br> <strong>{{ daycareArea }}</strong></p>
+                                              <p v-if="windowWidth > 500" style="font-size: 1rem; margin-bottom: 0.5rem;">Area: <br> <strong>{{ daycareArea }}</strong></p>
                                               <p style="font-size: 1rem; margin-bottom: 0.5rem;">Opening hours: <br> <strong>{{ daycareOpeningHours }}</strong></p>
                                               <p style="font-size: 1rem;">Waiting list cost per yer: <br> <strong>{{ daycareCost }} DKK</strong></p>
 
@@ -879,7 +888,7 @@ const items = [{
                                     <UButton 
                                       :ui="{rounded: ''}" 
                                       :style="{
-                                      width: windowWidth < 768 ? '27%' : '25%', 
+                                      
                                       'text-align': 'center', 
                                       'margin-top': '1.5rem',
                                       }"
