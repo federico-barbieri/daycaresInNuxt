@@ -614,15 +614,39 @@ const items = [{
 
     <template #children="{ item }">
 
-      <div class="myChildrenDiv" style="display: flex; flex-direction: row; align-items: center; justify-content: space-around; width: 80%; height: 100%; margin: 0 auto">
+      <div 
+      :style="{
+      'display': 'flex', 
+      'flex-direction': windowWidth < 768 ? 'column' : 'row', 
+      'align-items': 'center', 
+      'justify-content': 'space-around', 
+        width: windowWidth < 768 ? '90%' : '80%', 
+        height: '100%', 
+        margin: windowWidth < 768 ? '2rem auto' : '0 auto', 
+      }">
 
-        <div class="myChildrenCardsDiv" style="width: 40%; height: 100%; color: white;">
+
+        <div 
+        :style="{
+        width: windowWidth < 768 ? '100%' : '40%', 
+        height: windowWidth < 768 ? 'auto' : '100%',
+        'margin-top': windowWidth < 768 ? '2rem' : '',
+        padding: windowWidth < 768 ? '1rem' : '', 
+        color: 'white',
+        }">
           
 
           <p v-if="!childrenExist" style="margin: 3rem auto;">You haven't added any children yet.</p>
   
   
-          <form action="submit" @submit.prevent="addKid" style="width: 100%; height: 80%;">
+          <form 
+          action="submit" 
+          @submit.prevent="addKid" 
+          :style="{
+          width: '100%', 
+          height:' 80%',
+          margin: windowWidth < 768 ? '0 auto 3rem auto' : '',
+          }">
             
             <UFormGroup label="Name" class="mb-5">
                       <UInput placeholder="Your child's name" v-model="kidName" />
@@ -650,7 +674,14 @@ const items = [{
   
           </div>
 
-        <ul class="alreadyWrittenChildren" v-if="children" style="width: 50%;  height: 600px; overflow-y: auto;">
+        <ul 
+        class="alreadyWrittenChildren" 
+        v-if="children" 
+        :style="{
+        width: windowWidth < 768 ? '90%' : '50%',
+        height: windowWidth < 768 ? 'auto' : '600px',
+        'overflow-y': windowWidth < 768 ? '' : 'auto',
+        }">
    
                 <UCard :ui="{background:'dark:bg-transparent'}" v-for="child in children" :key="child.id" class="newCard">
                     <template #header>
@@ -1118,23 +1149,6 @@ h1{
     overflow: auto !important;
   }
 
-  .myChildrenDiv{
-    flex-direction: column !important;
-    height: 100vh !important;
-    width: 90% !important;
-    margin: 2rem auto !important;
-  }
-
-  .myChildrenCardsDiv{
-    width: 100% !important;
-    height: auto !important;
-    margin-top: 2rem !important;
-    padding: 1rem !important;
-  }
-
-  .alreadyWrittenChildren{
-    width: 80% !important;
-  }
 
   .newCard{
   margin: 1.5rem auto;
