@@ -796,12 +796,17 @@ const items = [{
 
                                 <div style="display: flex; flex-direction: column; align-items: center; justify-content: space-between; width: 100%">
 
-                                        <div style="width: 70%;">
+                                  <!--
+                                      <div style="width: 70%;">
                                           <img src="../assets/pige.jpg" alt="" style="max-width: 100%; height: auto; border-radius: 30px;">
-                                          
+                                        
                                         </div>
 
-                                        <h3 style="max-width: 70%; font-size: 1.5rem; text-align: center;">{{ daycareName }}</h3>
+                                      -->
+
+                                      
+
+                                        <h3 style="max-width: 70%; font-size: 1.5rem; text-align: center; margin-bottom: 1rem;">{{ daycareName }}</h3>
 
                                         <UDivider color="gray" orientation="horizontal" />
 
