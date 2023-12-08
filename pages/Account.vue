@@ -543,6 +543,7 @@ const items = [{
 
         <p style="
         cursor: pointer;
+        margin-top: 1rem;
         "
         @click="signOut"
         >Log out
@@ -909,14 +910,36 @@ const items = [{
 
 <template #subscriptions="{ item }">
 
-  <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; width: 100%; height: 100%; margin: 0 auto">
+  <div 
+  :style="{
+  display: 'flex', 
+  'flex-direction': windowWidth < 768 ? 'column' : 'row', 
+  'align-items': 'center', 
+  'justify-content': 'center', 
+  width: '100%',
+  height: '100%', 
+  margin: '0 auto',
+  }">
 
-    <div style="width: 80%;">
+
+    <div 
+    :style="{
+      width: windowWidth < 768 ? '100%' : '80%'
+    }
+    ">
 
       <p style="text-align: center; margin-top: 10rem;" v-if="!subscriptionsExist">You haven't applied to any daycare yet.</p>
 
 
-      <div v-if="subscriptions" style="width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-around;">
+      <div v-if="subscriptions" 
+      :style="{
+      display: 'flex', 
+      'flex-direction': windowWidth < 768 ? 'column-reverse' : 'row', 
+      'align-items': 'center', 
+      'justify-content': 'space-around', 
+      width: '100%',
+      margin: '3rem auto 0 auto'
+      }">
         
         
       
@@ -964,8 +987,11 @@ const items = [{
           </UCard>
         </ul> 
 
-        <div style="max-width: 50%;">
-        You're currently spending {{ currentTotalSubscriptionCost }} DKK / year.  
+        <div 
+        :style="{
+        'max-width': windowWidth < 768 ? '100%' : '50%', 
+        }">
+        <strong>You're currently spending {{ currentTotalSubscriptionCost }} DKK / year.</strong>
         </div>
 
       </div>
