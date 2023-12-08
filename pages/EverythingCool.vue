@@ -108,17 +108,38 @@ const faq = [
 ]
 
 
+// measure viewport's width
+
+const windowWidth = ref(window.innerWidth)
+
+const updateWindowWidth = () => {
+      windowWidth.value = window.innerWidth;
+};
+
+const handleResize = () => {
+      updateWindowWidth();
+};
+
+onMounted(() => {
+      window.addEventListener('resize', handleResize);
+    });
+
+
 </script>
 
 <template>
-  <div class="w-screen h-screen m-0 p-0 font-mono" style="background-color: #35354A; height: 100vh; overflow: hidden;">
+  <div class="w-screen h-screen m-0 p-0 font-mono universalDiv" style="background-color: #35354A; height: 100vh; overflow: hidden;">
   
     <header class=" mx-auto  w-screen h-full m-0 p-0">
         <nav class="mx-auto  w-screen h-full p-0 flex flex-col text-center">
 
           <p class="font-sans pt-10 pb-5 text-5xl">REBØRN</p>
 
-          <UTabs :ui="{ list: { tab: { active: 'bg-blue-500' } } }" :items="items"  orientation="horizontal" class="container mx-auto text-center h-full place-content-center pt-5 w-10/12" >
+          <UTabs 
+          :ui="{ list: { tab: { active: 'bg-blue-500' } } }" 
+          :items="items" 
+          :orientation="windowWidth > 768 ? 'horizontal' : 'vertical'"
+          class="container mx-auto text-center h-full place-content-center pt-5 w-10/12" >
       
                 <template #home="{ item }" >
 
@@ -128,7 +149,7 @@ const faq = [
 
                           <h1 class="mt-10 mainTitle" style="font-size: 5rem; font-family: 'Raleway', sans-serif; font-weight: bold;">Waiting lists for private daycares in Copenhagen</h1>
 
-                          <p class="mt-5 text-lg" style="font-family: 'Raleway', sans-serif;">
+                          <p class="mt-5 text-lg mainP" style="font-family: 'Raleway', sans-serif;">
                             Sign up your children in an easy and transparent way.
                           </p>
 
@@ -365,7 +386,62 @@ const faq = [
     background-image: url('../assets/pige.jpg');
   }
 
+  @media only screen and (min-width: 1301px){
+
+    .mainTitle{
+      font-size: 4rem !important;
+    }
+
+/* overview */
+.overviewDiv{
+  flex-direction: column !important;
+}
+
+h2{
+  text-align: center !important;
+  max-width: 100% !important;
+}
+
+.overviewP{
+  max-width: 100% !important;
+  margin: 0rem auto !important;
+}
+
+.overviewLastP{
+  margin-bottom: 2rem !important;
+}
+
+
+/* contact */
+
+.contactDiv{
+  flex-direction: column !important;
+}
+
+.contactTitle{
+  max-width: 100%;
+}
+
+.contactP{
+  max-width: 100%;
+}
+
+.contactImgDiv{
+  max-width: 80% !important;
+}
+
+
+}
+
   @media only screen and (max-width: 1300px) and (min-width: 769px){
+
+    .universalDiv{
+      height: 130vh !important;
+    }
+
+    .mainTitle{
+      font-size: 3rem !important;
+    }
 
     /* overview */
     .overviewDiv{
@@ -375,6 +451,7 @@ const faq = [
     h2{
       text-align: center !important;
       max-width: 100% !important;
+      font-size: 2.5rem !important;
     }
 
     .overviewP{
@@ -390,6 +467,7 @@ const faq = [
 
     .aboutUsDiv{
       flex-direction: column !important;
+      margin-top: 5rem !important;
     }
 
     .aboutUsTitle{
@@ -401,7 +479,7 @@ const faq = [
     }
 
     .aboutUsAccordion{
-      width: 50% !important;
+      width: 70% !important;
       margin-top: 5rem !important;
       text-align: center !important;
     }
@@ -428,8 +506,94 @@ const faq = [
   }
 
   @media only screen and (max-width: 768px){
+
+    .universalDiv{
+      height: 130vh !important;
+    }
     .mainTitle{
-      font-size: 3rem !important;
+      font-size: 2rem !important;
+    }
+
+    .mainP{
+      font-size: 1rem !important;
+    }
+
+    /* overview */
+
+
+    .overviewDiv{
+      flex-direction: column !important;
+    }
+    
+    h2{
+      text-align: center !important;
+      max-width: 100% !important;
+      font-size: 2rem !important;
+    }
+
+    .overviewP{
+      max-width: 100% !important;
+      margin: 0rem auto !important;
+      font-size: 1rem !important;
+    }
+
+    .overviewLastP{
+      margin-bottom: 2rem !important;
+    }
+
+    /* about us */
+
+    .aboutUsDiv{
+      flex-direction: column !important;
+      margin-top: 3rem !important;
+
+    }
+
+    .aboutUsTitle{
+      max-width: 100% !important;
+    }
+
+    .aboutUsP{
+      max-width: 100% !important;
+    }
+
+    .aboutUsAccordion{
+      width: 100% !important;
+      margin-top: 5rem !important;
+      text-align: center !important;
+    }
+
+     /* contact */
+
+     .contactDiv{
+      flex-direction: column !important;
+    }
+
+    .contactTitle{
+      max-width: 100%;
+    }
+
+    .contactP{
+      max-width: 100%;
+    }
+
+    .contactImgDiv{
+      max-width: 100% !important;
+    }
+
+  }
+
+
+  @media only screen and (max-width: 500px){
+    .universalDiv{
+      height: 150vh !important;
+    }
+    .mainTitle{
+      font-size: 2rem !important;
+    }
+
+    .mainP{
+      font-size: 1rem !important;
     }
 
     /* overview */
@@ -457,6 +621,8 @@ const faq = [
 
     .aboutUsDiv{
       flex-direction: column !important;
+      margin-top: 7rem !important;
+
     }
 
     .aboutUsTitle{
@@ -469,7 +635,7 @@ const faq = [
 
     .aboutUsAccordion{
       width: 100% !important;
-      margin-top: 5rem !important;
+      margin-top: 3rem !important;
       text-align: center !important;
     }
 
