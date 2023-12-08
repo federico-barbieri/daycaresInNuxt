@@ -599,7 +599,11 @@ const items = [{
   <UTabs 
   :items="items"
   :orientation="windowWidth > 768 ? 'horizontal' : 'vertical'"
-  style="width: 100%; height: 100%;" 
+  :style="{
+  width: windowWidth < 768 ? '90%' : '100%',
+  margin: '0 auto',
+  height: '100%'
+  }"
   :ui="{ list: { tab: { active: 'bg-blue-500' } } }">
 
 
