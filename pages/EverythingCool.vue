@@ -143,7 +143,7 @@ onMounted(() => {
       
                 <template #home="{ item }" >
 
-                    <div class="container mx-auto flex flex-col items-center" style="height: 60vh; display: flex; align-items: center; justify-content: center;">
+                    <div class="container mx-auto flex flex-col items-center mainTitleDiv" style="height: 60vh; display: flex; align-items: center; justify-content: center;">
                       
                     
 
@@ -316,7 +316,7 @@ onMounted(() => {
 
                     </div>
 
-                      <UAccordion :ui="{item: { color: 'dark:text-white'}, default: { variant: 'ghost'}}" size="xl" :items="faq"  orientation="vertical" class="container mx-auto w-2/5 px-3 mx-3 text-left aboutUsAccordion">
+                      <UAccordion :ui="{item: { color: 'dark:text-white'}, default: { variant: 'ghost'}}" size="sm" :items="faq"  orientation="vertical" class="container mx-auto w-2/5 px-3 mx-3 text-left aboutUsAccordion">
                         
                       
                       </UAccordion>
@@ -509,6 +509,7 @@ h2{
 
     .universalDiv{
       height: 130vh !important;
+      overflow: auto !important;
     }
     .mainTitle{
       font-size: 2rem !important;
@@ -560,7 +561,7 @@ h2{
     .aboutUsAccordion{
       width: 100% !important;
       margin-top: 5rem !important;
-      text-align: center !important;
+      text-align: left !important;
     }
 
      /* contact */
@@ -586,7 +587,12 @@ h2{
 
   @media only screen and (max-width: 500px){
     .universalDiv{
-      height: 150vh !important;
+      height: auto !important;
+      overflow: auto !important;
+    }
+
+    .mainTitleDiv{
+      height: 70vh !important;
     }
     .mainTitle{
       font-size: 2rem !important;
@@ -601,6 +607,7 @@ h2{
 
     .overviewDiv{
       flex-direction: column !important;
+      height: 90vh !important;
     }
     
     h2{
@@ -622,6 +629,7 @@ h2{
     .aboutUsDiv{
       flex-direction: column !important;
       margin-top: 7rem !important;
+      margin-bottom: 10rem !important;
 
     }
 
@@ -636,7 +644,7 @@ h2{
     .aboutUsAccordion{
       width: 100% !important;
       margin-top: 3rem !important;
-      text-align: center !important;
+      text-align: left !important;
     }
 
      /* contact */
