@@ -408,6 +408,8 @@ let subscriptionsExist = ref(false);
 
 async function getSubscriptions(){
 
+  currentTotalSubscriptionCost.value = 0;
+
   const { user } = session.value
 
 
@@ -426,13 +428,16 @@ async function getSubscriptions(){
           subscriptions.value = subscriptions.value.reverse();
 
           subscriptions.value.forEach(element => {
+            console.log(element.waiting_list_cost);
             currentTotalSubscriptionCost.value += element.waiting_list_cost;
-            console.log(currentTotalSubscriptionCost.value);
+            console.log("data exists. current cost of subscription", currentTotalSubscriptionCost.value);
           });
 
       } else{
         subscriptionsExist.value = false;
         console.log("no subscriptions found")
+        console.log("no sub found. current cost of subscription", currentTotalSubscriptionCost.value);
+
       }
 
       if (error) {
@@ -458,15 +463,7 @@ async function cancelSubscription(chosenSubscription){
         } else {
             toast.add({ title: 'Subscription removed successfully!' });
             subscriptionsExist.value = false;
-            subscriptions.value = '';
-
-            // if current total subscription minus chosen subscription is negative, make it 0
-            if(currentTotalSubscriptionCost.value - chosenSubscription.waiting_list_cost < 0){
-              currentTotalSubscriptionCost.value == 0;
-            } else{
-              currentTotalSubscriptionCost.value -= chosenSubscription.waiting_list_cost;
-            }
-            
+            subscriptions.value = '';            
 
             await getSubscriptions(); 
         }
@@ -537,7 +534,7 @@ const items = [{
 
       <header class="w-full" style="display: flex; align-items: center; justify-content: center;">
         
-      <nav class="flex flex-row align-center justify-center" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 90%;">
+      <nav class="flex flex-row align-center justify-center" style="border-bottom: 1px solid #1a1a20; display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 90%;">
         
         <p class="font-sans pt-10 pb-5 text-5xl">REBØRN</p>
 
@@ -546,6 +543,8 @@ const items = [{
         margin-top: 1rem;
         "
         @click="signOut"
+        onmouseenter="this.style.borderBottom = '1px solid red'"
+        onmouseleave="this.style.borderBottom = ''"
         >Log out
         </p>
 
@@ -594,11 +593,19 @@ const items = [{
   </div>
   <!-- ELSE, WE WILL ALREADY HAVE THEIR NAME-->
 
-<div class="mainDivIfInfoIsAvailable" v-else style="width: 80vw;  height: 80vh; overflow: hidden;">
+<div 
+class="mainDivIfInfoIsAvailable" 
+v-else 
+style="width: 80vw;
+height: 80vh; 
+overflow: hidden;
+border: 1px solid red;
+">
+
   <h1
   class="font-sans"
   style="
-  margin: 3rem auto;
+  margin: 1rem auto 1rem;
   "
   >
   Hello {{fetchedFullName}}!</h1>
@@ -649,8 +656,8 @@ const items = [{
           action="submit" 
           @submit.prevent="addKid" 
           :style="{
-          width: '100%', 
-          height:' 80%',
+          width: windowWidth < 768 ? '90%' : '60%', 
+          height: windowWidth < 768 ? 'auto' : '90%',
           margin: windowWidth < 768 ? '0 auto 3rem auto' : '',
           }">
             
@@ -683,9 +690,11 @@ const items = [{
         <ul 
         v-if="children" 
         :style="{
-        width: windowWidth < 768 ? '90%' : '50%',
-        height: windowWidth < 768 ? 'auto' : '600px',
+        width: windowWidth < 768 ? '90%' : '70%',
+        height: windowWidth < 768 ? 'auto' : '450px',
         'overflow-y': windowWidth < 768 ? '' : 'auto',
+        margin: windowWidth < 768 ? '' : '2rem 0',
+        border: '1px solid pink',
         }">
    
                 <UCard 
@@ -1008,14 +1017,14 @@ const items = [{
 
 
     <div 
-    style="
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: flex-start;
-    ">
+    :style="{
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      'align-items': !subscriptionsExist ? 'center' : 'flex-start',
+      }">
 
-      <p style="text-align: center; margin-top: 10rem;" v-if="!subscriptionsExist">You haven't applied to any daycare yet.</p>
+      <p style="width: 100%; text-align: center; margin-top: 10rem;" v-if="!subscriptionsExist">You haven't applied to any daycare yet.</p>
 
 
       <div v-if="subscriptions" 
