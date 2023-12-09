@@ -114,11 +114,21 @@ const windowWidth = ref(window.innerWidth)
 
 const updateWindowWidth = () => {
       windowWidth.value = window.innerWidth;
+      accordionOrientation.value = windowWidth.value < 1200 ? 'horizontal' : 'vertical';
 };
 
 const handleResize = () => {
       updateWindowWidth();
 };
+
+
+// accordion 
+
+const accordionOrientation = ref('vertical');
+
+
+
+
 
 onMounted(() => {
       window.addEventListener('resize', handleResize);
@@ -133,7 +143,7 @@ onMounted(() => {
   :style="{
   'background-color': '#35354A', 
   color: 'white', 
-  height: windowWidth < 768 ? 'auto' : '100vh', 
+  height: windowWidth < 1200 ? 'auto' : '100vh', 
   overflow: 'hidden',
   }">
   
@@ -157,7 +167,6 @@ onMounted(() => {
                     display: 'flex', 
                     'align-items': 'center', 
                     'justify-content': 'center',
-                    border: '1px solid red',
                     margin: windowWidth < 768 ? '5rem auto' : '',
                     }">
                       
@@ -221,23 +230,41 @@ onMounted(() => {
                 <template #problematic="{ item }">
 
                   <div 
-                  class="container mx-auto flex flex-row overviewDiv" style="height: 70vh; display: flex; align-items: center; justify-content: center;">
+                  class="container mx-auto flex flex-row" 
+                  :style="{
+                  height: windowWidth < 768 ? 'auto' : '70vh', 
+                  margin: windowWidth < 768 ? '5rem auto' : '',
+                  display: 'flex', 
+                  'flex-direction': windowWidth < 1200 ? 'column' : 'row',
+                  'align-items': 'center', 
+                  'justify-content': 'center',
+                  }">
 
-                    <div>
+                    <div 
+                    :style="{
+                    padding: '1rem',
+                    border: '1px solid green',
+                    }">
 
-                      <h2 style="font-size: 3rem; max-width: 40vw; text-align: left; font-family: 'Raleway', sans-serif; font-weight: bold;">Daycare overview in Copenhagen</h2>
+                    <h2 
+                    :style="{
+                    'font-size': windowWidth < 400 ? '1.5rem' : (windowWidth < 1200 ? '2rem' : '3rem'),
+                    'max-width': '100%', 
+                    'text-align': windowWidth < 700 ? 'center' : 'left', 
+                    'font-family': 'Raleway, sans-serif', 
+                    'font-weight': 'bold',
+                    margin: '0 auto 1rem auto',
+                    }">
+                    Daycare overview in Copenhagen
+                  </h2>
 
-                      <div class="text-left mt-5" style="max-width: 60ch">
+                      <div style="width: 100%; text-align: left; font-family: 'Raleway', sans-serif;">
 
-                        <p class="mb-2 overviewP" style="font-family: 'Raleway', sans-serif;">
-                        Signing up to daycares is a project in itself.
-                      </p>
-
-                      <p class="mb-2 overviewP" style="font-family: 'Raleway', sans-serif;">
-                        Each institution has its own rules, opening hours and waiting list systems.
-                      </p>
-
-                      <p class="overviewP overviewLastP" style="font-family: 'Raleway', sans-serif;">
+                        <p style="font-family: 'Raleway', sans-serif; font-size: 1rem; max-width: 60ch;">
+                        Signing up to daycares is a project in itself. <br><br>
+                 
+                        Each institution has its own rules, opening hours and waiting list systems. <br><br>
+         
                         Rebørn by Waitly is a centralized platform, where one can find every private daycare
                         in Copenhagen and sign up to waiting lists without opening dozens of tabs.
                       </p>
@@ -319,38 +346,95 @@ onMounted(() => {
 
                 <template #about="{ item }" class="text-center">
 
-                  <div class="container mx-auto flex flex-row items-center aboutUsDiv" style="height: 70vh; display: flex; align-items: center; justify-content: center;">
+                  <div 
+                  class="container mx-auto flex" 
+                  :style="{
+                  height: windowWidth < 768 ? 'auto' : '70vh', 
+                  display: 'flex', 
+                  width: '100%',
+                  border: '1px solid green',
+                  'align-items': 'center', 
+                  'justify-content': 'center',
+                  'flex-direction': windowWidth < 1200 ? 'column' : 'row', 
+                  margin: windowWidth < 1200 ? '5rem auto' : '',
+                  }">
 
-                    <div class="mr-10">
+                    <div 
+                    :style="{
+                    width: windowWidth < 500 ? '100%' : (windowWidth < 1200 ? '70%' : '50%'),
+
+                    }">
                     
 
-                      <h2 class="mr-5 aboutUsTitle" style="font-size: 3rem; max-width: 40vw; text-align: left; font-family: 'Raleway', sans-serif; font-weight: bold;">About us</h2>
+                      <h2 
+                       :style="{
+                      'font-size': windowWidth < 400 ? '1.5rem' : (windowWidth < 1200 ? '2rem' : '3rem'),
+                      'max-width': '100%', 
+                      'text-align': windowWidth < 1200 ? 'center' : 'left', 
+                      'font-family': 'Raleway, sans-serif', 
+                      'font-weight': 'bold',
+                      margin: '0 auto 1rem auto',
+                      }"
+                      >About us</h2>
 
-                      <p class="text-left mt-5 mb-3 aboutUsP" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
-                        Rebørn is an initiative by Waitly.dk. 
-                      </p>
+                      <div
+                      :style="{
+                      width: windowWidth < 500 ? '100%' : (windowWidth < 1200 ? '70%' : '50%'),
 
-                      <p class="text-left mt-5 mb-3 aboutUsP" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
+                      'text-align': 'left',
+                      border: '1px solid pink',
+                    }"
+                      >
+
+                        <p 
+                        style="
+                        max-width: 50ch; 
+                        font-family: 'Raleway', sans-serif;">
+                        Rebørn is an initiative by Waitly.dk. <br><br>
                         It's name comes from <strong>reimagining</strong> how parents 
                         can access waiting lists combined with <strong><em>børn</em></strong>, 
-                        the word for <strong><em>children</em></strong> in Danish.
-                        
-                      </p>
-                        
-                      <p class="text-left mt-5 mb-3 aboutUsP" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
-                        Its aim is to make the daycare category more accessible and transparent.
+                        the word for <strong><em>children</em></strong> in Danish. <br><br>
+                        Its aim is to make the daycare category more accessible and transparent. <br><br>
+
                       </p>
 
-                      <p class="text-left mt-5 mb-3 aboutUsP" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
-                        Click on each tab to see frequently asked questions. 
-                      </p>
+
+                      </div>
+
+                      
 
                     </div>
 
-                      <UAccordion :ui="{item: { color: 'text-white, dark:text-white'}, default: { variant: 'ghost'}}" size="sm" :items="faq"  orientation="vertical" class="container mx-auto w-2/5 px-3 mx-3 text-left aboutUsAccordion">
+                   <div 
+                   :style="{
+                   height: '100%', 
+                   width: windowWidth < 500 ? '100%' : (windowWidth < 1200 ? '70%' : '50%'),
+                   display: 'flex', 
+                   'flex-direction': 'row',
+                   'align-items': 'center', 
+                   'justify-content': 'center',
+                   border: '1px solid magenta',
+                   }">
+
+                   
+
+                      <UAccordion 
+                      :ui="{item: { color: 'text-white, dark:text-white'}, default: { variant: 'ghost'}}" 
+                      size="sm" 
+                      :items="faq"  
+                      :orientation="accordionOrientation" 
+                      :style="{
+                      width: '100%',
+                      }" 
+                      class=" mx-auto px-3 text-left">
                         
                       
                       </UAccordion>
+
+                    </div>
+                   
+
+                      
 
                    
                   </div>
@@ -415,235 +499,6 @@ onMounted(() => {
 
 .custom-bg {
     background-image: url('../assets/pige.jpg');
-  }
-
-  @media only screen and (min-width: 1301px){
-
-  
-
-
-
-
-
-
-/* contact */
-
-.contactDiv{
-  flex-direction: row !important;
-}
-
-.contactImgDiv{
-  max-width: 50% !important;
-}
-
-
-}
-
-  @media only screen and (max-width: 1300px) and (min-width: 769px){
-
-
-
-    /* overview */
-    .overviewDiv{
-      flex-direction: column !important;
-    }
-    
-    h2{
-      text-align: center !important;
-      max-width: 100% !important;
-      font-size: 2.5rem !important;
-    }
-
-    .overviewP{
-      max-width: 100% !important;
-      margin: 0rem auto !important;
-    }
-
-    .overviewLastP{
-      margin-bottom: 2rem !important;
-    }
-
-    /* about us */
-
-    .aboutUsDiv{
-      flex-direction: column !important;
-      margin-top: 5rem !important;
-    }
-
-    .aboutUsTitle{
-      max-width: 100% !important;
-    }
-
-    .aboutUsP{
-      max-width: 100% !important;
-    }
-
-    .aboutUsAccordion{
-      width: 70% !important;
-      margin-top: 5rem !important;
-      text-align: center !important;
-    }
-
-    /* contact */
-
-    .contactDiv{
-      flex-direction: column !important;
-    }
-
-    .contactTitle{
-      max-width: 100%;
-    }
-
-    .contactP{
-      max-width: 100%;
-    }
-
-    .contactImgDiv{
-      max-width: 80% !important;
-    }
-
-
-  }
-
-  @media only screen and (max-width: 768px){
-
-  
- 
-
-    /* overview */
-
-
-    .overviewDiv{
-      flex-direction: column !important;
-    }
-    
-    h2{
-      text-align: center !important;
-      max-width: 100% !important;
-      font-size: 2rem !important;
-    }
-
-    .overviewP{
-      max-width: 100% !important;
-      margin: 0rem auto !important;
-      font-size: 1rem !important;
-    }
-
-    .overviewLastP{
-      margin-bottom: 2rem !important;
-    }
-
-    /* about us */
-
-    .aboutUsDiv{
-      flex-direction: column !important;
-      margin-top: 3rem !important;
-
-    }
-
-    .aboutUsTitle{
-      max-width: 100% !important;
-    }
-
-    .aboutUsP{
-      max-width: 100% !important;
-    }
-
-    .aboutUsAccordion{
-      width: 100% !important;
-      margin-top: 5rem !important;
-      text-align: left !important;
-    }
-
-     /* contact */
-
-     .contactDiv{
-      flex-direction: column !important;
-    }
-
-    .contactTitle{
-      max-width: 100%;
-    }
-
-    .contactP{
-      max-width: 100%;
-    }
-
-    .contactImgDiv{
-      max-width: 100% !important;
-    }
-
-  }
-
-
-  @media only screen and (max-width: 500px){
-   
-
-  
-
-    /* overview */
-
-
-    .overviewDiv{
-      flex-direction: column !important;
-      height: 90vh !important;
-    }
-    
-    h2{
-      text-align: center !important;
-      max-width: 100% !important;
-    }
-
-    .overviewP{
-      max-width: 100% !important;
-      margin: 0rem auto !important;
-    }
-
-    .overviewLastP{
-      margin-bottom: 2rem !important;
-    }
-
-    /* about us */
-
-    .aboutUsDiv{
-      flex-direction: column !important;
-      margin-top: 7rem !important;
-      margin-bottom: 10rem !important;
-
-    }
-
-    .aboutUsTitle{
-      max-width: 100% !important;
-    }
-
-    .aboutUsP{
-      max-width: 100% !important;
-    }
-
-    .aboutUsAccordion{
-      width: 100% !important;
-      margin-top: 3rem !important;
-      text-align: left !important;
-    }
-
-     /* contact */
-
-     .contactDiv{
-      flex-direction: column !important;
-    }
-
-    .contactTitle{
-      max-width: 100%;
-    }
-
-    .contactP{
-      max-width: 100%;
-    }
-
-    .contactImgDiv{
-      max-width: 100% !important;
-    }
-
   }
 
 
