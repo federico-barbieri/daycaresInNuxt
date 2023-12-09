@@ -164,7 +164,6 @@ onMounted(() => {
                     class="container mx-auto flex flex-col items-center" 
                     :style="{
                     height: windowWidth < 768 ? '80vh' : '70vh', 
-                    border: '1px solid pink',
                     display: 'flex', 
                     'align-items': 'center', 
                     'justify-content': windowWidth < 768 ? 'flex-start' : 'center',
@@ -238,7 +237,6 @@ onMounted(() => {
                   'flex-direction': windowWidth < 1200 ? 'column' : 'row',
                   'align-items': 'center', 
                   'justify-content': 'center',
-                  border: '1px solid red'
                   }">
 
 
@@ -255,7 +253,6 @@ onMounted(() => {
                     'font-family': 'Raleway, sans-serif', 
                     'font-weight': 'bold',
                     margin: '0 auto 1rem 0',
-                    border: '1px solid red'
 
                     }">
                     Daycare overview in Copenhagen
@@ -266,7 +263,6 @@ onMounted(() => {
                       'width': windowWidth < 1200 ? '100%' : '80%', 
                       'text-align': 'left', 
                       'font-family': 'Raleway, sans-serif',
-                      border: '1px solid red'
                       }">
 
                         <p style="font-family: 'Raleway', sans-serif; font-size: 1rem; max-width: 60ch;">
