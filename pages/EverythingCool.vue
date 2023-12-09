@@ -143,8 +143,8 @@ onMounted(() => {
   :style="{
   'background-color': '#35354A', 
   color: 'white', 
-  height: windowWidth < 1200 ? 'auto' : '100vh', 
-  overflow: 'hidden',
+  height: windowWidth < 1200 ? '110vh' : '100vh', 
+  overflow: 'hidden'
   }">
   
     <header class=" mx-auto  w-screen h-full m-0 p-0">
@@ -168,6 +168,7 @@ onMounted(() => {
                     'align-items': 'center', 
                     'justify-content': 'center',
                     margin: windowWidth < 768 ? '5rem auto' : '',
+                    border: '1px solid red'
                     }">
                       
                     
@@ -361,7 +362,8 @@ onMounted(() => {
 
                     <div 
                     :style="{
-                    width: windowWidth < 500 ? '100%' : (windowWidth < 1200 ? '70%' : '50%'),
+                    width: windowWidth < 768 ? '100%' : (windowWidth < 1200 ? '70%' : '50%'),
+                    border: '1px solid lightblue'
 
                     }">
                     
@@ -369,7 +371,7 @@ onMounted(() => {
                       <h2 
                        :style="{
                       'font-size': windowWidth < 400 ? '1.5rem' : (windowWidth < 1200 ? '2rem' : '3rem'),
-                      'max-width': '100%', 
+                      'width': '100%', 
                       'text-align': windowWidth < 1200 ? 'center' : 'left', 
                       'font-family': 'Raleway, sans-serif', 
                       'font-weight': 'bold',
@@ -379,7 +381,7 @@ onMounted(() => {
 
                       <div
                       :style="{
-                      width: windowWidth < 500 ? '100%' : (windowWidth < 1200 ? '70%' : '50%'),
+                      width: '100%',
 
                       'text-align': 'left',
                       border: '1px solid pink',
@@ -408,7 +410,8 @@ onMounted(() => {
                    <div 
                    :style="{
                    height: '100%', 
-                   width: windowWidth < 500 ? '100%' : (windowWidth < 1200 ? '70%' : '50%'),
+                   width: windowWidth < 768 ? '100%' : (windowWidth < 1200 ? '70%' : '50%'),
+                   margin: windowWidth < 768 ? '2rem auto' : '',
                    display: 'flex', 
                    'flex-direction': 'row',
                    'align-items': 'center', 
@@ -442,25 +445,54 @@ onMounted(() => {
 
                 </template>
 
-                <template #contact="{ item }" class="text-center">
+                <template #contact="{ item }">
 
-                  <div class="container mx-auto flex flex-col items-center contactDiv" style="height: 70vh; display: flex; flex-direction: row; align-items: center; justify-content: space-around;">
+                  <div 
+                  class="container mx-auto flex flex-col items-center" 
+                  :style="{
+                  height: windowWidth < 1200 ? 'auto' : '70vh', 
+                  display: 'flex', 
+                  'flex-direction': windowWidth < 1200 ? 'column' : 'row', 
+                  margin: windowWidth < 1200 ? '5rem auto' : '',
+                  'align-items': 'center', 
+                  'justify-content': 'space-around',
+                  }">
 
-                    <div>
+                    <div 
+                    :style="{
+                    width: windowWidth < 1200 ? '90%' : (windowWidth < 768 ? '100%' : '50%'),
+                    }">
 
-                          <h2 style="font-size: 3rem; max-width: 40vw; text-align: left; font-family: 'Raleway', sans-serif; font-weight: bold;" class="mr-5 contactTitle">Contact</h2>
+                          <h2 
+                          :style="{
+                          'font-size': windowWidth < 1200 ? '2rem' : (windowWidth < 400 ? '1.5rem' : '3rem'),
+                          'width': '100%', 
+                          'text-align': windowWidth < 1200 ? 'center' : 'left', 
+                          'font-family': 'Raleway, sans-serif', 
+                          'font-weight': 'bold',
+                          margin: '0 auto 1rem auto',
+                          }">
+                          Contact
+                          </h2>
 
-                          <p class="text-left mt-5 mb-3 contactP" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
-                            reborn-waitinglists@gmail.com
-                          </p>
+                          <div style="width: 100%; text-align: left;">
 
-                          <p class="text-left mt-5 mb-3 contactP" style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
+                            <p style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
+                            reborn-waitinglists@gmail.com <br><br>
                             Or give us a call Monday to Friday from 9 to 13.
                           </p>
 
+
+                          </div>
+
+
                   </div>
 
-                  <div class="contactImgDiv" style="max-width: 50%;">
+                  <div 
+                  :style="{
+                  width: windowWidth < 1200 ? '90%' : (windowWidth < 768 ? '100%' : '50%'),
+                  margin: windowWidth < 1200 ? '2rem auto' : '',
+                  }">
                   <img style="max-width: 100%; height: auto;" src="../assets/dreng.jpg" alt="">  
                   </div>
 
