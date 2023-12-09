@@ -936,8 +936,10 @@ overflow: hidden;
 
                                         <div style="display: flex; flex-direction: column; align-items: flex-start; justify-content: space-around; width: 100%">
                                           
-                                          <p style="font-size: 1rem;"><nuxtLink :to=daycareWebsite target="_blank"> {{ daycareWebsite }}</nuxtLink></p>
-                                          <span>{{ daycareEmail }}</span>
+                                          <p style="font-size: 1rem;"><nuxtLink :to=daycareWebsite target="_blank">Visit website</nuxtLink></p>
+                                          <span>
+                                            <a target="_blank" :href="'mailto:' + daycareEmail + '?subject=Waiting%20list'">Send Email</a>                                          
+                                          </span>
                                           <span><a target="_blank" href="mailto: {{daycareEmail}}">{{ daycareNumber }}</a></span>
 
                                          
