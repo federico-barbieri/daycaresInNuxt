@@ -143,7 +143,7 @@ onMounted(() => {
   :style="{
   'background-color': '#35354A', 
   color: 'white', 
-  height: windowWidth < 1200 ? '110vh' : '100vh', 
+  height: windowWidth < 1200 ? 'auto' : '100vh', 
   overflow: 'hidden'
   }">
   
@@ -163,13 +163,13 @@ onMounted(() => {
                     <div 
                     class="container mx-auto flex flex-col items-center" 
                     :style="{
-                    height: windowWidth < 768 ? 'auto' : '70vh', 
+                    height: windowWidth < 768 ? '80vh' : '70vh', 
+                    border: '1px solid pink',
                     display: 'flex', 
                     'align-items': 'center', 
-                    'justify-content': 'center',
-                    margin: windowWidth < 768 ? '5rem auto' : '',
-                    }">
-                      
+                    'justify-content': windowWidth < 768 ? 'flex-start' : 'center',
+                    margin: windowWidth < 1200 ? '2rem auto 5rem auto' : '',
+                    }">                     
                     
 
                     <h1 
@@ -232,13 +232,15 @@ onMounted(() => {
                   <div 
                   class="container mx-auto flex flex-row" 
                   :style="{
-                  height: windowWidth < 768 ? 'auto' : '70vh', 
-                  margin: windowWidth < 768 ? '5rem auto' : '',
+                  height: windowWidth < 768 ? '80vh' : '70vh', 
+                  margin: windowWidth < 1200 ? '2rem auto 5rem auto' : '',
                   display: 'flex', 
                   'flex-direction': windowWidth < 1200 ? 'column' : 'row',
                   'align-items': 'center', 
                   'justify-content': 'center',
+                  border: '1px solid red'
                   }">
+
 
                     <div 
                     :style="{
@@ -248,16 +250,24 @@ onMounted(() => {
                     <h2 
                     :style="{
                     'font-size': windowWidth < 400 ? '1.5rem' : (windowWidth < 1200 ? '2rem' : '3rem'),
-                    'max-width': '100%', 
+                    'width': windowWidth < 1200 ? '100%' : '80%', 
                     'text-align': windowWidth < 700 ? 'center' : 'left', 
                     'font-family': 'Raleway, sans-serif', 
                     'font-weight': 'bold',
-                    margin: '0 auto 1rem auto',
+                    margin: '0 auto 1rem 0',
+                    border: '1px solid red'
+
                     }">
                     Daycare overview in Copenhagen
                   </h2>
 
-                      <div style="width: 100%; text-align: left; font-family: 'Raleway', sans-serif;">
+                      <div 
+                      :style="{
+                      'width': windowWidth < 1200 ? '100%' : '80%', 
+                      'text-align': 'left', 
+                      'font-family': 'Raleway, sans-serif',
+                      border: '1px solid red'
+                      }">
 
                         <p style="font-family: 'Raleway', sans-serif; font-size: 1rem; max-width: 60ch;">
                         Signing up to daycares is a project in itself. <br><br>
@@ -348,7 +358,7 @@ onMounted(() => {
                   <div 
                   class="container mx-auto flex" 
                   :style="{
-                  height: windowWidth < 768 ? 'auto' : '70vh', 
+                  height: windowWidth < 768 ? '80vh' : '70vh', 
                   display: 'flex', 
                   width: '100%',
                   'align-items': 'center', 
@@ -443,12 +453,12 @@ onMounted(() => {
                   <div 
                   class="container mx-auto flex flex-col items-center" 
                   :style="{
-                  height: windowWidth < 1200 ? 'auto' : '70vh', 
+                  height: windowWidth < 1200 ? '80vh' : '70vh', 
                   display: 'flex', 
                   'flex-direction': windowWidth < 1200 ? 'column' : 'row', 
-                  margin: windowWidth < 1200 ? '5rem auto' : '',
+                  margin: windowWidth < 1200 ? '5rem auto 2rem auto' : '',
                   'align-items': 'center', 
-                  'justify-content': 'space-around',
+                  'justify-content': windowWidth < 1200 ? 'flex-start' : 'space-around',
                   }">
 
                     <div 

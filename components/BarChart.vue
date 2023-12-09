@@ -49,7 +49,18 @@ let chartOptions = {
 @media only screen and (max-width: 500px){
     .barchart{
     height: 20vh;
-    width: 90vw;
+    width: 80vw;
+    margin: 2rem auto;
+
+    }
+}
+
+@media only screen and (max-width: 400px){
+    .barchart{
+    height: 15vh;
+    width: 80vw;
+    margin: 2rem auto;
+
     }
 }
 
