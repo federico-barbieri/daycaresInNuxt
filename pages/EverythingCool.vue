@@ -194,7 +194,7 @@ onMounted(() => {
                           <form class="row flex-center flex mt-10 text-center" @submit.prevent="handleLogin" style="font-family: 'Raleway', sans-serif;">
                                     <div class="col-6 form-widget">
                                       <div>
-                                        <input class="inputField border border-black-500 p-1" required type="email" placeholder="Your email" v-model="email" style="width: 11rem;" />
+                                        <input class="inputField border border-black-500 p-1 dark:text-white text-black" required type="email" placeholder="Your email" v-model="email" style="width: 11rem;" />
 
                                       </div>
 

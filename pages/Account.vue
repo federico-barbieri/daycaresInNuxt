@@ -536,7 +536,7 @@ const items = [{
         
       <nav class="flex flex-row align-center justify-center" style="border-bottom: 1px solid #1a1a20; display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 90%;">
         
-        <p class="font-sans pt-10 pb-5 text-5xl">REBØRN</p>
+        <p class="font-sans pt-10 pb-5 text-5xl text-white">REBØRN</p>
 
         <p style="
         cursor: pointer;
@@ -545,6 +545,7 @@ const items = [{
         @click="signOut"
         onmouseenter="this.style.borderBottom = '1px solid red'"
         onmouseleave="this.style.borderBottom = ''"
+        class="text-white"
         >Log out
         </p>
 
@@ -594,7 +595,7 @@ const items = [{
   <!-- ELSE, WE WILL ALREADY HAVE THEIR NAME-->
 
 <div 
-class="mainDivIfInfoIsAvailable" 
+class="mainDivIfInfoIsAvailable dark:text-white text-black" 
 v-else 
 style="
 width: 80vw;
@@ -603,7 +604,7 @@ overflow: hidden;
 ">
 
   <h1
-  class="font-sans"
+  class="font-sans text-white"
   style="
   margin: 1rem auto 1rem;
   "
@@ -649,7 +650,7 @@ overflow: hidden;
         }">
           
 
-          <p v-if="!childrenExist" style="margin: 3rem auto;">You haven't added any children yet.</p>
+          <p v-if="!childrenExist" class="text-white" style="margin: 3rem auto;">You haven't added any children yet.</p>
   
   
           <form 
@@ -661,11 +662,11 @@ overflow: hidden;
           margin: windowWidth < 768 ? '0 auto 3rem auto' : '',
           }">
             
-            <UFormGroup label="Name" class="mb-5">
+            <UFormGroup label="Name" class="mb-5" :ui="{label: {base: 'block font-medium text-white dark:text-white'}}">
                       <UInput placeholder="Your child's name" v-model="kidName" />
             </UFormGroup>
   
-            <UFormGroup label="CPR" class="mb-5">
+            <UFormGroup label="CPR" class="mb-5" :ui="{label: {base: 'block font-medium text-white dark:text-white'}}">
                       <UInput placeholder="Your child's CPR" v-model="kidCpr" />
             </UFormGroup>
   
@@ -697,12 +698,13 @@ overflow: hidden;
         }">
    
                 <UCard 
-                :ui="{background:'dark:bg-transparent'}" 
+                :ui="{background:'dark:bg-transparent bg-transparent'}" 
                 v-for="child in children" 
                 :key="child.id"
                 style="
                 margin: 1.5rem auto;
                 border: 1px solid white;
+                color: white;
                 "
                 >
                     <template #header>
@@ -827,7 +829,7 @@ overflow: hidden;
               
                           
                                       <UCard 
-                                      :ui="{background: 'dark:bg-transparent'}" 
+                                      :ui="{background: 'dark:bg-transparent bg-transparent'}" 
                                       as="div" 
                                       v-for="daycare in daycares" 
                                       :key="daycare.id" 
@@ -1023,7 +1025,7 @@ overflow: hidden;
       'align-items': !subscriptionsExist ? 'center' : 'flex-start',
       }">
 
-      <p style="width: 100%; text-align: center; margin-top: 10rem;" v-if="!subscriptionsExist">You haven't applied to any daycare yet.</p>
+      <p class="text-white dark:text-white" style="width: 100%; text-align: center; margin-top: 10rem;" v-if="!subscriptionsExist">You haven't applied to any daycare yet.</p>
 
 
       <div v-if="subscriptions" 
@@ -1049,7 +1051,7 @@ overflow: hidden;
         }">
 
           <UCard 
-          :ui="{background: 'dark:bg-transparent'}" 
+          :ui="{background: 'dark:bg-transparent bg-transparent'}" 
           v-for="subscription in subscriptions" 
           :key="subscription.id" 
           :style="{
@@ -1112,7 +1114,7 @@ overflow: hidden;
         'text-align': 'center',
         margin: windowWidth < 768 ? '2rem auto 0 auto' : '',
         }">
-        <p style="width: 100%"><strong>You're currently spending {{ currentTotalSubscriptionCost }} DKK / year.</strong></p>
+        <p class="text-white dark:text-white" style="width: 100%"><strong>You're currently spending {{ currentTotalSubscriptionCost }} DKK / year.</strong></p>
         
         </div>
 
