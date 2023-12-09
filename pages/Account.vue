@@ -596,10 +596,10 @@ const items = [{
 <div 
 class="mainDivIfInfoIsAvailable" 
 v-else 
-style="width: 80vw;
-height: 80vh; 
+style="
+width: 80vw;
+height: 85vh; 
 overflow: hidden;
-border: 1px solid red;
 ">
 
   <h1
@@ -694,7 +694,6 @@ border: 1px solid red;
         height: windowWidth < 768 ? 'auto' : '450px',
         'overflow-y': windowWidth < 768 ? '' : 'auto',
         margin: windowWidth < 768 ? '' : '2rem 0',
-        border: '1px solid pink',
         }">
    
                 <UCard 
