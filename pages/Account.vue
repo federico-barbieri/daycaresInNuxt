@@ -868,7 +868,7 @@ overflow: hidden;
                         v-model="daycareModalisOpen"
                         :ui="{width: 'w-full md:w-screen max-w-md sm:w-2/4'}"
                         :style="{
-                          width: windowWidth < 500 ? '60%' : (windowWidth < 768 ? '80%' : ''),
+                          width: windowWidth < 500 ? '70%' : (windowWidth < 768 ? '80%' : ''),
                           margin: windowWidth < 768 ? '0 0 0 auto' : '',
                         }"
                         >
