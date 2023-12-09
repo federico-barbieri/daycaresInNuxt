@@ -30,7 +30,7 @@
                 popup-id="popup_nordstjeren"
                 :lnglat="[12.503210197810002, 55.65959084761282]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -52,11 +52,11 @@
                 popup-id="popup_aalholm"
                 :lnglat="[12.487253626646192, 55.67212717841523]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
-                Aalholm Børnehave
+                Aalholm
                 </span>
                 
                 </MapboxDefaultPopup>
@@ -73,7 +73,7 @@
                 popup-id="popup_bonsai"
                 :lnglat="[12.589013016507991, 55.681436843470664]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -94,7 +94,7 @@
                 popup-id="popup_margrethe"
                 :lnglat="[12.49370112664497, 55.648127129140185]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -115,7 +115,7 @@
                 popup-id="popup_baggers"
                 :lnglat="[12.531553068977512, 55.71785062142954]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -136,7 +136,7 @@
                 popup-id="popup_Nurnberggaarden"
                 :lnglat="[12.600735726645713, 55.662494501633105]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -157,7 +157,7 @@
                 popup-id="popup_Kirsebergarden"
                 :lnglat="[12.622171497810259, 55.663850198279654]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -178,7 +178,7 @@
                 popup-id="popup_Amsterdamvej"
                 :lnglat="[12.617595968973847, 55.649006388873865]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -199,7 +199,7 @@
                 popup-id="popup_Studenterradets"
                 :lnglat="[12.550917382469677, 55.69599634587544]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -220,7 +220,7 @@
                 popup-id="popup_Risle"
                 :lnglat="[12.608393768974327, 55.656785999710785]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -241,7 +241,7 @@
                 popup-id="popup_Kastanjehuset"
                 :lnglat="[12.475626755483178, 55.69800643597934]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -262,7 +262,7 @@
                 popup-id="popup_moria"
                 :lnglat="[12.635825055480556, 55.648771527745716]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -283,11 +283,11 @@
                 popup-id="popup_leo"
                 :lnglat="[12.479723397812835, 55.71204914663627]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
-                Børnehave Leo
+                Leo
                 </span>
                 
                 </MapboxDefaultPopup>
@@ -304,7 +304,7 @@
                 popup-id="popup_Pakhuset"
                 :lnglat="[12.487755668976847, 55.70438437142559]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -325,7 +325,7 @@
                 popup-id="popup_Garnison"
                 :lnglat="[12.589975397811125, 55.68180100506369]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -346,7 +346,7 @@
                 popup-id="popup_Gronnebakken"
                 :lnglat="[12.50791831130507, 55.692715679745724]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -367,7 +367,7 @@
                 popup-id="popup_Carolineskolen"
                 :lnglat="[12.557895997813304, 55.7221136689662]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -388,7 +388,7 @@
                 popup-id="popup_Trinitatis"
                 :lnglat="[12.574581540139967, 55.680906364541485]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -409,7 +409,7 @@
                 popup-id="popup_Nova"
                 :lnglat="[12.469164955484286, 55.71825183416288]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -431,7 +431,7 @@
                 popup-id="popup_Lonneberg"
                 :lnglat="[12.545892240139342, 55.668730784549375]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -452,7 +452,7 @@
                 popup-id="popup_Stefansgardens"
                 :lnglat="[12.54269125363382, 55.690938346909626]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -473,11 +473,11 @@
                 popup-id="popup_Sanna"
                 :lnglat="[12.554369226647774, 55.701527567792574]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
-                    Den integrerede institution Sanna
+                    Sanna
                 </span>
                 
                 </MapboxDefaultPopup>
@@ -494,11 +494,11 @@
                 popup-id="popup_bonsai_opsamling"
                 :lnglat="[12.518173068974596, 55.74985767933489]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
-                    Bonsai/Opsamling ved DGI-Byen
+                    Bonsai/Opsamling
                 </span>
                 
                 </MapboxDefaultPopup>
@@ -515,7 +515,7 @@
                 popup-id="popup_Giraffen"
                 :lnglat="[12.611837784316604, 55.658296954691224]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -536,7 +536,7 @@
                 popup-id="popup_Valby_Folkebornehave"
                 :lnglat="[12.518173068974596, 55.662650994174825]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -558,7 +558,7 @@
                 popup-id="popup_Larkelunden"
                 :lnglat="[12.542921555481062, 55.65890720111965]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -579,11 +579,11 @@
                 popup-id="popup_Lillekilde"
                 :lnglat="[12.519947726645265, 55.65331366470554]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
-                    Børnehuset Lillekilde
+                    Lillekilde
                 </span>
                 
                 </MapboxDefaultPopup>
@@ -600,7 +600,7 @@
                 popup-id="popup_Rooftop"
                 :lnglat="[12.576843355479676, 55.63138862195914]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -621,7 +621,7 @@
                 popup-id="popup_tots"
                 :lnglat="[12.507526084316705, 55.660194807321396]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -642,7 +642,7 @@
                 popup-id="popup_safa"
                 :lnglat="[12.530885011305386, 55.69911366490343]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -663,11 +663,11 @@
                 popup-id="popup_nokken"
                 :lnglat="[12.530885011305386, 55.69911366490343]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
-                    Børnehaven Nøkken
+                    Nøkken
                 </span>
                 
                 </MapboxDefaultPopup>
@@ -684,7 +684,7 @@
                 popup-id="popup_Lygten"
                 :lnglat="[12.536668397812285, 55.702241920713]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -705,7 +705,7 @@
                 popup-id="popup_Sandloppen"
                 :lnglat="[12.62705426897476, 55.66500833280627]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -726,11 +726,11 @@
                 popup-id="popup_petri"
                 :lnglat="[12.570316255482208, 55.679739158972936]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
-                    Sankt Petri Skoles Børnehave
+                    Sankt Petri Skoles
                 </span>
                 
                 </MapboxDefaultPopup>
@@ -747,7 +747,7 @@
                 popup-id="popup_montessori_international"
                 :lnglat="[12.525869068974671, 55.66417083982478]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -768,11 +768,11 @@
                 popup-id="popup_valby_borneasyl"
                 :lnglat="[12.514695097810339, 55.665911139389046]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
-                    Kunstinstitutionen Valby Børneasyl
+                    Valby Børneasyl
                 </span>
                 
                 </MapboxDefaultPopup>
@@ -789,7 +789,7 @@
                 popup-id="popup_Dansk-Franske"
                 :lnglat="[12.5398344266482, 55.70998423968244]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -810,7 +810,7 @@
                 popup-id="popup_bornegalaxen"
                 :lnglat="[12.503218899701235, 55.65874204431931]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
@@ -831,11 +831,11 @@
                 popup-id="popup_Standkvarterets"
                 :lnglat="[12.56764902664833, 55.71248467794224]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
-                    Standkvarterets børnehave
+                    Standkvarterets
                 </span>
                 
                 </MapboxDefaultPopup>
@@ -852,11 +852,11 @@
                 popup-id="popup_STusindfryd"
                 :lnglat="[12.505477297810243, 55.66447865119055]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
-                    Rudolf Steiner Tusindfryd
+                    Tusindfryd
                 </span>
                 
                 </MapboxDefaultPopup>
@@ -873,7 +873,7 @@
                 popup-id="popup_Flyvefisken"
                 :lnglat="[12.505477297810243, 55.66447865119055]"
                 :options="{
-                    closeOnClick: false
+                    closeOnClick: true
                 }"
                 >
                 <span class="test" style="color: black;">
