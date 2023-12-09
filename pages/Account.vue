@@ -675,7 +675,7 @@ overflow: hidden;
             padding: 0.5rem; 
             border: 1px solid white;
             transition: background-color 0.5 ease;
-            background-color: #7DCC7F ;
+            background-color: #7DCC7F;
             color: black;
             "
              onmouseover="this.style.backgroundColor='black', this.style.color='white'" 

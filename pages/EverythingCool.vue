@@ -128,7 +128,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="w-screen h-screen m-0 p-0 font-mono universalDiv" style="background-color: #35354A; height: 100vh; overflow: hidden;">
+  <div 
+  class="w-screen h-screen m-0 p-0 font-mono" 
+  :style="{
+  'background-color': '#35354A', 
+  color: 'white', 
+  height: windowWidth < 768 ? 'auto' : '100vh', 
+  overflow: 'hidden',
+  }">
   
     <header class=" mx-auto  w-screen h-full m-0 p-0">
         <nav class="mx-auto  w-screen h-full p-0 flex flex-col text-center">
@@ -143,17 +150,39 @@ onMounted(() => {
       
                 <template #home="{ item }" >
 
-                    <div class="container mx-auto flex flex-col items-center mainTitleDiv" style="height: 60vh; display: flex; align-items: center; justify-content: center;">
+                    <div 
+                    class="container mx-auto flex flex-col items-center" 
+                    :style="{
+                    height: windowWidth < 768 ? 'auto' : '70vh', 
+                    display: 'flex', 
+                    'align-items': 'center', 
+                    'justify-content': 'center',
+                    border: '1px solid red',
+                    margin: windowWidth < 768 ? '5rem auto' : '',
+                    }">
                       
                     
 
-                          <h1 class="mt-10 mainTitle" style="font-size: 5rem; font-family: 'Raleway', sans-serif; font-weight: bold;">Waiting lists for private daycares in Copenhagen</h1>
+                    <h1 
+                    class="mt-10" 
+                    :style="{
+                    'font-size': windowWidth < 400 ? '2rem' : (windowWidth < 1200 ? '3rem' : '5rem'), 
+                    'font-family': 'Raleway, sans-serif', 
+                    'font-weight': 'bold',
+                    }">
+                    Waiting lists for private daycares in Copenhagen
+                    </h1>
 
-                          <p class="mt-5 text-lg mainP" style="font-family: 'Raleway', sans-serif;">
-                            Sign up your children in an easy and transparent way.
-                          </p>
+                    <p 
+                    class="mt-5 text-lg" 
+                    :style="{
+                    'font-family': 'Raleway, sans-serif', 
+                    'font-size': windowWidth < 400 ? '1rem' : '',
+                    }">
+                      Sign up your children in an easy and transparent way.
+                    </p>
 
-                          <form class="row flex-center flex mt-10 text-center" @submit.prevent="handleLogin" style="font-family: 'Merriweather', serif;">
+                          <form class="row flex-center flex mt-10 text-center" @submit.prevent="handleLogin" style="font-family: 'Raleway', sans-serif;">
                                     <div class="col-6 form-widget">
                                       <div>
                                         <input class="inputField border border-black-500 p-1" required type="email" placeholder="Your email" v-model="email" style="width: 11rem;" />
@@ -189,9 +218,10 @@ onMounted(() => {
 
                 </template>
 
-                <template #problematic="{ item }" class="text-center">
+                <template #problematic="{ item }">
 
-                  <div class="container mx-auto flex flex-row items-center overviewDiv" style="height: 70vh; display: flex; align-items: center; justify-content: center;">
+                  <div 
+                  class="container mx-auto flex flex-row overviewDiv" style="height: 70vh; display: flex; align-items: center; justify-content: center;">
 
                     <div>
 
@@ -200,15 +230,16 @@ onMounted(() => {
                       <div class="text-left mt-5" style="max-width: 60ch">
 
                         <p class="mb-2 overviewP" style="font-family: 'Raleway', sans-serif;">
-                        Many want to sign their children into private daycares. The problem is there is not enough place for everyone.
+                        Signing up to daycares is a project in itself.
                       </p>
 
                       <p class="mb-2 overviewP" style="font-family: 'Raleway', sans-serif;">
-                        To make things worse, signing children is a manual task and not very intuitive.
+                        Each institution has its own rules, opening hours and waiting list systems.
                       </p>
 
                       <p class="overviewP overviewLastP" style="font-family: 'Raleway', sans-serif;">
-                        Rebørn by Waitly makes it easy.
+                        Rebørn by Waitly is a centralized platform, where one can find every private daycare
+                        in Copenhagen and sign up to waiting lists without opening dozens of tabs.
                       </p>
                         
                         
@@ -316,7 +347,7 @@ onMounted(() => {
 
                     </div>
 
-                      <UAccordion :ui="{item: { color: 'dark:text-white'}, default: { variant: 'ghost'}}" size="sm" :items="faq"  orientation="vertical" class="container mx-auto w-2/5 px-3 mx-3 text-left aboutUsAccordion">
+                      <UAccordion :ui="{item: { color: 'text-white, dark:text-white'}, default: { variant: 'ghost'}}" size="sm" :items="faq"  orientation="vertical" class="container mx-auto w-2/5 px-3 mx-3 text-left aboutUsAccordion">
                         
                       
                       </UAccordion>
@@ -388,18 +419,10 @@ onMounted(() => {
 
   @media only screen and (min-width: 1301px){
 
-    .mainTitle{
-      font-size: 4rem !important;
-    }
+  
 
-/* overview */
-.overviewDiv{
-  flex-direction: row !important;
-}
 
-h2{
-  text-align: center !important;
-}
+
 
 
 
@@ -418,13 +441,7 @@ h2{
 
   @media only screen and (max-width: 1300px) and (min-width: 769px){
 
-    .universalDiv{
-      height: 130vh !important;
-    }
 
-    .mainTitle{
-      font-size: 3rem !important;
-    }
 
     /* overview */
     .overviewDiv{
@@ -490,17 +507,8 @@ h2{
 
   @media only screen and (max-width: 768px){
 
-    .universalDiv{
-      height: 130vh !important;
-      overflow: auto !important;
-    }
-    .mainTitle{
-      font-size: 2rem !important;
-    }
-
-    .mainP{
-      font-size: 1rem !important;
-    }
+  
+ 
 
     /* overview */
 
@@ -569,21 +577,9 @@ h2{
 
 
   @media only screen and (max-width: 500px){
-    .universalDiv{
-      height: auto !important;
-      overflow: auto !important;
-    }
+   
 
-    .mainTitleDiv{
-      height: 70vh !important;
-    }
-    .mainTitle{
-      font-size: 2rem !important;
-    }
-
-    .mainP{
-      font-size: 1rem !important;
-    }
+  
 
     /* overview */
 
