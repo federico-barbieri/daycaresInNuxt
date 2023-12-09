@@ -168,7 +168,6 @@ onMounted(() => {
                     'align-items': 'center', 
                     'justify-content': 'center',
                     margin: windowWidth < 768 ? '5rem auto' : '',
-                    border: '1px solid red'
                     }">
                       
                     
@@ -244,7 +243,6 @@ onMounted(() => {
                     <div 
                     :style="{
                     padding: '1rem',
-                    border: '1px solid green',
                     }">
 
                     <h2 
@@ -353,7 +351,6 @@ onMounted(() => {
                   height: windowWidth < 768 ? 'auto' : '70vh', 
                   display: 'flex', 
                   width: '100%',
-                  border: '1px solid green',
                   'align-items': 'center', 
                   'justify-content': 'center',
                   'flex-direction': windowWidth < 1200 ? 'column' : 'row', 
@@ -363,7 +360,6 @@ onMounted(() => {
                     <div 
                     :style="{
                     width: windowWidth < 768 ? '100%' : (windowWidth < 1200 ? '70%' : '50%'),
-                    border: '1px solid lightblue'
 
                     }">
                     
@@ -382,9 +378,7 @@ onMounted(() => {
                       <div
                       :style="{
                       width: '100%',
-
                       'text-align': 'left',
-                      border: '1px solid pink',
                     }"
                       >
 
@@ -416,7 +410,6 @@ onMounted(() => {
                    'flex-direction': 'row',
                    'align-items': 'center', 
                    'justify-content': 'center',
-                   border: '1px solid magenta',
                    }">
 
                    
