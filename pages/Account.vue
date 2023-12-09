@@ -344,6 +344,8 @@ async function getChildren(){
 
 let kidName = ref('');
 let kidCpr = ref('')
+let kidStartingDate = ref();
+
 
 async function addKid(){
 
@@ -356,6 +358,7 @@ async function addKid(){
         parent_id: user.id,
         name: kidName.value,
         cpr: kidCpr.value,
+        expected_start_date: kidStartingDate.value,
       }
 
       const { error } = await supabase.from('children').upsert(addNewKid)
@@ -369,6 +372,7 @@ async function addKid(){
       getChildren()
       kidName.value = "";
       kidCpr.value = "";
+      kidStartingDate.value = '';
     }
 
 }
@@ -669,6 +673,10 @@ overflow: hidden;
             <UFormGroup label="CPR" class="mb-5" :ui="{label: {base: 'block font-medium text-white dark:text-white'}}">
                       <UInput placeholder="Your child's CPR" v-model="kidCpr" />
             </UFormGroup>
+
+            <UFormGroup label="Expected start" class="mb-5" :ui="{label: {base: 'block font-medium text-white dark:text-white'}}">
+                      <UInput placeholder="Expected starting date" v-model="kidStartingDate" type="date" />
+            </UFormGroup>
   
             
             <button 
@@ -712,7 +720,11 @@ overflow: hidden;
                     </template>
 
                     <div>
-                      <p class="address"><em>CPR: {{ child.cpr }}</em></p>
+                      <p><em>CPR: {{ child.cpr }}</em></p>
+                    </div>
+
+                    <div>
+                      <p><em>Expected start: {{ new Date(child.expected_start_date).toLocaleDateString('en-GB') }}</em></p>
                     </div>
 
                     <template #footer>
