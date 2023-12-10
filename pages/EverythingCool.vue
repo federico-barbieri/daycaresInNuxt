@@ -127,6 +127,15 @@ const handleResize = () => {
 const accordionOrientation = ref('vertical');
 
 
+// marquee
+
+let arrayOfDaycares = ['Aalholm', '|', 'Bonsai', '|', 'Margrethe', '|', 
+                      'Soria Moria', '|', 'Leo', '|', 'Pakhuset', '|', 'Giraffen', '|', 'Rooftop', '|', 
+                      'Kastanjehuset', '|', 'Garnison Sogns', '|', 'Trinitatis', '|', 'Sanna', '|',
+                      'Tiny Tots', '|', 'Lygten', '|', 'Sandloppen', '|', 'Sankt Petri', '|', 'Flyvefisken', '|',
+                      'Nordstjernen', '|', 'Montessori', '|', 'Tusindfryd']
+
+
 
 
 
@@ -189,6 +198,23 @@ onMounted(() => {
                     }">
                       Sign up your children in an easy and transparent way.
                     </p>
+
+                    <Vue3Marquee
+                    :gradient="true"
+                    gradient-color="[53, 53, 74]"
+                    gradient-length="30%"
+                    style="margin: 2rem auto"
+                    duration="50"
+                    
+                     >
+                        <p
+                            v-for="(daycare, index) in arrayOfDaycares"
+                            :key="index"
+                            style="margin-right: 0.5rem; color: #F3F4F6; opacity: 0.5;"
+                          >
+                            {{ daycare.toUpperCase() }}
+                        </p>
+                    </Vue3Marquee>
 
                           <form class="row flex-center flex mt-10 text-center" @submit.prevent="handleLogin" style="font-family: 'Raleway', sans-serif;">
                                     <div class="col-6 form-widget">
