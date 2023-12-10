@@ -202,8 +202,11 @@ onMounted(() => {
                     <Vue3Marquee
                     :gradient="true"
                     gradient-color="[53, 53, 74]"
-                    gradient-length="30%"
-                    style="margin: 2rem auto"
+                    gradientLength="30%"
+                    :style="{
+                    margin: '2rem auto',
+                    width: windowWidth < 500 ? '100%' : '50%',
+                    }"
                     duration="50"
                     
                      >
