@@ -952,29 +952,29 @@ overflow: hidden;
                                             <UIcon 
                                             name="i-heroicons-arrow-long-right-solid"
                                             />
-                                            <nuxtLink 
+                                            <a 
                                             style="
-                                            margin-left: 0rem; 
+                                            margin-left: 0.5rem; 
                                             transition: margin-left 0.5s ease-in;"
-                                            onmouseenter="this.style.marginLeft = '0.5rem'"
-                                            onmouseleave="this.style.marginLeft = '0rem'"
-                                            :to=daycareWebsite target="_blank">Visit Website</nuxtLink>
+                                            onmouseenter="this.style.marginLeft = '1rem'"
+                                            onmouseleave="this.style.marginLeft = '0.5rem'"
+                                            :href=daycareWebsite target="_blank">Visit Website</a>
                                           </span>
                                           
-                                           <span style="display: flex; flex-direction: row; align-items: center;">
+                                           <span style="font-size: 1rem; display: flex; flex-direction: row; align-items: center;">
                                             <UIcon name="i-heroicons-arrow-long-right-solid" />
                                             <a 
                                             style="
-                                            margin-left: 1rem; 
+                                            margin-left: 0.5rem; 
                                             transition: margin-left 0.5s ease-in;"
-                                            onmouseenter="this.style.marginLeft = '1.5rem'"
-                                            onmouseleave="this.style.marginLeft = '1rem'"
+                                            onmouseenter="this.style.marginLeft = '1rem'"
+                                            onmouseleave="this.style.marginLeft = '0.5rem'"
                                             target="_blank" 
                                             :href="'mailto:' + daycareEmail + '?subject=Waiting%20list'">Send Email</a>                                          
                                           </span>
                                           
                                           <span style="margin-top: 1rem;">
-                                            <UIcon style="margin-right: 1rem;" name="i-heroicons-phone-20-solid" />
+                                            <UIcon style="margin-right: 0.25rem;" name="i-heroicons-phone-20-solid" />
                                             {{ daycareNumber }}</span>
 
                                          
