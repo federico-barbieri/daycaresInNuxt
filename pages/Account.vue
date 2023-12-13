@@ -570,7 +570,7 @@ margin: '0 auto',
 display: 'flex',
 'flex-direction': windowWidth < 768 ? 'column' : 'row', 
 'align-items': 'center', 
-'justify-content': 'space-around',
+'justify-content': windowWidth < 768 ? 'center' : 'space-around',
 }">
   <form  class="form-widget" @submit.prevent="updateProfile" 
   :style="{
@@ -581,7 +581,7 @@ display: 'flex',
   'align-items': 'center', 
   'justify-content': 'space-around', 
   border: '1px solid white',
-  margin: windowWidth < 768 ? '3rem auto 0 auto' : '',
+  margin: windowWidth < 768 ? '3rem auto 1rem auto' : '',
   }">
     <div style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-around;">
       <label style="color: gray;" for="email">Email</label>
