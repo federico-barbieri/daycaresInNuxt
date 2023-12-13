@@ -126,6 +126,7 @@ let daycareName= ref('');
 let daycareAddress = ref('');
 let daycareArea = ref('');
 let daycareOpeningHours = ref('');
+let daycarePedagog = ref()
 let daycareOrganicMeals = ref(null);
 let daycareWebsite = ref('');
 let daycareCost = ref(null);
@@ -157,6 +158,7 @@ async function activateModal(selectedDaycare){
           daycareCost.value = data[0].cost;
           daycareEmail.value = data[0].email;
           daycareNumber.value = data[0].phone;
+          daycarePedagog.value = data[0].pedagog_ratio;
 
           daycareModalisOpen.value = true;
         }
@@ -944,7 +946,8 @@ overflow: hidden;
 
                                               <p v-if="windowWidth > 500" style="font-size: 1rem; margin-bottom: 0.5rem;">Area: <br> <strong>{{ daycareArea }}</strong></p>
                                               <p style="font-size: 1rem; margin-bottom: 0.5rem;">Opening hours: <br> <strong>{{ daycareOpeningHours }}</strong></p>
-                                              <p style="font-size: 1rem;">Waiting list cost per yer: <br> <strong>{{ daycareCost }} DKK</strong></p>
+
+                                              <p style="font-size: 1rem;">Pedagog to children ratio: <br> <strong>{{ daycarePedagog }}:1</strong></p>
 
                                               <div class="calendlyBtn" ref="calendlyBtnAttachedToSlider">
                                        
