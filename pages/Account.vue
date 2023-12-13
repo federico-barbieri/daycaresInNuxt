@@ -562,8 +562,27 @@ const items = [{
 
 <!-- IF THIS IS THE FIRST TIME THE USER LOGGED IN, THEY WILL BE ASKED TO PROVIDE A NAME-->
 
-<div v-if="!fetchedFullName" style="width: 80vw; height: 80vh; margin: 0 auto; display: flex; align-items: center; justify-content: space-around;">
-  <form  class="form-widget" @submit.prevent="updateProfile" style="width: 30%; height: 50%; display: flex; flex-direction: column; align-items: center; justify-content: space-around; border: 1px solid white;">
+<div v-if="!fetchedFullName" 
+:style="{
+width: windowWidth < 768 ? '90vw' : '80vw', 
+height: windowWidth < 768 ? '90vh' : '80vh', 
+margin: '0 auto', 
+display: 'flex',
+'flex-direction': windowWidth < 768 ? 'column' : 'row', 
+'align-items': 'center', 
+'justify-content': 'space-around',
+}">
+  <form  class="form-widget" @submit.prevent="updateProfile" 
+  :style="{
+  width: windowWidth < 768 ? '100%' : '30%', 
+  height: '50%', 
+  display: 'flex', 
+  'flex-direction': 'column', 
+  'align-items': 'center', 
+  'justify-content': 'space-around', 
+  border: '1px solid white',
+  margin: windowWidth < 768 ? '3rem auto 0 auto' : '',
+  }">
     <div style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-around;">
       <label style="color: gray;" for="email">Email</label>
       <input style="width: 80%; margin-top: 0.5rem; color: gray;" id="email" type="text" :value="session.user.email" disabled />
@@ -589,7 +608,13 @@ const items = [{
 
 
   </form>
-  <div style="width: 50%; height: 100%; display: flex; align-items: center;">
+  <div 
+  :style="{
+  width: windowWidth < 768 ? '100%' : '50%', 
+  height: '100%', 
+  display: 'flex', 
+  'align-items': 'center',
+  }">
     <img src="../assets/pige.jpg" style="max-width: 100%; height: auto;" />
   </div>
   
