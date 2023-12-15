@@ -351,6 +351,7 @@ let kidStartingDate = ref();
 
 async function addKid(){
 
+
   try {
       loading.value = true
       const { user } = session.value
@@ -695,6 +696,7 @@ overflow: hidden;
             
             <UFormGroup label="Name" class="mb-5" :ui="{label: {base: 'block font-medium text-white dark:text-white'}}">
                       <UInput placeholder="Your child's name" v-model="kidName" />
+
             </UFormGroup>
   
             <UFormGroup label="CPR" class="mb-5" :ui="{label: {base: 'block font-medium text-white dark:text-white'}}">
@@ -889,7 +891,8 @@ overflow: hidden;
 
                                                 <div>
                                                   <p><em>{{ daycare.address }}</em></p>
-                                                  <span>{{ daycare.area }}</span>
+                                                  <span>{{ daycare.area }}</span> <br><br>
+                                                  <p><em>Pedagog to child ratio: {{ daycare.pedagog_ratio }}:1</em></p>
                                                 </div>
 
 
