@@ -348,8 +348,24 @@ let kidName = ref('');
 let kidCpr = ref('')
 let kidStartingDate = ref();
 
+// let user know kid name is wrong
+let changeKidName = ref(false);
+
+
+// test kid name
+
+function  isKidNameValid(name) {
+      const namePattern = /^[a-zA-ZøØ\s]+$/;
+      return namePattern.test(name);
+    }
+
 
 async function addKid(){
+
+  if(isKidNameValid(kidName.value)){
+
+    changeKidName.value = false;
+
 
 
   try {
@@ -377,6 +393,10 @@ async function addKid(){
       kidCpr.value = "";
       kidStartingDate.value = '';
     }
+
+  } else{
+    changeKidName.value = true;
+  }
 
 }
 
@@ -696,6 +716,7 @@ overflow: hidden;
             
             <UFormGroup label="Name" class="mb-5" :ui="{label: {base: 'block font-medium text-white dark:text-white'}}">
                       <UInput placeholder="Your child's name" v-model="kidName" />
+                      <span style="color: red;" v-if="changeKidName">Only letters are allowed!</span>
 
             </UFormGroup>
   
