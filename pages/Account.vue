@@ -186,7 +186,6 @@ async function applyToDaycare(){
 
     // add subscription cost to total cost
     currentTotalSubscriptionCost.value += daycareCost.value;
-    console.log(currentTotalSubscriptionCost.value);
 
     // create a random num and store it as the child's position in the waiting list
     let positionInWaitingList = Math.floor(Math.random() * 200 + 1);
@@ -266,9 +265,6 @@ const calendlyBtnAttachedToSlider = ref()
 
 useCalendlyEventListener({
   onDateAndTimeSelected: event => {
-            console.log("onDateAndTimeSelected", event)
-            console.log(event.url)
-            console.log("sup");
         },
  })
 
@@ -332,7 +328,6 @@ async function getChildren(){
 
       } else{
         childrenExist.value = false;
-        console.log("no children found")
       }
 
       if (error) {
@@ -351,21 +346,52 @@ let kidStartingDate = ref();
 // let user know kid name is wrong
 let changeKidName = ref(false);
 
+// let user know cpr is wrong
+let changeKidCpr = ref(false);
+
 
 // test kid name
 
 function  isKidNameValid(name) {
       const namePattern = /^[a-zA-ZøØ\s]+$/;
-      return namePattern.test(name);
+      if(namePattern.test(name) || kidName.value == ''){
+      changeKidName.value = false;
+    } else {
+      changeKidName.value = true;
     }
+    }
+
+
+  // test kid cpr
+
+function  isKidCprValid(cpr) {
+      const numberPattern = /^\d{10}$/;
+      if(numberPattern.test(cpr) || kidCpr.value == ''){
+      changeKidCpr.value = false;
+    } else {
+      changeKidCpr.value = true;
+    }
+    }
+
+watch(kidName, () => {
+
+isKidNameValid(kidName.value)
+
+
+});
+
+watch(kidCpr, () => {
+
+isKidCprValid(kidCpr.value)
+
+
+});
+
 
 
 async function addKid(){
 
-  if(isKidNameValid(kidName.value)){
-
-    changeKidName.value = false;
-
+  if(!changeKidName.value && !changeKidCpr.value){
 
 
   try {
@@ -395,7 +421,8 @@ async function addKid(){
     }
 
   } else{
-    changeKidName.value = true;
+    toast.add({ title: 'Incorrect filling of form' })
+
   }
 
 }
@@ -455,15 +482,11 @@ async function getSubscriptions(){
           subscriptions.value = subscriptions.value.reverse();
 
           subscriptions.value.forEach(element => {
-            console.log(element.waiting_list_cost);
             currentTotalSubscriptionCost.value += element.waiting_list_cost;
-            console.log("data exists. current cost of subscription", currentTotalSubscriptionCost.value);
           });
 
       } else{
         subscriptionsExist.value = false;
-        console.log("no subscriptions found")
-        console.log("no sub found. current cost of subscription", currentTotalSubscriptionCost.value);
 
       }
 
@@ -722,6 +745,8 @@ overflow: hidden;
   
             <UFormGroup label="CPR" class="mb-5" :ui="{label: {base: 'block font-medium text-white dark:text-white'}}">
                       <UInput placeholder="Your child's CPR" v-model="kidCpr" />
+                      <span style="color: red;" v-if="changeKidCpr">Enter valid CPR number!</span>
+
             </UFormGroup>
 
             <UFormGroup label="Expected start" class="mb-5" :ui="{label: {base: 'block font-medium text-white dark:text-white'}}">
