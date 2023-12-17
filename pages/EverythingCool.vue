@@ -507,7 +507,7 @@ onMounted(() => {
 
                             <p style="max-width: 50ch; font-family: 'Raleway', sans-serif;">
                             reborn-waitinglists@gmail.com <br><br>
-                            Or give us a call Monday to Friday from 9 to 13.
+                            Or give us a call on 52221989, Monday to Friday from 9 to 13.
                           </p>
 
 
