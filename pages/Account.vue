@@ -89,6 +89,9 @@ const daycareTabs = [{
 }, {
   label: 'Map',
   slot: 'map'
+},{
+  label: 'Distance',
+  slot: 'distance'
 }]
 
 const daycares = ref([])
@@ -572,6 +575,48 @@ const items = [{
   slot: 'subscriptions',
   label: 'Subscriptions'
 }]
+
+
+
+// CALCULATE DISTANCE //////////
+
+function deg2rad(deg) {
+  return deg * (Math.PI / 180);
+}
+
+function getDistance(lat1, lon1, lat2, lon2) {
+
+  console.log("init");
+  const R = 6371; // Earth's radius in kilometers
+  const dLat = deg2rad(lat2 - lat1);
+  const dLon = deg2rad(lon2 - lon1);
+
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(lat1)) *
+      Math.cos(deg2rad(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = R * c; // Distance in kilometers
+
+
+  calculatedDistance.value = distance.toFixed(2);
+
+  console.log(calculatedDistance.value);
+
+}
+
+
+
+let latitude1 = ref();
+let longitude1 = ref();
+
+let latitude2 = ref();
+let longitude2 = ref();
+
+let calculatedDistance = ref(0);
 
 
 
@@ -1105,12 +1150,59 @@ overflow: hidden;
           
           </template>
 
+          <!--DISTANCE-->
+
+          <template #distance = {item}>
+
+            <div style="height: 60vh; width: 80%; border: 1px solid red; margin: 0 auto;">
+
+              <UFormGroup label="Latitude 1" class="mb-5" :ui="{label: {base: 'block font-medium text-white dark:text-white'}}">
+                      <UInput placeholder="Latitude 1" v-model="latitude1" />
+
+            </UFormGroup>
+
+            <UFormGroup label="Longitude 1" class="mb-5" :ui="{label: {base: 'block font-medium text-white dark:text-white'}}">
+                      <UInput placeholder="Longitude 1" v-model="longitude1" />
+
+            </UFormGroup>
+
+            <UFormGroup label="Latitude 2" class="mb-5" :ui="{label: {base: 'block font-medium text-white dark:text-white'}}">
+                      <UInput placeholder="Latitude 2" v-model="latitude2" />
+
+            </UFormGroup>
+
+            <UFormGroup label="Longitude 2" class="mb-5" :ui="{label: {base: 'block font-medium text-white dark:text-white'}}">
+                      <UInput placeholder="Longitude 2" v-model="longitude2" />
+
+            </UFormGroup>
+              
+             <UButton @click="() => getDistance(latitude1, longitude1, latitude2, longitude2)">Calculate distance</UButton> 
+
+             <p class="mt-5">Distance is {{ calculatedDistance }}</p>
+             
+
+            
+              
+              
+            </div>
+
+            
+
+              
+  
+
+
+
+          </template>
+
         
     
           </UTabs>
       </div>
     
     </template>
+
+    
 
     
 
