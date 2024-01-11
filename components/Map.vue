@@ -4,6 +4,7 @@
 
                         
             <MapboxMap
+            
             v-if="mapIsOpen"
             map-id="map"
             :style="{
@@ -16,7 +17,11 @@
             center: [12.545607, 55.671999], // starting position
             zoom: 11 // starting zoom
             }"
+               
             >
+            <MapboxGeocoder
+            v-bind="address"
+            />
 
 
 
@@ -910,14 +915,41 @@ const handleResize = () => {
 };
 
 
+/*
+async function showStuff() {
+    console.log("sup")
+  try {
+    
+    const response = await fetch('https://api.mapbox.com/geocoding/v5/mapbox.places/ingerslevsgade%20146.json?proximity=ip&access_token=pk.eyJ1Ijoic2xvZ2FsYW5kIiwiYSI6ImNscGRjcWZ6NTB1cm0yanByYTk4cmF3cncifQ.B9KFZPHWLdwwy6JnK1ZtWg'); // Replace with your API endpoint
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    // Process the received data here
+    console.log(data);
+  } catch (error) {
+    console.error('There was a problem fetching the data:', error);
+    // Handle errors gracefully
+    return null;
+  }
+}
+
+*/
+
+
+
 /// INITIALIZE
 
 
 onMounted(() => {
 
   window.addEventListener('resize', handleResize);
+//  showStuff();
 
 })
+
+
+
 
 
 
