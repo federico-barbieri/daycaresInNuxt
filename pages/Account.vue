@@ -1285,7 +1285,6 @@ overflow: hidden;
 
     <div 
     :style="{
-    border: '1px solid red',
     height: '65vh', 
     width: '100%', 
     margin: '0 auto', 
