@@ -653,13 +653,19 @@ let userAddress = ref()
 
 // GEOLOCATE A PLACE
 
+
+
 const newToken = useRuntimeConfig().public.accessGeoToken;
 
 
 async function lookForStuff() {
+
   const geocodingEndpoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(userAddress.value)}.json?access_token=${newToken}`;
 
   try {
+
+
+
     const response = await fetch(geocodingEndpoint);
     if (!response.ok) {
       throw new Error('Network response was not ok');
