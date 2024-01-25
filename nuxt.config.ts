@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     }
   },
   mapbox: {
-    accessToken: 'pk.eyJ1Ijoic2xvZ2FsYW5kIiwiYSI6ImNscGRjdndoMTB2NXUycXByODI3emJ3M20ifQ.T-e8tPTL8Bo3n2KeCQaWOg'
+    accessToken: process.env.MAPBOX_KEY,
   }
 
  

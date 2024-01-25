@@ -213,7 +213,7 @@ onMounted(() => {
                         <p
                             v-for="(daycare, index) in arrayOfDaycares"
                             :key="index"
-                            style="margin-right: 0.5rem; color: #F3F4F6; opacity: 0.5;"
+                            style="margin-right: 0.5rem; color: #F3F4F6; opacity: 0.5; font-size: 1.5rem; font-family: Raleway, sans-serif"
                           >
                             {{ daycare.toUpperCase() }}
                         </p>

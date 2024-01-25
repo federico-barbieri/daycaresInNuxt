@@ -211,6 +211,24 @@ async function applyToDaycare(){
       loading.value = true
       const { user } = session.value
 
+      // see if child is already subscribed
+
+
+      const { data} = await supabase
+        .from('subscriptions')
+        .select('*')
+        .eq('child_id', childId)
+        .eq('daycare_id', daycareId.value)
+
+
+      if (data && data.length > 0) {
+        // The child has been signed into the daycare in the past
+        toast.add({ title: 'CHILD IS ALREADY SUBSCRIBED TO THIS DAYCARE!', ui:{progress: {background: 'bg-red-500 dark:bg-red-400'}} })
+        return;
+
+      }
+        
+  
       const addNewSubscription = {
 
         parent_id: user.id,
@@ -241,6 +259,10 @@ async function applyToDaycare(){
       getSubscriptions();
 
     }
+
+
+
+  
 }
 
 // DAYCARE filters
