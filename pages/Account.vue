@@ -653,12 +653,11 @@ let userAddress = ref()
 
 // GEOLOCATE A PLACE
 
-const accessToken = 'pk.eyJ1Ijoic2xvZ2FsYW5kIiwiYSI6ImNscGRjdndoMTB2NXUycXByODI3emJ3M20ifQ.T-e8tPTL8Bo3n2KeCQaWOg';
-
+const newToken = useRuntimeConfig().public.accessGeoToken;
 
 
 async function lookForStuff() {
-  const geocodingEndpoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(userAddress.value)}.json?access_token=${accessToken}`;
+  const geocodingEndpoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(userAddress.value)}.json?access_token=${newToken}`;
 
   try {
     const response = await fetch(geocodingEndpoint);

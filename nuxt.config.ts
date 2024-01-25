@@ -15,6 +15,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       accessToken: process.env.MAPBOX_KEY,
+      accessGeoToken: process.env.ACCESS_GEO_TOKEN,
  
     },
   },
