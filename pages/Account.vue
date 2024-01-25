@@ -1315,23 +1315,35 @@ overflow: hidden;
     'justify-content': 'space-around',
     }">
 
-              
+              <div 
+              :style="{
+              display: 'flex', 
+              'flex-direction': 'column', 
+              'align-items': windowWidth < 1000 ? 'center' : 'flex-start',
+              'justify-content': 'space-around', 
+              height: '50%',
+              }">
 
 
-              <UFormGroup label="My address"  :ui="{label: {base: 'block font-medium text-white dark:text-white'}}">
-                      <UInput placeholder="Vesterbrogade 150, 1705, Copenhagen" v-model="userAddress"  />
+             
 
-              </UFormGroup>
 
-              <USelect
-              
-              class="mb-5"
-              style="width: 100%"
-              placeholder="Select daycare"
-              :options="listOfDaycareDistanceOptions"
-              v-model="selectedDaycareForDistance"
-              icon="i-heroicons-magnifying-glass-20-solid"
-              />  
+                      <UFormGroup label="Your address"  :ui="{label: {base: 'block font-medium text-white dark:text-white'}}">
+                              <UInput placeholder="Vesterbrogade 150, 1705, Copenhagen" v-model="userAddress"  />
+
+                      </UFormGroup>
+
+                      <USelect
+                      
+                      class="mb-5"
+                      style="width: 100%"
+                      placeholder="Select daycare"
+                      :options="listOfDaycareDistanceOptions"
+                      v-model="selectedDaycareForDistance"
+                      icon="i-heroicons-magnifying-glass-20-solid"
+                      />  
+
+            </div>
 
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: space-around; height: 20%;">
               
